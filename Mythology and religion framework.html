@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2026 Zeiendos. All rights reserved.
+
+The Infiniology Worldbuilding Framework
+A systematic tool for creating rich, coherent mythologies and religions for fictional worlds.
+
+This framework and associated content are the intellectual property of Zeiendos.
+Unauthorized reproduction, distribution, or modification is strictly prohibited.
+For permissions and licensing inquiries, please contact Zeiendos.
+-->
+<html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Infiniology Worldbuilding Framework</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tiempos+Headline:wght@400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        :root {
+            --cosmic-blue: #1e3a8a;
+            --celestial-gold: #fbbf24;
+            --void-black: #0f172a;
+            --divine-white: #f8fafc;
+            --subtle-amber: #f59e0b;
+        }
+        
+        body {
+            font-family: "Inter", sans-serif;
+            background: linear-gradient(135deg, var(--void-black) 0%, var(--cosmic-blue) 100%);
+            color: var(--divine-white);
+        }
+        
+        .tiempos {
+            font-family: "Tiempos Headline", serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+        }
+        
+        .celestial-glow {
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.3);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(251, 191, 36, 0.2);
+            z-index: 50;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+        }
+        
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .chart-container {
+            background: rgba(30, 58, 138, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .citation-link {
+            color: var(--celestial-gold);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted var(--celestial-gold);
+        }
+        
+        .citation-link:hover {
+            background: rgba(251, 191, 36, 0.1);
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--celestial-gold) 50%, transparent 100%);
+            margin: 4rem 0;
+        }
+        
+        .concept-card {
+            background: rgba(30, 58, 138, 0.2);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 2rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
+        }
+        
+        /* Image placeholder styles */
+        .image-placeholder {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.3) 0%, rgba(15, 23, 42, 0.5) 100%);
+            border: 2px dashed rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(248, 250, 252, 0.6);
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .cosmic-visual {
+            background: radial-gradient(circle at center, rgba(30, 58, 138, 0.4) 0%, rgba(15, 23, 42, 0.8) 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cosmic-visual::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+        
+        .mythology-visual {
+            background: linear-gradient(45deg, rgba(30, 58, 138, 0.2) 0%, rgba(139, 69, 19, 0.3) 50%, rgba(15, 23, 42, 0.6) 100%);
+            position: relative;
+        }
+        
+        .mythology-visual::before {
+            content: '⚡';
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: rgba(251, 191, 36, 0.5);
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { opacity: 0.4; text-shadow: 0 0 10px rgba(251, 191, 36, 0.3); }
+            50% { opacity: 0.8; text-shadow: 0 0 20px rgba(251, 191, 36, 0.6); }
+        }
+        
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .toc-fixed.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+        }
+        
+        /* Media query for small screens (max-width: 768px) */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .hero-text p {
+                font-size: 1rem;
+            }
+            
+            .hero-text {
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .section-divider {
+                margin: 2.5rem 0;
+            }
+            
+            .concept-card {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+        }
+        
+        /* Additional media query for very small screens (max-width: 400px) */
+        @media (max-width: 400px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-text p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Prevent horizontal overflow on small screens */
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Ensure long words break */
+        .hero-text h1, .hero-text p {
+            word-wrap: break-word;
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body>
+    <!-- Table of Contents - Fixed Left Sidebar -->
+    <nav class="toc-fixed">
+      <div class="mb-8">
+        <h2 class="tiempos text-xl font-bold text-amber-300 mb-4">Contents</h2>
+        <div class="space-y-3 text-sm">
+          <a href="#introduction" class="block hover:text-amber-300 transition-colors">1. Introduction</a>
+          <div class="ml-4 space-y-2 text-xs opacity-80">
+            <a href="#universal-quest" class="block hover:text-amber-200">1.1 The Universal Quest</a>
+            <a href="#framework-works" class="block hover:text-amber-200">1.2 How This Framework Works</a>
+            <a href="#christian-example" class="block hover:text-amber-200">1.3 Christianity as Example</a>
+          </div>
+
+          <a href="#core-concepts" class="block hover:text-amber-300 transition-colors">2. Core Concepts</a>
+          <div class="ml-4 space-y-2 text-xs opacity-80">
+            <a href="#infinity" class="block hover:text-amber-200">2.1 Infinity</a>
+            <a href="#laws" class="block hover:text-amber-200">2.2 Laws</a>
+            <a href="#stability" class="block hover:text-amber-200">2.3 Stability</a>
+          </div>
+
+          <a href="#pantheon-method" class="block hover:text-amber-300 transition-colors">3. Creating a Pantheon</a>
+          <div class="ml-4 space-y-2 text-xs opacity-80">
+            <a href="#pantheon-scope" class="block hover:text-amber-200">3.1 Define Scope</a>
+            <a href="#gods-represent" class="block hover:text-amber-200">3.2 What Gods Represent</a>
+            <a href="#divine-relationships" class="block hover:text-amber-200">3.3 Divine Relationships</a>
+            <a href="#mortal-relations" class="block hover:text-amber-200">3.4 Mortal Relations</a>
+          </div>
+
+          <a href="#creation-myth" class="block hover:text-amber-300 transition-colors">4. Creation Myth</a>
+          <div class="ml-4 space-y-2 text-xs opacity-80">
+            <a href="#primordial-state" class="block hover:text-amber-200">4.1 Primordial State</a>
+            <a href="#genesis-narrative" class="block hover:text-amber-200">4.2 Genesis Narrative</a>
+            <a href="#first-distortion" class="block hover:text-amber-200">4.3 First Distortion</a>
+          </div>
+
+          <a href="#cosmic-cycle" class="block hover:text-amber-300 transition-colors">5. Cosmic Cycle</a>
+          <div class="ml-4 space-y-2 text-xs opacity-80">
+            <a href="#antichrist" class="block hover:text-amber-200">5.1 The Antichrist</a>
+            <a href="#tribulation" class="block hover:text-amber-200">5.2 Tribulation Cycle</a>
+            <a href="#mythological-parallels" class="block hover:text-amber-200">5.3 Mythological Parallels</a>
+          </div>
+
+          <a href="#poem" class="block hover:text-amber-300 transition-colors">6. The Cosmic Poem</a>
+          <a href="#interactive-guide" class="block hover:text-amber-300 transition-colors">7. Interactive Guide</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section with Bento Grid -->
+      <section class="relative min-h-screen flex items-center justify-center">
+        <div class="hero-gradient absolute inset-0"></div>
+        <div class="relative z-10 container mx-auto px-8 py-16">
+          <div class="bento-grid max-w-6xl mx-auto items-center">
+            <!-- Text Content -->
+            <div class="space-y-8 hero-text">
+              <div class="space-y-6">
+                <h1 class="tiempos text-6xl font-bold leading-tight">
+                  <span class="text-amber-300">The Infiniology</span>
+                  <br/>
+                  <em class="text-white">Worldbuilding Framework</em>
+                </h1>
+                <p class="text-xl text-gray-300 leading-relaxed max-w-xl">
+                  A systematic tool for creating rich, coherent mythologies and religions for fictional worlds
+                </p>
+              </div>
+
+              <div class="flex space-x-4">
+                <div class="bg-amber-500/20 px-4 py-2 rounded-full border border-amber-300/30">
+                  <span class="text-amber-300 text-sm font-medium">∞ Infinity</span>
+                </div>
+                <div class="bg-amber-500/20 px-4 py-2 rounded-full border border-amber-300/30">
+                  <span class="text-amber-300 text-sm font-medium">⚖ Laws</span>
+                </div>
+                <div class="bg-amber-500/20 px-4 py-2 rounded-full border border-amber-300/30">
+                  <span class="text-amber-300 text-sm font-medium">⚓ Stability</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="relative">
+              <div class="cosmic-visual w-full h-96 rounded-2xl celestial-glow flex items-center justify-center">
+                <div class="text-center">
+                  <i class="fas fa-infinity text-6xl text-amber-300 mb-4"></i>
+                  <p class="text-lg font-semibold text-amber-200">Cosmic Mandala</p>
+                  <p class="text-sm text-gray-400">Abstract representation of infinite potential</p>
+                </div>
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent rounded-2xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction Section -->
+      <section id="introduction" class="py-16 px-8">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="tiempos text-4xl font-bold text-amber-300 mb-8">Introduction: The Power of Myth in Worldbuilding</h2>
+
+          <div id="universal-quest" class="mb-12">
+            <h3 class="tiempos text-2xl font-semibold mb-6 text-white">The Universal Human Quest for Meaning</h3>
+            <div class="prose prose-lg prose-invert max-w-none">
+              <p class="text-gray-300 leading-relaxed mb-6">
+                The creation of mythologies and religions is a fundamental aspect of human culture, serving as a powerful tool for explaining the unexplainable, providing meaning and purpose, and establishing a shared identity within a community <a href="https://inkwellideas.com/worldbuilding/worldbuilding-religion-design/" class="citation-link" target="_blank">[263]</a>. In the context of worldbuilding for fictional settings, the development of a coherent and rich belief system is not merely an exercise in adding flavor or background detail; it is a critical component that can profoundly shape the very fabric of the world, its societies, and the characters that inhabit it <a href="https://academy.worldanvil.com/blog/worldbuilding-religion-mythology-and-history" class="citation-link" target="_blank">[265]</a>.
+              </p>
+              <p class="text-gray-300 leading-relaxed mb-6">
+                A well-crafted religion can influence everything from political power structures and legal codes to social norms, artistic expression, and the justification for conflict or cooperation between different groups <a href="https://thelittlebookish.com/blogs/news/fictional-religion-for-a-fantasy-novel" class="citation-link" target="_blank">[266]</a>. By exploring the core existential questions that real-world religions address—such as the origins of the universe, the nature of good and evil, and the fate of the soul—worldbuilders can create settings that feel authentic, resonant, and deeply immersive.
+              </p>
+            </div>
+          </div>
+
+          <div id="framework-works" class="mb-12">
+            <h3 class="tiempos text-2xl font-semibold mb-6 text-white">How This Framework Works</h3>
+            <div class="concept-card">
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center">
+                  <div class="w-16 h-16 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-infinity text-2xl text-amber-300"></i>
+                  </div>
+                  <h4 class="font-semibold text-amber-300 mb-2">Deconstruct</h4>
+                  <p class="text-sm text-gray-300">Break down complex belief systems into fundamental archetypal concepts</p>
+                </div>
+                <div class="text-center">
+                  <div class="w-16 h-16 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-cogs text-2xl text-amber-300"></i>
+                  </div>
+                  <h4 class="font-semibold text-amber-300 mb-2">Recombine</h4>
+                  <p class="text-sm text-gray-300">Systematically reconstruct essential elements using the Infiniology Chart</p>
+                </div>
+                <div class="text-center">
+                  <div class="w-16 h-16 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-magic text-2xl text-amber-300"></i>
+                  </div>
+                  <h4 class="font-semibold text-amber-300 mb-2">Create</h4>
+                  <p class="text-sm text-gray-300">Generate unique belief systems grounded in timeless mythological patterns</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="christian-example" class="mb-12">
+            <h3 class="tiempos text-2xl font-semibold mb-6 text-white">Using Christianity as a Foundational Example</h3>
+            <div class="bg-blue-900/20 border-l-4 border-amber-400 p-6 rounded-r-lg">
+              <p class="text-gray-300 leading-relaxed">
+                Christianity serves as the primary foundational example within this framework due to its profound influence on Western culture and its rich, well-documented theological and mythological structures. The Christian tradition, with its complex understanding of a triune God, offers a powerful illustration of how the abstract principles of Infinity, Laws, and Stability can be personified and integrated into a coherent belief system.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Core Concepts Section -->
+      <section id="core-concepts" class="py-16 px-8">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="tiempos text-4xl font-bold text-amber-300 mb-12 text-center">The Core Concepts of the Infiniology Chart</h2>
+
+          <div class="grid lg:grid-cols-3 gap-8 mb-12">
+            <div class="concept-card">
+              <div class="text-center mb-6">
+                <div class="w-20 h-20 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center">
+                  <i class="fas fa-infinity text-3xl text-blue-300"></i>
+                </div>
+                <h3 class="tiempos text-xl font-bold text-blue-300">Infinity</h3>
+                <p class="text-sm text-gray-400">The Uncreated Source</p>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                The primordial, uncreated source of all existence. The state of pure, undifferentiated potential from which all things emanate.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <div class="text-center mb-6">
+                <div class="w-20 h-20 mx-auto mb-4 bg-purple-500/20 rounded-full flex items-center justify-center">
+                  <i class="fas fa-balance-scale text-3xl text-purple-300"></i>
+                </div>
+                <h3 class="tiempos text-xl font-bold text-purple-300">Laws</h3>
+                <p class="text-sm text-gray-400">The Active Principle</p>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                The active principle of order, differentiation, and structure that emerges from infinite potential to shape the universe.
+              </p>
+            </div>
+
+            <div class="concept-card">
+              <div class="text-center mb-6">
+                <div class="w-20 h-20 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center">
+                  <i class="fas fa-anchor text-3xl text-amber-300"></i>
+                </div>
+                <h3 class="tiempos text-xl font-bold text-amber-300">Stability</h3>
+                <p class="text-sm text-gray-400">The Mediating Force</p>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed">
+                The mediating force that brings balance, cohesion, and harmony to the universe, reconciling opposing forces.
+              </p>
+            </div>
+          </div>
+
+          <div class="chart-container">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-center">Core Concepts Overview</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-amber-400/30">
+                    <th class="text-left py-3 px-4 font-semibold text-amber-300">Concept</th>
+                    <th class="text-left py-3 px-4 font-semibold text-amber-300">Christian Interpretation</th>
+                    <th class="text-left py-3 px-4 font-semibold text-amber-300">Symbolic Meaning</th>
+                    <th class="text-left py-3 px-4 font-semibold text-amber-300">Comparative Examples</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-300">
+                  <tr class="border-b border-blue-500/20">
+                    <td class="py-3 px-4 font-medium text-blue-300">Infinity</td>
+                    <td class="py-3 px-4">God the Father</td>
+                    <td class="py-3 px-4">The Primordial Chaos/Void</td>
+                    <td class="py-3 px-4">Hindu Brahman, Gnostic Pleroma</td>
+                  </tr>
+                  <tr class="border-b border-purple-500/20">
+                    <td class="py-3 px-4 font-medium text-purple-300">Laws</td>
+                    <td class="py-3 px-4">The Holy Spirit</td>
+                    <td class="py-3 px-4">The Divine Breath/Logos</td>
+                    <td class="py-3 px-4">Egyptian Ma&#39;at, Hindu Rita</td>
+                  </tr>
+                  <tr>
+                    <td class="py-3 px-4 font-medium text-amber-300">Stability</td>
+                    <td class="py-3 px-4">Jesus Christ</td>
+                    <td class="py-3 px-4">The Bridge/Anchor</td>
+                    <td class="py-3 px-4">Hero Twins, Prometheus</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div id="infinity" class="mt-16">
+            <h3 class="tiempos text-3xl font-bold mb-8 text-blue-300">Infinity: The Uncreated Source</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                  Infinity represents the primordial, uncreated source of all existence. It is the state of pure, undifferentiated potential from which all things emanate. This concept is not a being or a thing in itself, but rather the boundless, formless ground of being that precedes all distinctions, including those of time, space, and identity.
+                </p>
+                <div class="bg-blue-900/30 border border-blue-500/30 rounded-lg p-4">
+                  <h4 class="font-semibold text-blue-300 mb-2">Symbolic Representations:</h4>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Primordial chaos (cosmic ocean)</li>
+                    <li>• Super-luminous darkness</li>
+                    <li>• The All-Potential</li>
+                    <li>• Cosmic womb</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <div class="image-placeholder w-full h-64">
+                  <div>
+                    <i class="fas fa-star text-4xl text-amber-300 mb-3"></i>
+                    <p class="font-semibold">Cosmic Void</p>
+                    <p class="text-xs">Nebula with distant stars</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="laws" class="mt-16">
+            <h3 class="tiempos text-3xl font-bold mb-8 text-purple-300">Laws: The Active Principle of Order</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <div class="image-placeholder w-full h-64">
+                  <div>
+                    <i class="fas fa-compass text-4xl text-purple-300 mb-3"></i>
+                    <p class="font-semibold">Cosmic Order</p>
+                    <p class="text-xs">Sacred geometry and divine structure</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                  Laws represent the active principle of order, differentiation, and structure that emerges from the infinite potential of the source. If Infinity is the &#34;what&#34; of existence, then Laws are the &#34;how.&#34; They are the fundamental principles, the cosmic rules, and the divine blueprint that shapes the raw potential of Infinity into a coherent and functioning universe.
+                </p>
+                <div class="bg-purple-900/30 border border-purple-500/30 rounded-lg p-4">
+                  <h4 class="font-semibold text-purple-300 mb-2">Key Manifestations:</h4>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Divine breath (pneuma)</li>
+                    <li>• Cosmic order and structure</li>
+                    <li>• The Logos (divine word)</li>
+                    <li>• Natural and moral laws</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="stability" class="mt-16">
+            <h3 class="tiempos text-3xl font-bold mb-8 text-amber-300">Stability: The Mediating Force</h3>
+            <p class="text-gray-300 leading-relaxed mb-8">
+              Stability is the third and final core concept, representing the mediating force that brings balance, cohesion, and harmony to the universe. If Infinity is the source and Laws are the active principle, then Stability is the result—the state of equilibrium achieved when infinite potential is shaped by divine laws.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-8">
+              <div class="bg-amber-900/20 border border-amber-500/30 rounded-lg p-6 text-center">
+                <i class="fas fa-bridge text-3xl text-amber-300 mb-4"></i>
+                <h4 class="font-semibold text-amber-300 mb-2">The Bridge</h4>
+                <p class="text-sm text-gray-300">Connects divine and mortal realms</p>
+              </div>
+              <div class="bg-amber-900/20 border border-amber-500/30 rounded-lg p-6 text-center">
+                <i class="fas fa-anchor text-3xl text-amber-300 mb-4"></i>
+                <h4 class="font-semibold text-amber-300 mb-2">The Anchor</h4>
+                <p class="text-sm text-gray-300">Provides steadfast foundation in chaos</p>
+              </div>
+              <div class="bg-amber-900/20 border border-amber-500/30 rounded-lg p-6 text-center">
+                <i class="fas fa-yin-yang text-3xl text-amber-300 mb-4"></i>
+                <h4 class="font-semibold text-amber-300 mb-2">The Reconciler</h4>
+                <p class="text-sm text-gray-300">Brings balance to opposing forces</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Pantheon Creation Section -->
+      <section id="pantheon-method" class="py-16 px-8">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="tiempos text-4xl font-bold text-amber-300 mb-12">Method: Creating a Pantheon of Gods</h2>
+
+          <div class="mb-12">
+            <p class="text-xl text-gray-300 leading-relaxed max-w-4xl mb-8">
+              The creation of a pantheon is a foundational step in developing a rich and believable fictional world. A well-structured pantheon provides a framework for understanding the cosmos, explaining natural phenomena, and shaping the cultures and values of the societies that worship them.
+            </p>
+          </div>
+
+          <div id="pantheon-scope" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">Step 1: Define the Scope and Number of Deities</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                  The initial and most crucial step in constructing a pantheon is to determine its scale and the number of deities it will encompass. This decision fundamentally shapes the theological landscape of your world, influencing everything from the complexity of religious practices to the nature of divine intervention in mortal affairs.
+                </p>
+                <div class="space-y-4">
+                  <div class="bg-blue-900/20 border-l-4 border-blue-400 p-4">
+                    <h4 class="font-semibold text-blue-300 mb-2">Monotheistic</h4>
+                    <p class="text-sm text-gray-300">Single all-encompassing deity governing all aspects of existence</p>
+                  </div>
+                  <div class="bg-purple-900/20 border-l-4 border-purple-400 p-4">
+                    <h4 class="font-semibold text-purple-300 mb-2">Dualistic</h4>
+                    <p class="text-sm text-gray-300">Two primary deities representing opposing forces</p>
+                  </div>
+                  <div class="bg-amber-900/20 border-l-4 border-amber-400 p-4">
+                    <h4 class="font-semibold text-amber-300 mb-2">Polytheistic</h4>
+                    <p class="text-sm text-gray-300">Multiple specialized gods for different domains</p>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="mythology-visual w-full h-64 rounded-lg flex items-center justify-center">
+                  <div class="text-center">
+                    <i class="fas fa-users text-6xl text-amber-300 mb-3"></i>
+                    <p class="font-semibold text-amber-200">Divine Pantheon</p>
+                    <p class="text-sm text-gray-400">Assembly of mythological gods</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="gods-represent" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">Step 2: Determine What Your Gods Represent</h3>
+
+            <div class="space-y-8">
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-blue-300">Embodying a Single Core Concept</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  A common and effective approach to deity design is to assign each god a single, fundamental concept or domain. This method creates clear, easily understandable archetypes that serve as powerful symbols within your world&#39;s mythology.
+                </p>
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div class="bg-blue-900/20 p-4 rounded-lg">
+                    <h5 class="font-semibold text-blue-300 mb-2">Ares (Greek)</h5>
+                    <p class="text-sm text-gray-300">God of War - represents the brutal and chaotic nature of battle</p>
+                  </div>
+                  <div class="bg-purple-900/20 p-4 rounded-lg">
+                    <h5 class="font-semibold text-purple-300 mb-2">Thoth (Egyptian)</h5>
+                    <p class="text-sm text-gray-300">God of Wisdom - represents knowledge and the written word</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-purple-300">Representing a Mixture of Concepts</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  A more nuanced approach involves combining two or more core concepts into a single divine being. This method allows for the creation of gods who embody paradoxes, dualities, or complex interplay of opposing forces.
+                </p>
+                <div class="bg-purple-900/20 p-4 rounded-lg">
+                  <h5 class="font-semibold text-purple-300 mb-2">Aphrodite + Ares</h5>
+                  <p class="text-sm text-gray-300">Love and War - represents how passion can be both creative and destructive</p>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-amber-300">Personifying Natural Forces</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  One of the most ancient methods is to personify fundamental elements and domains of the natural world, grounding the divine directly in tangible reality.
+                </p>
+                <div class="grid md:grid-cols-3 gap-4">
+                  <div class="bg-amber-900/20 p-4 rounded-lg text-center">
+                    <i class="fas fa-mountain text-2xl text-amber-300 mb-2"></i>
+                    <h5 class="font-semibold text-amber-300">Gaia</h5>
+                    <p class="text-sm text-gray-300">Earth</p>
+                  </div>
+                  <div class="bg-blue-900/20 p-4 rounded-lg text-center">
+                    <i class="fas fa-water text-2xl text-blue-300 mb-2"></i>
+                    <h5 class="font-semibold text-blue-300">Poseidon</h5>
+                    <p class="text-sm text-gray-300">Sea</p>
+                  </div>
+                  <div class="bg-gray-700/20 p-4 rounded-lg text-center">
+                    <i class="fas fa-cloud text-2xl text-gray-300 mb-2"></i>
+                    <h5 class="font-semibold text-gray-300">Uranus</h5>
+                    <p class="text-sm text-gray-300">Sky</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="divine-relationships" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">Step 3: Establish Divine Relationships and Hierarchy</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="tiempos text-lg font-semibold mb-4 text-amber-300">Generational Structures</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  Organize gods into successive generations, each with its own characteristics and role in the cosmic order. This creates a sense of history and evolution within the divine realm.
+                </p>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-blue-400 rounded-full"></div>
+                    <span class="text-sm text-gray-300"><strong>Primordial:</strong> First beings from chaos (Gaia, Uranus)</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+                    <span class="text-sm text-gray-300"><strong>Titans:</strong> Powerful elemental beings (Cronus, Rhea)</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-amber-400 rounded-full"></div>
+                    <span class="text-sm text-gray-300"><strong>Olympians:</strong> Ruling gods (Zeus, Hera)</span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="tiempos text-lg font-semibold mb-4 text-amber-300">Familial Ties and Conflicts</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  Familial relationships are a primary source of drama and narrative in mythology. Bonds between parents and children, siblings, and spouses create rich tapestries of interconnected stories.
+                </p>
+                <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                  <h5 class="font-semibold text-red-300 mb-2">Classic Conflicts:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Uranus vs Cronus (patricide)</li>
+                    <li>• Zeus vs Cronus (rebellion)</li>
+                    <li>• Zeus vs Hera (marital strife)</li>
+                    <li>• Sibling rivalries (Zeus, Poseidon, Hades)</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="mortal-relations" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">Step 4: Define the Gods&#39; Relationship with Mortals</h3>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="concept-card">
+                <h4 class="tiempos text-lg font-semibold mb-4 text-blue-300">Levels of Influence</h4>
+                <div class="space-y-3">
+                  <div class="bg-blue-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-blue-300 text-sm">Hands-Off</h5>
+                    <p class="text-xs text-gray-300">Distant creators who set the world in motion and withdraw</p>
+                  </div>
+                  <div class="bg-purple-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-purple-300 text-sm">Moderate</h5>
+                    <p class="text-xs text-gray-300">Influence through cosmic order and divine laws</p>
+                  </div>
+                  <div class="bg-amber-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-amber-300 text-sm">Hands-On</h5>
+                    <p class="text-xs text-gray-300">Direct intervention, miracles, and personal appearances</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <h4 class="tiempos text-lg font-semibold mb-4 text-purple-300">Worship Systems</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                  <li>• Prayer and ritual</li>
+                  <li>• Sacrificial offerings</li>
+                  <li>• Sacred festivals</li>
+                  <li>• Temple construction</li>
+                  <li>• Mystical contemplation</li>
+                </ul>
+              </div>
+
+              <div class="concept-card">
+                <h4 class="tiempos text-lg font-semibold mb-4 text-amber-300">Divine Intermediaries</h4>
+                <ul class="text-sm text-gray-300 space-y-2">
+                  <li>• Prophets and seers</li>
+                  <li>• Oracle systems</li>
+                  <li>• Clerical hierarchies</li>
+                  <li>• Chosen heroes</li>
+                  <li>• Sacred texts</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Creation Myth Section -->
+      <section id="creation-myth" class="py-16 px-8">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="tiempos text-4xl font-bold text-amber-300 mb-12">Method: Constructing a Core Creation Myth</h2>
+
+          <div class="mb-12">
+            <p class="text-xl text-gray-300 leading-relaxed max-w-4xl">
+              The creation myth is the foundational narrative of any culture, religion, or world. It explains not only how the physical world came into being but also establishes the core values, divine hierarchy, and fundamental laws that govern the universe and its inhabitants.
+            </p>
+          </div>
+
+          <div id="primordial-state" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">The Initial State: Infinity and the Primordial Chaos</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                  Before creation begins, there is a state of infinite potential and undifferentiated existence. In the Infiniology framework, this is the realm of <strong>Infinity</strong>, a concept that predates form, time, and space.
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                  In the Book of Genesis, this initial state is described as a &#34;formless and empty&#34; darkness, a &#34;deep&#34; (Hebrew: <em>tehom</em>) over which the spirit of God moves. This primordial chaos is not necessarily evil; rather, it is the raw, unshaped material from which all reality will be forged.
+                </p>
+                <div class="bg-blue-900/30 border border-blue-500/30 rounded-lg p-4">
+                  <h4 class="font-semibold text-blue-300 mb-2">Common Motifs:</h4>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• <strong>Cosmic Egg:</strong> Perfect sphere containing all elements</li>
+                    <li>• <strong>World Tree:</strong> Axis mundi connecting all realms</li>
+                    <li>• <strong>Primordial Ocean:</strong> Watery chaos of potential</li>
+                    <li>• <strong>Dark Void:</strong> Formless expanse before creation</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <div class="image-placeholder w-full h-64">
+                  <div>
+                    <i class="fas fa-egg text-4xl text-amber-300 mb-3"></i>
+                    <p class="font-semibold">Cosmic Egg</p>
+                    <p class="text-xs">Floating in primordial void</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="genesis-narrative" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">The Act of Creation: A Symbolic Interpretation of the Genesis Narrative</h3>
+
+            <div class="chart-container">
+              <h4 class="tiempos text-xl font-semibold mb-6 text-center">Symbolic Interpretation of Creation Days</h4>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-amber-400/30">
+                      <th class="text-left py-3 px-4 font-semibold text-amber-300">Day</th>
+                      <th class="text-left py-3 px-4 font-semibold text-amber-300">Genesis Event</th>
+                      <th class="text-left py-3 px-4 font-semibold text-amber-300">Symbolic Meaning</th>
+                      <th class="text-left py-3 px-4 font-semibold text-amber-300">Worldbuilding Application</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-gray-300">
+                    <tr class="border-b border-blue-500/20">
+                      <td class="py-3 px-4 font-medium text-blue-300">1</td>
+                      <td class="py-3 px-4">Light/Darkness</td>
+                      <td class="py-3 px-4">Awareness from unconsciousness</td>
+                      <td class="py-3 px-4">First divine will; fundamental duality</td>
+                    </tr>
+                    <tr class="border-b border-purple-500/20">
+                      <td class="py-3 px-4 font-medium text-purple-300">2</td>
+                      <td class="py-3 px-4">Division of Waters</td>
+                      <td class="py-3 px-4">Creation of space and realms</td>
+                      <td class="py-3 px-4">Cosmic structure and boundaries</td>
+                    </tr>
+                    <tr class="border-b border-green-500/20">
+                      <td class="py-3 px-4 font-medium text-green-300">3</td>
+                      <td class="py-3 px-4">Land and Life</td>
+                      <td class="py-3 px-4">Potential into stable form</td>
+                      <td class="py-3 px-4">Geography and first ecosystems</td>
+                    </tr>
+                    <tr class="border-b border-yellow-500/20">
+                      <td class="py-3 px-4 font-medium text-yellow-300">4</td>
+                      <td class="py-3 px-4">Celestial Bodies</td>
+                      <td class="py-3 px-4">Time and cosmic order</td>
+                      <td class="py-3 px-4">Calendar, cosmology, destiny</td>
+                    </tr>
+                    <tr class="border-b border-indigo-500/20">
+                      <td class="py-3 px-4 font-medium text-indigo-300">5</td>
+                      <td class="py-3 px-4">Sea/Sky Creatures</td>
+                      <td class="py-3 px-4">Population of realms</td>
+                      <td class="py-3 px-4">Unique fauna and ecosystems</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-4 font-medium text-amber-300">6</td>
+                      <td class="py-3 px-4">Humanity</td>
+                      <td class="py-3 px-4">Consciousness and free will</td>
+                      <td class="py-3 px-4">Primary actors and their purpose</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="mt-12 space-y-8">
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-blue-300">Day 1: Separation of Light and Darkness</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The first act represents the emergence of awareness from unconsciousness, the first distinction between knowledge and ignorance. This establishes the fundamental duality that will shape all of creation.
+                </p>
+                <div class="bg-blue-900/20 p-4 rounded-lg">
+                  <h5 class="font-semibold text-blue-300 mb-2">Worldbuilding Prompts:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• What does &#34;light&#34; represent in your world? Knowledge? Magic? Order?</li>
+                    <li>• What is the first act of divine will in your creation story?</li>
+                    <li>• How does this separation create the foundation for your world&#39;s magic system?</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-purple-300">Day 2: Division of Waters (The Firmament)</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The creation of the firmament establishes the basic structure of the cosmos, separating realms and creating boundaries between different planes of existence.
+                </p>
+                <div class="bg-purple-900/20 p-4 rounded-lg">
+                  <h5 class="font-semibold text-purple-300 mb-2">Cosmic Structure Ideas:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Three-tiered universe (heavens, earth, underworld)</li>
+                    <li>• Multiple planes of existence</li>
+                    <li>• Divine realms separated from mortal realms</li>
+                    <li>• Metaphysical boundaries between magic and mundane</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-green-300">Day 6: Creation of Humanity</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The climax of creation introduces consciousness, free will, and moral agency into the world. Humanity becomes the steward of creation and the primary actor in your world&#39;s story.
+                </p>
+                <div class="bg-green-900/20 p-4 rounded-lg">
+                  <h5 class="font-semibold text-green-300 mb-2">Key Questions:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• What does it mean to be &#34;made in the image of the gods&#34;?</li>
+                    <li>• What unique role do mortals play in your cosmos?</li>
+                    <li>• How does free will introduce the potential for both good and evil?</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="first-distortion" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">The Introduction of Duality and the First Distortion</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="tiempos text-lg font-semibold mb-4 text-amber-300">Adam and Eve: Balanced Dualities</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The first pair represents balanced dualities—masculine and feminine, order and chaos, active and receptive. Their relationship reflects the ideal state of cosmic harmony.
+                </p>
+                <div class="bg-amber-900/20 p-4 rounded-lg">
+                  <h5 class="font-semibold text-amber-300 mb-2">Duality Pairs:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Masculine/Feminine principles</li>
+                    <li>• Order/Chaos dynamics</li>
+                    <li>• Active/Receptive forces</li>
+                    <li>• Material/Spiritual aspects</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h4 class="tiempos text-lg font-semibold mb-4 text-red-300">The Serpent and the Fall</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The serpent represents the principle of self-will, the desire for knowledge and power that leads to separation from the divine. This introduces the first distortion into perfect creation.
+                </p>
+                <div class="bg-red-900/20 p-4 rounded-lg">
+                  <h5 class="font-semibold text-red-300 mb-2">Consequences of the Fall:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Loss of innocence and shame</li>
+                    <li>• Introduction of suffering and death</li>
+                    <li>• Gaining of free will and moral choice</li>
+                    <li>• Separation from divine communion</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Cosmic Cycle Section -->
+      <section id="cosmic-cycle" class="py-16 px-8">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="tiempos text-4xl font-bold text-amber-300 mb-12">Method: Designing the Cosmic Cycle and End-Times Prophecy</h2>
+
+          <div class="mb-12">
+            <p class="text-xl text-gray-300 leading-relaxed max-w-4xl">
+              The final stage of the mythological cycle is the end of the world, the apocalypse, the final judgment. This is the moment when the distortions and imbalances that have been building up over time are finally resolved.
+            </p>
+          </div>
+
+          <div id="antichrist" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">The Misuse of Self: The Concept of the Antichrist</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="tiempos text-lg font-semibold mb-4 text-red-300">Distorted Reflection of Stability</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The Antichrist is a false messiah who deceives the world and leads humanity astray. This figure represents the ultimate distortion of Stability—the complete separation of individual will from divine will.
+                </p>
+                <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                  <h5 class="font-semibold text-red-300 mb-2">Characteristics:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Charismatic leader promising peace</li>
+                    <li>• Master of deception and manipulation</li>
+                    <li>• Embodies pride and selfishness</li>
+                    <li>• Brings destruction disguised as salvation</li>
+                  </ul>
+                </div>
+              </div>
+              <div>
+                <h4 class="tiempos text-lg font-semibold mb-4 text-orange-300">False Prophets</h4>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  Accompanying the Antichrist are false prophets who spread lies and deceive the faithful. They represent a corruption of divine Laws, twisting sacred truths for evil purposes.
+                </p>
+                <div class="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                  <h5 class="font-semibold text-orange-300 mb-2">Methods of Deception:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• False miracles and signs</li>
+                    <li>• Twisted scripture interpretation</li>
+                    <li>• Propaganda and manipulation</li>
+                    <li>• Preying on fears and anxieties</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tribulation" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">The Tribulation Cycle: A Step-by-Step Breakdown</h3>
+
+            <div class="space-y-8">
+              <div class="concept-card">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-scroll text-red-300"></i>
+                  </div>
+                  <h4 class="tiempos text-xl font-semibold text-red-300">The Seven Seals</h4>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The first stage unleashes conquest, war, famine, and death upon the world—the breakdown of social order and the rise of chaos.
+                </p>
+                <div class="grid md:grid-cols-4 gap-3">
+                  <div class="bg-red-900/20 p-3 rounded text-center">
+                    <i class="fas fa-chess-king text-red-300 mb-2"></i>
+                    <h5 class="font-semibold text-red-300 text-sm">Conquest</h5>
+                  </div>
+                  <div class="bg-orange-900/20 p-3 rounded text-center">
+                    <i class="fas fa-sword text-orange-300 mb-2"></i>
+                    <h5 class="font-semibold text-orange-300 text-sm">War</h5>
+                  </div>
+                  <div class="bg-yellow-900/20 p-3 rounded text-center">
+                    <i class="fas fa-wheat text-yellow-300 mb-2"></i>
+                    <h5 class="font-semibold text-yellow-300 text-sm">Famine</h5>
+                  </div>
+                  <div class="bg-gray-800 p-3 rounded text-center">
+                    <i class="fas fa-skull text-gray-300 mb-2"></i>
+                    <h5 class="font-semibold text-gray-300 text-sm">Death</h5>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-trumpet text-orange-300"></i>
+                  </div>
+                  <h4 class="tiempos text-xl font-semibold text-orange-300">The Seven Trumpets</h4>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The second stage brings natural disasters and cosmic upheaval—the destruction of the natural world and collapse of the cosmos.
+                </p>
+                <div class="grid md:grid-cols-3 gap-3">
+                  <div class="bg-red-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-red-300 text-sm mb-1">Hail and Fire</h5>
+                    <p class="text-xs text-gray-300">Destruction from above</p>
+                  </div>
+                  <div class="bg-orange-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-orange-300 text-sm mb-1">Mountain of Fire</h5>
+                    <p class="text-xs text-gray-300">Volcanic cataclysm</p>
+                  </div>
+                  <div class="bg-purple-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-purple-300 text-sm mb-1">Darkened Sun</h5>
+                    <p class="text-xs text-gray-300">Cosmic disorder</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <div class="flex items-center mb-4">
+                  <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center mr-4">
+                    <i class="fas fa-bowl text-purple-300"></i>
+                  </div>
+                  <h4 class="tiempos text-xl font-semibold text-purple-300">The Seven Bowls</h4>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                  The final stage unleashes the last plagues and divine wrath—the complete and utter destruction of the world as it is known.
+                </p>
+                <div class="grid md:grid-cols-2 gap-3">
+                  <div class="bg-red-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-red-300 text-sm mb-1">Painful Sores</h5>
+                    <p class="text-xs text-gray-300">Plague of suffering</p>
+                  </div>
+                  <div class="bg-blue-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-blue-300 text-sm mb-1">Blood to Water</h5>
+                    <p class="text-xs text-gray-300">Corruption of life</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="mythological-parallels" class="mb-16">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-white">Parallels to Mythological Apocalypses</h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-blue-300">Ragnarok: The Norse End of the World</h4>
+                <div class="image-placeholder w-full h-48 mb-4">
+                  <div>
+                    <i class="fas fa-hammer text-5xl text-blue-300 mb-2"></i>
+                    <p class="font-semibold">Ragnarok Battle</p>
+                    <p class="text-xs">Final confrontation of gods</p>
+                  </div>
+                </div>
+                <div class="space-y-3">
+                  <div class="bg-blue-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-blue-300 text-sm mb-1">Fimbulwinter</h5>
+                    <p class="text-xs text-gray-300">Three-year winter signaling cosmic breakdown</p>
+                  </div>
+                  <div class="bg-red-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-red-300 text-sm mb-1">Final Battle</h5>
+                    <p class="text-xs text-gray-300">Gods vs. giants—the triumph of chaos</p>
+                  </div>
+                  <div class="bg-green-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-green-300 text-sm mb-1">World Renewal</h5>
+                    <p class="text-xs text-gray-300">New world born from destruction</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="concept-card">
+                <h4 class="tiempos text-xl font-semibold mb-4 text-orange-300">Phaethon: Greek Tale of Hubris</h4>
+                <div class="image-placeholder w-full h-48 mb-4">
+                  <div>
+                    <i class="fas fa-sun text-5xl text-orange-300 mb-2"></i>
+                    <p class="font-semibold">Sun Chariot</p>
+                    <p class="text-xs">Phaethon's disastrous ride</p>
+                  </div>
+                </div>
+                <div class="space-y-3">
+                  <div class="bg-orange-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-orange-300 text-sm mb-1">Hubris and Pride</h5>
+                    <p class="text-xs text-gray-300">Mortal attempts to control divine power</p>
+                  </div>
+                  <div class="bg-red-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-red-300 text-sm mb-1">Loss of Control</h5>
+                    <p class="text-xs text-gray-300">Sun chariot scorches the earth</p>
+                  </div>
+                  <div class="bg-blue-900/20 p-3 rounded">
+                    <h5 class="font-semibold text-blue-300 text-sm mb-1">Divine Intervention</h5>
+                    <p class="text-xs text-gray-300">Zeus restores order through destruction</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Cosmic Poem Section -->
+      <section id="poem" class="py-16 px-8">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="tiempos text-4xl font-bold text-amber-300 mb-12 text-center">The Cosmic Cycle Poem: A Thematic Element</h2>
+
+          <div class="bg-blue-900/20 border border-blue-500/30 rounded-2xl p-12 mb-12 celestial-glow">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-center text-blue-300">The Cycle of the World-Soul</h3>
+
+            <div class="space-y-6 text-lg leading-relaxed text-gray-300">
+              <div class="text-center">
+                <p class="mb-4"><em>In the beginning, there was the One,</em></p>
+                <p class="mb-4"><em>The All-Potential, the Infinite Sun.</em></p>
+                <p class="mb-4"><em>A boundless sea, a silent night,</em></p>
+                <p class="mb-6"><em>Where all was one, and all was right.</em></p>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-4"><em>Then came the Word, the Law, the Breath,</em></p>
+                <p class="mb-4"><em>That carved the cosmos from the depths.</em></p>
+                <p class="mb-4"><em>It separated light from dark,</em></p>
+                <p class="mb-6"><em>And gave the stars their destined mark.</em></p>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-4"><em>A bridge was formed, a sacred line,</em></p>
+                <p class="mb-4"><em>To hold the worlds in balance fine.</em></p>
+                <p class="mb-4"><em>The mediating force of grace,</em></p>
+                <p class="mb-6"><em>That held the cosmos in its place.</em></p>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-4"><em>But in the heart of mortal kind,</em></p>
+                <p class="mb-4"><em>A seed of Self was left behind.</em></p>
+                <p class="mb-4"><em>A will to choose, to know, to be,</em></p>
+                <p class="mb-6"><em>A spark of dark divinity.</em></p>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-4"><em>The Self was twisted, turned to pride,</em></p>
+                <p class="mb-4"><em>And from the sacred garden, mortals cried.</em></p>
+                <p class="mb-4"><em>The world was broken, split in two,</em></p>
+                <p class="mb-6"><em>And death and sorrow swiftly grew.</em></p>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-4"><em>Yet in the darkest, final hour,</em></p>
+                <p class="mb-4"><em>When chaos reigned with all its power,</em></p>
+                <p class="mb-4"><em>A promise whispered in the night:</em></p>
+                <p class="mb-6"><em>The dawn would come, and all be right.</em></p>
+              </div>
+
+              <div class="text-center">
+                <p class="mb-4"><em>For from the ashes, new life springs,</em></p>
+                <p class="mb-4"><em>The world is reborn, the cycle sings.</em></p>
+                <p class="mb-4"><em>From Unity to Division&#39;s fall,</em></p>
+                <p class="mb-6"><em>And back to One, the All-in-All.</em></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="concept-card">
+              <h4 class="tiempos text-lg font-semibold mb-4 text-amber-300">How the Poem Reflects the Framework</h4>
+              <p class="text-gray-300 leading-relaxed mb-4">
+                The poem encapsulates the journey from unity to division and back to unity, mirroring the core concepts of the Infiniology framework:
+              </p>
+              <ul class="text-sm text-gray-300 space-y-2">
+                <li>• <strong>Infinity:</strong> &#34;The One&#34; and &#34;All-Potential&#34;</li>
+                <li>• <strong>Laws:</strong> &#34;The Word&#34; that brings order</li>
+                <li>• <strong>Stability:</strong> &#34;The bridge&#34; that holds balance</li>
+                <li>• <strong>The Fall:</strong> Introduction of free will and distortion</li>
+                <li>• <strong>Renewal:</strong> The cosmic cycle&#39;s completion</li>
+              </ul>
+            </div>
+
+            <div class="concept-card">
+              <h4 class="tiempos text-lg font-semibold mb-4 text-blue-300">Using the Poem as a Guide</h4>
+              <p class="text-gray-300 leading-relaxed mb-4">
+                Incorporate the poem into your worldbuilding process as:
+              </p>
+              <ul class="text-sm text-gray-300 space-y-2">
+                <li>• A sacred hymn within your world&#39;s religious texts</li>
+                <li>• A prophetic verse foretelling the cosmic cycle</li>
+                <li>• Inspiration for creation myths and apocalyptic prophecies</li>
+                <li>• A thematic anchor for exploring duality and redemption</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Interactive Guide Section -->
+      <section id="interactive-guide" class="py-16 px-8">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="tiempos text-4xl font-bold text-amber-300 mb-12">Interactive Guide and Generator Tool</h2>
+
+          <div class="mb-12">
+            <p class="text-xl text-gray-300 leading-relaxed max-w-4xl">
+              This section provides a practical, step-by-step guide for using the Infiniology Framework to build a mythology for your fictional world. It&#39;s designed to be an interactive tool—a series of prompts and questions that will guide you through the creative process.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="concept-card">
+              <h3 class="tiempos text-xl font-semibold mb-6 text-blue-300">The Pantheon Generator</h3>
+              <div class="space-y-4">
+                <div class="bg-blue-900/20 p-4 rounded-lg">
+                  <h4 class="font-semibold text-blue-300 mb-2">1. Scope and Number</h4>
+                  <p class="text-sm text-gray-300 mb-2">How many gods will be in your pantheon?</p>
+                  <textarea class="w-full bg-blue-900/30 border border-blue-500/30 rounded p-2 text-sm text-gray-300" rows="2" placeholder="Consider: Monotheistic, Dualistic, or Polytheistic structure..."></textarea>
+                </div>
+                <div class="bg-purple-900/20 p-4 rounded-lg">
+                  <h4 class="font-semibold text-purple-300 mb-2">2. Divine Domains</h4>
+                  <p class="text-sm text-gray-300 mb-2">What concepts will your gods embody?</p>
+                  <textarea class="w-full bg-purple-900/30 border border-purple-500/30 rounded p-2 text-sm text-gray-300" rows="2" placeholder="Single concepts, mixed concepts, or natural forces..."></textarea>
+                </div>
+                <div class="bg-amber-900/20 p-4 rounded-lg">
+                  <h4 class="font-semibold text-amber-300 mb-2">3. Relationships</h4>
+                  <p class="text-sm text-gray-300 mb-2">How are your gods connected?</p>
+                  <textarea class="w-full bg-amber-900/30 border border-amber-500/30 rounded p-2 text-sm text-gray-300" rows="2" placeholder="Familial ties, generational structure, divine councils..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="concept-card">
+              <h3 class="tiempos text-xl font-semibold mb-6 text-green-300">The Myth Builder</h3>
+              <div class="space-y-4">
+                <div class="bg-green-900/20 p-4 rounded-lg">
+                  <h4 class="font-semibold text-green-300 mb-2">1. Initial State</h4>
+                  <p class="text-sm text-gray-300 mb-2">What existed before creation?</p>
+                  <textarea class="w-full bg-green-900/30 border border-green-500/30 rounded p-2 text-sm text-gray-300" rows="2" placeholder="Primordial chaos, cosmic ocean, formless void..."></textarea>
+                </div>
+                <div class="bg-indigo-900/20 p-4 rounded-lg">
+                  <h4 class="font-semibold text-indigo-300 mb-2">2. Creation Act</h4>
+                  <p class="text-sm text-gray-300 mb-2">How did the world come into being?</p>
+                  <textarea class="w-full bg-indigo-900/30 border border-indigo-500/30 rounded p-2 text-sm text-gray-300" rows="2" placeholder="Divine word, cosmic egg, elemental separation..."></textarea>
+                </div>
+                <div class="bg-red-900/20 p-4 rounded-lg">
+                  <h4 class="font-semibold text-red-300 mb-2">3. First Distortion</h4>
+                  <p class="text-sm text-gray-300 mb-2">How was perfect harmony broken?</p>
+                  <textarea class="w-full bg-red-900/30 border border-red-500/30 rounded p-2 text-sm text-gray-300" rows="2" placeholder="Forbidden knowledge, divine trickery, necessary choice..."></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="concept-card">
+            <h3 class="tiempos text-2xl font-semibold mb-8 text-amber-300 text-center">Adapting the Framework to Your Unique World</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 bg-blue-500/20 rounded-full flex items-center justify-center">
+                  <i class="fas fa-dragon text-2xl text-blue-300"></i>
+                </div>
+                <h4 class="font-semibold text-blue-300 mb-2">High Fantasy</h4>
+                <p class="text-sm text-gray-300">Active gods, multiple races, magic systems, and epic conflicts</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 bg-purple-500/20 rounded-full flex items-center justify-center">
+                  <i class="fas fa-rocket text-2xl text-purple-300"></i>
+                </div>
+                <h4 class="font-semibold text-purple-300 mb-2">Science Fiction</h4>
+                <p class="text-sm text-gray-300">Advanced civilizations, cosmic entities, technological deities</p>
+              </div>
+              <div class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 bg-amber-500/20 rounded-full flex items-center justify-center">
+                  <i class="fas fa-scroll text-2xl text-amber-300"></i>
+                </div>
+                <h4 class="font-semibold text-amber-300 mb-2">Historical Fantasy</h4>
+                <p class="text-sm text-gray-300">Ancient gods, mythological cycles, legendary heroes</p>
+              </div>
+            </div>
+
+            <div class="mt-8 bg-amber-900/20 border border-amber-500/30 rounded-lg p-6">
+              <h4 class="tiempos text-lg font-semibold mb-4 text-amber-300">Framework Flexibility</h4>
+              <p class="text-gray-300 leading-relaxed mb-4">
+                The Infiniology Framework is designed to be flexible and adaptable. Use it as a starting point, then infuse it with your world&#39;s unique symbols, values, and history. The key is to maintain the underlying structure while allowing for creative expression.
+              </p>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h5 class="font-semibold text-amber-300 mb-2">Keep:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• The three core concepts structure</li>
+                    <li>• The creation-to-apocalypse cycle</li>
+                    <li>• The balance of unity and duality</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-amber-300 mb-2">Customize:</h5>
+                  <ul class="text-sm text-gray-300 space-y-1">
+                    <li>• Specific divine personalities</li>
+                    <li>• Your world&#39;s unique cosmology</li>
+                    <li>• Cultural and symbolic elements</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-16 text-center">
+            <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-amber-400/30 rounded-2xl p-8 celestial-glow">
+              <h3 class="tiempos text-2xl font-bold mb-4 text-amber-300">Begin Your Journey</h3>
+              <p class="text-gray-300 leading-relaxed mb-6 max-w-2xl mx-auto">
+                The Infiniology Worldbuilding Framework provides the structure—your imagination provides the soul. Use these tools to craft mythologies that resonate with depth, meaning, and authenticity.
+              </p>
+              <div class="flex justify-center space-x-4">
+                <span class="bg-amber-500/20 px-4 py-2 rounded-full text-amber-300 font-medium">∞ Infinity</span>
+                <span class="bg-purple-500/20 px-4 py-2 rounded-full text-purple-300 font-medium">⚖ Laws</span>
+                <span class="bg-blue-500/20 px-4 py-2 rounded-full text-blue-300 font-medium">⚓ Stability</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer with Copyright -->
+    <footer class="border-t border-amber-400/20 bg-blue-900/10 py-8 mt-16">
+      <div class="max-w-6xl mx-auto px-8 text-center">
+        <div class="mb-4">
+          <h3 class="tiempos text-xl font-bold text-amber-300 mb-2">The Infiniology Worldbuilding Framework</h3>
+          <p class="text-gray-400 text-sm">
+            A systematic tool for creating rich, coherent mythologies and religions for fictional worlds.
+          </p>
+        </div>
+        <div class="border-t border-amber-400/20 pt-4">
+          <p class="text-gray-500 text-xs">
+            © 2026 Zeiendos. All rights reserved. This framework and associated content are the intellectual property of Zeiendos. Unauthorized reproduction, distribution, or modification is strictly prohibited.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        // Mobile TOC toggle
+        const tocToggle = document.createElement('button');
+        tocToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        tocToggle.className = 'fixed top-4 left-4 z-50 bg-blue-900/90 text-amber-300 p-3 rounded-lg lg:hidden';
+        document.body.appendChild(tocToggle);
+
+        const toc = document.querySelector('.toc-fixed');
+        tocToggle.addEventListener('click', () => {
+            toc.classList.toggle('open');
+        });
+
+        // Close TOC when clicking outside on mobile
+        document.addEventListener('click', (event) => {
+            if (window.innerWidth >= 1024) return;
+            
+            const isClickInsideToc = toc.contains(event.target);
+            const isClickOnToggle = tocToggle.contains(event.target);
+            
+            if (!isClickInsideToc && !isClickOnToggle && toc.classList.contains('open')) {
+                toc.classList.remove('open');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile TOC after clicking
+                    if (window.innerWidth < 1024) {
+                        toc.classList.remove('open');
+                    }
+                }
+            });
+        });
+
+        // Highlight current section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.toc-fixed a[href^="#"]');
+
+        function highlightCurrentSection() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('text-amber-300', 'font-semibold');
+                link.classList.add('text-gray-300');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.remove('text-gray-300');
+                    link.classList.add('text-amber-300', 'font-semibold');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightCurrentSection);
+        highlightCurrentSection(); // Initial call
+    </script>
+  
+
+</body></html>
