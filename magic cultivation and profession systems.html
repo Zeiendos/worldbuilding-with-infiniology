@@ -1,0 +1,1911 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>A Duality-Based System for World-Building: Magic, Cultivation, and Professions</title>
+    <script src="https://cdn.tailwindcss.com "></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com "/>
+    <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin=""/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital ,wght@0,400;0,700;1,400;1,700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css "/>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --secondary: #475569;
+            --accent: #f59e0b;
+            --accent-hover: #d97706;
+            --text: #f8fafc;
+            --text-muted: #cbd5e1;
+            --surface: #0f172a;
+            --surface-light: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--surface);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .fixed-toc {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--surface-light);
+            border-right: 1px solid var(--primary);
+            padding: 2rem 1.5rem;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--text), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleFlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleFlow {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-5px); }
+        }
+
+        .cosmic-visual {
+            position: relative;
+            height: 400px;
+            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .duality-symbol {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, var(--accent), transparent);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        .duality-symbol::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, var(--primary), transparent);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 4rem 0;
+        }
+
+        .insight-highlight {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.05));
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .formula-box {
+            background: var(--surface-light);
+            border: 1px solid var(--primary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .formula-box::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .citation {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .citation:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .toc-link:hover, .toc-link.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            padding-left: 0.5rem;
+        }
+
+        .toc-section {
+            font-weight: 600;
+            color: var(--text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chart-container {
+            background: var(--surface-light);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid var(--primary);
+        }
+
+        .progress-bar {
+            background: var(--primary);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .fixed-toc {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .fixed-toc.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            /* Prevent body scrolling when TOC is open */
+            body.overflow-hidden {
+                overflow: hidden;
+            }
+        }
+
+        /* Additional mobile styles for screens below 768px */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .cosmic-visual {
+                height: 300px;
+            }
+            
+            .px-8 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            .py-16 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            .py-8 {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            
+            .formula-box, .insight-highlight, .chart-container {
+                padding: 1rem;
+            }
+            
+            .hero-grid {
+                gap: 1rem;
+            }
+        }
+
+        /* Copyright footer styles */
+        .copyright-footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--primary);
+        }
+
+        .copyright-footer .copyright-symbol {
+            font-size: 1rem;
+            font-weight: 600;
+            opacity: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright-footer p {
+            margin: 0;
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body>
+    <!-- Table of Contents -->
+    <nav class="fixed-toc">
+      <h3 class="serif text-xl font-bold text-amber-400 mb-6">Contents</h3>
+      <div class="space-y-1">
+        <div class="toc-section">Core Principles</div>
+        <a href="#self-dualities" class="toc-link">The Self and Dualities</a>
+        <a href="#law-concept" class="toc-link">The Concept of Law</a>
+
+        <div class="toc-section">Magic &amp; Qi System</div>
+        <a href="#spell-structure" class="toc-link">Spell Structure</a>
+        <a href="#law-bit-calculation" class="toc-link">Law Bit Calculation</a>
+        <a href="#modifiers" class="toc-link">Role of Modifiers</a>
+
+        <div class="toc-section">Professions</div>
+        <a href="#alchemy" class="toc-link">Alchemy</a>
+        <a href="#arrays" class="toc-link">Arrays &amp; Runes</a>
+        <a href="#smithing" class="toc-link">Smithing &amp; Refining</a>
+
+        <div class="toc-section">Cultivation</div>
+        <a href="#cultivation-journey" class="toc-link">The Cultivation Journey</a>
+        <a href="#leveling-systems" class="toc-link">Leveling Systems</a>
+
+        <div class="toc-section">Divine Treasures</div>
+        <a href="#treasure-creation" class="toc-link">Creation Process</a>
+        <a href="#treasure-properties" class="toc-link">Properties &amp; Abilities</a>
+
+        <div class="toc-section">Adaptation</div>
+        <a href="#system-flexibility" class="toc-link">System Flexibility</a>
+        <a href="#world-integration" class="toc-link">World Integration</a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section px-8 py-16">
+        <div class="max-w-7xl mx-auto">
+          <div class="hero-grid">
+            <div class="space-y-6">
+              <h1 class="hero-title serif italic">
+                A Duality-Based System for World-Building:
+                <span class="block text-2xl mt-4 font-normal">Magic, Cultivation, and Professions</span>
+              </h1>
+              <p class="text-xl text-slate-300 leading-relaxed">
+                A comprehensive framework for creating magic systems, cultivation paths, and crafting professions through the manipulation of fundamental cosmic forces.
+              </p>
+              <div class="flex items-center space-x-4 text-sm text-slate-400">
+                <span><i class="fas fa-magic mr-2"></i>Magic Systems</span>
+                <span><i class="fas fa-mountain mr-2"></i>Cultivation</span>
+                <span><i class="fas fa-hammer mr-2"></i>Crafting</span>
+              </div>
+            </div>
+            <div class="cosmic-visual">
+              <div class="duality-symbol"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <img src="https://kimi-web-img.moonshot.cn/img/i0.wp.com/7b68adb1fd93d333a6df28aae53bbb10fe607edb.png " alt="Cosmic energy representing universal dualities" class="w-full h-full object-cover opacity-30 mix-blend-overlay" size="medium" aspect="wide" query="cosmic energy dualities universe" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction -->
+      <section class="px-8 py-12 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto">
+          <div class="insight-highlight">
+            <h3 class="serif text-xl font-bold text-amber-400 mb-4">
+              <i class="fas fa-lightbulb mr-2"></i>Core Innovation
+            </h3>
+            <p class="text-lg">
+              This world-building system provides a comprehensive framework for creating magic, cultivation, and professions by manipulating a set of fundamental dualities (Life, Death, Order, Chaos, etc.) through a quantifiable resource called &#34;Law.&#34; The system allows for balanced and scalable character progression, where power is directly tied to increasing capacity to hold and manipulate cosmic forces.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Principles -->
+      <section id="self-dualities" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Core Principles: The Self, Dualities, and Law</h2>
+
+          <div class="grid md:grid-cols-2 gap-12 mb-12">
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">The Foundation: Self and the Manipulation of Reality</h3>
+              <p class="text-slate-300">
+                The foundational concept of this world-building system is the <strong>&#34;Self,&#34;</strong> a metaphysical entity that serves as the agent of change and the source of all supernatural abilities. The Self is the intrinsic power that allows an individual to perceive, interact with, and ultimately manipulate the fundamental laws of reality through opposing forces known as <strong>&#34;dualities.&#34;</strong>
+              </p>
+              <p class="text-slate-300">
+                These dualities—Life and Death, Order and Chaos, Light and Dark—are the building blocks of existence, and the Self acts as the catalyst that can bend them to its will. The strength and refinement of an individual&#39;s Self determine their capacity to wield these forces.
+              </p>
+            </div>
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h4 class="serif text-lg font-bold text-amber-400 mb-4">Primary Dualities</h4>
+              <div class="space-y-4">
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span><strong>Life:</strong> Creation, growth, vitality</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <span><strong>Death:</strong> Cessation, decay, entropy</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span><strong>Order:</strong> Structure, stability, control</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                  <span><strong>Chaos:</strong> Entropy, change, randomness</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-yin-yang mr-2"></i>Dual Cultivation
+            </h4>
+            <p class="text-slate-200">
+              The system allows for <strong>&#34;dual cultivation,&#34;</strong> where practitioners seek to master opposing dualities simultaneously (Life and Death, Light and Dark). This path is more difficult and dangerous but can lead to a deeper understanding of universal laws and unlock abilities inaccessible to single-duality practitioners.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Law Concept -->
+      <section id="law-concept" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">The Concept of &#34;Law&#34; as a Quantifiable Resource</h2>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-4">
+              <i class="fas fa-coins mr-2 text-amber-400"></i>Law Bits: The Currency of Manipulation
+            </h3>
+            <p class="text-slate-300 mb-4">
+              The basic unit of Law is the <strong>&#34;Law Bit,&#34;</strong> a quantifiable measure of a practitioner&#39;s ability to manipulate the dualities. Law Bits are the resource spent to perform any supernatural action, with costs determined by the complexity and power of the desired effect.
+            </p>
+            <div class="bg-slate-900/50 rounded-lg p-4 mt-4">
+              <h4 class="font-semibold text-amber-400 mb-2">Conservation of Law Principle:</h4>
+              <p class="text-sm text-slate-300">
+                Law can neither be created nor destroyed, only transformed. Every action requires an equal and opposite reaction, maintaining cosmic equilibrium and preventing any single practitioner from becoming all-powerful.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-3 gap-6 mt-8">
+            <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+              <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+                <i class="fas fa-chart-line mr-2"></i>Capacity Scaling
+              </h4>
+              <p class="text-sm text-slate-300">
+                Cultivation increases both the quantity and quality of Law Bit manipulation, allowing for more precise and powerful effects.
+              </p>
+            </div>
+            <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+              <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+                <i class="fas fa-balance-scale mr-2"></i>Strategic Management
+              </h4>
+              <p class="text-sm text-slate-300">
+                Practitioners must carefully manage limited Law Bit reserves, balancing power usage with conservation.
+              </p>
+            </div>
+            <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+              <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+                <i class="fas fa-sync-alt mr-2"></i>Regeneration
+              </h4>
+              <p class="text-sm text-slate-300">
+                Law Bits replenish through rest, meditation, or special techniques, creating downtime considerations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Magic System -->
+      <section id="spell-structure" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">The Magic and Qi System: Combining Dualities for Effect</h2>
+
+          <div class="mb-12">
+            <h3 class="serif text-2xl font-bold text-slate-200 mb-6">Elemental Combinations: A Formulaic Approach</h3>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-6">
+                <h4 class="serif text-lg font-bold text-red-400 mb-3">
+                  <i class="fas fa-fire mr-2"></i>Fire
+                </h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Life (Energy)</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span>Spirit (Will)</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span>Male (Aggression)</span>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-3">Base Cost: 10 Law Bits</p>
+              </div>
+
+              <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
+                <h4 class="serif text-lg font-bold text-blue-400 mb-3">
+                  <i class="fas fa-tint mr-2"></i>Water
+                </h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Life (Vitality)</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span>Matter (Form)</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                    <span>Female (Reception)</span>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-3">Base Cost: 10 Law Bits</p>
+              </div>
+
+              <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-6">
+                <h4 class="serif text-lg font-bold text-green-400 mb-3">
+                  <i class="fas fa-mountain mr-2"></i>Earth
+                </h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Life (Energy)</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span>Matter (Substance)</span>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-3">Base Cost: 8 Law Bits</p>
+              </div>
+
+              <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-6">
+                <h4 class="serif text-lg font-bold text-cyan-400 mb-3">
+                  <i class="fas fa-wind mr-2"></i>Wind
+                </h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Life (Vitality)</span>
+                  </div>
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                    <span>Spirit (Consciousness)</span>
+                  </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-3">Base Cost: 8 Law Bits</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-flask mr-2"></i>Advanced Element Manipulation
+            </h4>
+            <p class="text-slate-200">
+              By adjusting the proportions and adding modifier dualities, practitioners can create variations like <strong>cold flames</strong> (Life + Spirit + Female) or <strong>ice</strong> (Life + Matter + Female + Female), demonstrating the system&#39;s flexibility and depth.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Law Bit Calculation -->
+      <section id="law-bit-calculation" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Quantifying the Cost: Calculating &#34;Law Bits&#34; for a Result</h2>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-6">
+              <i class="fas fa-calculator mr-2 text-amber-400"></i>Fireball Spell Cost Calculation
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-3">Base Cost Components:</h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span>Life (5 bits) + Spirit (3 bits) + Male (2 bits)</span>
+                    <span class="text-amber-400 font-bold">= 10 bits</span>
+                  </div>
+                </div>
+
+                <h4 class="font-semibold text-amber-400 mb-3 mt-6">Magnitude Modifiers:</h4>
+                <div class="space-y-2 text-sm">
+                  <div class="flex justify-between">
+                    <span>Intensity (3) × 1.5</span>
+                    <span class="text-blue-400">×1.5</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Size (2) × 1.2</span>
+                    <span class="text-green-400">×1.2</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Duration (1) × 1.0</span>
+                    <span class="text-slate-400">×1.0</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-slate-900/50 rounded-lg p-6">
+                <h4 class="font-semibold text-amber-400 mb-4">Total Cost Calculation:</h4>
+                <div class="text-lg font-mono space-y-2">
+                  <div>10 × 1.5 × 1.2 × 1.0</div>
+                  <div class="text-2xl font-bold text-amber-400">= 18 Law Bits</div>
+                </div>
+
+                <div class="mt-6">
+                  <h5 class="font-semibold text-slate-200 mb-2">Higher Magnitude Example:</h5>
+                  <div class="text-sm space-y-1">
+                    <div>Intensity 4 (×2.0) + Size 3 (×1.5) + Duration 2 (×1.2)</div>
+                    <div class="text-red-400 font-bold">= 36 Law Bits</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-4">
+              <i class="fas fa-chart-bar mr-2"></i>Cost Scaling Visualization
+            </h4>
+            <div class="space-y-4">
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Basic Fireball (18 bits)</span>
+                  <span>18%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 18%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Enhanced Fireball (36 bits)</span>
+                  <span>36%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 36%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-sm mb-1">
+                  <span>Master-Level Fireball (72 bits)</span>
+                  <span>72%</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 72%"></div>
+                </div>
+              </div>
+            </div>
+            <p class="text-xs text-slate-400 mt-4">
+              *Assuming average practitioner capacity of 100 Law Bits
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Modifiers -->
+      <section id="modifiers" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">The Role of Modifiers: Order, Chaos, Love, and Hate</h2>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Order and Chaos: Control vs Power</h3>
+              <p class="text-slate-300">
+                The dualities of <strong>Order and Chaos</strong> serve as powerful modifiers that fundamentally alter the nature of spells and techniques.
+              </p>
+
+              <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-blue-400 mb-2">
+                  <i class="fas fa-compass mr-2"></i>Order (Control)
+                </h4>
+                <ul class="text-sm text-slate-300 space-y-1">
+                  <li>• Increases accuracy and precision</li>
+                  <li>• Reduces Law Bit cost</li>
+                  <li>• Makes effects predictable</li>
+                  <li>• Enhances stability</li>
+                </ul>
+              </div>
+
+              <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-purple-400 mb-2">
+                  <i class="fas fa-bolt mr-2"></i>Chaos (Power)
+                </h4>
+                <ul class="text-sm text-slate-300 space-y-1">
+                  <li>• Increases destructive power</li>
+                  <li>• Adds random elements</li>
+                  <li>• Makes control difficult</li>
+                  <li>• Higher risk/reward</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Love and Hate: Influencing Nature</h3>
+              <p class="text-slate-300">
+                The dualities of <strong>Love and Hate</strong> add moral and ethical dimensions to magical effects, influencing their purpose and consequences.
+              </p>
+
+              <div class="bg-pink-900/20 border border-pink-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-pink-400 mb-2">
+                  <i class="fas fa-heart mr-2"></i>Love (Compassion)
+                </h4>
+                <ul class="text-sm text-slate-300 space-y-1">
+                  <li>• Adds healing properties</li>
+                  <li>• Provides protection</li>
+                  <li>• Effective against undead</li>
+                  <li>• Requires moral alignment</li>
+                </ul>
+              </div>
+
+              <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-red-400 mb-2">
+                  <i class="fas fa-fire mr-2"></i>Hate (Destruction)
+                </h4>
+                <ul class="text-sm text-slate-300 space-y-1">
+                  <li>• Adds corrupting effects</li>
+                  <li>• Increases damage to living</li>
+                  <li>• Harder to dispel</li>
+                  <li>• Risk of user corruption</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight mt-12">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-balance-scale mr-2"></i>Modifier Synergies
+            </h4>
+            <p class="text-slate-200">
+              The choice between Order/Chaos and Love/Hate modifiers creates distinct magical philosophies. <strong>Order + Love</strong> produces precise, healing magic, while <strong>Chaos + Hate</strong> creates devastating, corrupting forces. These choices reflect the practitioner&#39;s character and moral alignment.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Alchemy -->
+      <section id="alchemy" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Professions: Alchemy - The Art of Refinement</h2>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="md:col-span-2 space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">The Process: Balancing Laws for Potency</h3>
+              <p class="text-slate-300">
+                Alchemy is the profession of transforming raw materials into powerful concoctions through the careful manipulation of dualities. The process requires deep understanding of material properties and the delicate balance between opposing forces.
+              </p>
+
+              <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+                <h4 class="font-semibold text-amber-400 mb-4">Alchemical Process Steps:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center text-green-400 font-bold">1</div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Material Gathering</h5>
+                      <p class="text-sm text-slate-400">Collecting herbs, minerals, and rare components</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400 font-bold">2</div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Preparation</h5>
+                      <p class="text-sm text-slate-400">Grinding, boiling, distilling materials</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 font-bold">3</div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Combination</h5>
+                      <p class="text-sm text-slate-400">Precise mixing in specific proportions</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center text-amber-400 font-bold">4</div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Refinement</h5>
+                      <p class="text-sm text-slate-400">Balancing dualities for stability and potency</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-green-400 mb-2">Life Energy</h4>
+                <p class="text-sm text-slate-300">Infuses potions with vitality and healing properties</p>
+              </div>
+              <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-blue-400 mb-2">Order Structure</h4>
+                <p class="text-sm text-slate-300">Creates stable shells for controlled energy release</p>
+              </div>
+              <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-purple-400 mb-2">Quality Scaling</h4>
+                <p class="text-sm text-slate-300">Higher cultivation enables more potent concoctions</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-pills mr-2"></i>Pill Refinement Mastery
+            </h4>
+            <p class="text-slate-200">
+              The quality of alchemical products directly reflects the alchemist&#39;s cultivation level. Master alchemists create pills with <strong>thin, solid shells</strong> containing highly concentrated energies, while novices produce thicker, less stable products with lower potency.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Arrays and Runes -->
+      <section id="arrays" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Array Mastery, Runemaking, and Talismans</h2>
+
+          <div class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Activation Methods: Life vs. Death</h3>
+              <p class="text-slate-300">
+                Magical arrays and talismans require power sources for activation, with fundamentally different approaches using <strong>Life</strong> or <strong>Death</strong> energies.
+              </p>
+
+              <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-6">
+                <h4 class="font-bold text-green-400 mb-3">
+                  <i class="fas fa-heartbeat mr-2"></i>Life-Powered Arrays
+                </h4>
+                <ul class="text-sm text-slate-300 space-y-2">
+                  <li>• Use practitioner&#39;s life force</li>
+                  <li>• Pre-charged with contained energy</li>
+                  <li>• Healing and protection focused</li>
+                  <li>• Limited by initial charge</li>
+                  <li>• Considered &#34;good&#34; or neutral</li>
+                </ul>
+              </div>
+
+              <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-6">
+                <h4 class="font-bold text-red-400 mb-3">
+                  <i class="fas fa-skull mr-2"></i>Death-Powered Arrays
+                </h4>
+                <ul class="text-sm text-slate-300 space-y-2">
+                  <li>• Drain energy from environment</li>
+                  <li>• Continuous power source</li>
+                  <li>• Destruction and control focused</li>
+                  <li>• Risk of environmental damage</li>
+                  <li>• Often considered &#34;dark&#34; magic</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Structure and Foundation</h3>
+              <p class="text-slate-300">
+                The duality of <strong>Order</strong> provides the structural foundation for magical constructs, creating stable patterns that direct and control the flow of energies.
+              </p>
+
+              <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
+                <h4 class="font-bold text-blue-400 mb-3">Order&#39;s Role:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-drafting-compass text-blue-400"></i>
+                    <span class="text-sm">Creates precise symbol patterns</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-shield-alt text-blue-400"></i>
+                    <span class="text-sm">Provides stability and consistency</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-project-diagram text-blue-400"></i>
+                    <span class="text-sm">Defines activation pathways</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+                <h4 class="font-semibold text-amber-400 mb-3">Matter and Spirit Combination:</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Advanced constructs balance <strong>Matter</strong> (physical form) and <strong>Spirit</strong> (magical power) to create items that are both durable and magically potent.
+                </p>
+                <div class="bg-slate-900/50 rounded p-3">
+                  <code class="text-xs text-amber-400">
+                                [Matter + Spirit] + [Order Structure] = [Magical Construct]
+                            </code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Smithing -->
+      <section id="smithing" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Smithing and Refining: Forging Divine Items</h2>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="md:col-span-2 space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Material Properties and Duality Alignment</h3>
+              <p class="text-slate-300">
+                The creation of magical weapons and armor begins with selecting materials that have natural affinities for specific dualities. The alignment between material and intended magical properties determines the final item&#39;s effectiveness.
+              </p>
+
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-red-400 mb-2">Fire-Aligned Materials</h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Volcanic metals</li>
+                    <li>• Phoenix feathers</li>
+                    <li>• Dragon scales</li>
+                    <li>• Meteoric iron</li>
+                  </ul>
+                </div>
+                <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-blue-400 mb-2">Water-Aligned Materials</h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Deep ocean pearls</li>
+                    <li>• Ice crystals</li>
+                    <li>• Moon silver</li>
+                    <li>• Coral fragments</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4">
+              <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-green-400 mb-2">Life Enhancement</h4>
+                <p class="text-sm text-slate-300">Items gain vitality and self-repair capabilities</p>
+              </div>
+              <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-purple-400 mb-2">Spirit Infusion</h4>
+                <p class="text-sm text-slate-300">Consciousness and will integrated into items</p>
+              </div>
+              <div class="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4">
+                <h4 class="font-bold text-orange-400 mb-2">Death Power</h4>
+                <p class="text-sm text-slate-300">Life-draining and destructive capabilities</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-6">
+              <i class="fas fa-hammer mr-2 text-amber-400"></i>Divine Item Creation Process
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Traditional Smithing:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center text-orange-400">
+                      <i class="fas fa-fire text-xs"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Forge Metal</h5>
+                      <p class="text-sm text-slate-400">Shape and temper base material</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400">
+                      <i class="fas fa-tint text-xs"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Quench &amp; Cool</h5>
+                      <p class="text-sm text-slate-400">Set physical properties</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center text-green-400">
+                      <i class="fas fa-gem text-xs"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Material Preparation</h5>
+                      <p class="text-sm text-slate-400">Ready item for magical enhancement</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Magical Refinement:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400">
+                      <i class="fas fa-magic text-xs"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Engraving Runes</h5>
+                      <p class="text-sm text-slate-400">Carve magical symbols and circuits</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center text-cyan-400">
+                      <i class="fas fa-hand-sparkles text-xs"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Spirit Infusion</h5>
+                      <p class="text-sm text-slate-400">Imbue with consciousness and will</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-amber-500/20 rounded-full flex items-center justify-center text-amber-400">
+                      <i class="fas fa-star text-xs"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-semibold text-slate-200">Final Awakening</h5>
+                      <p class="text-sm text-slate-400">Activate divine properties</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight mt-8">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-sword mr-2"></i>Divine Weapon Creation
+            </h4>
+            <p class="text-slate-200">
+              The most powerful weapons combine masterful smithing with profound understanding of dualities. By integrating <strong>Life and Death</strong> in perfect balance, smiths can create weapons that both destroy and renew, capable of harming enemies while healing their wielders.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Cultivation Journey -->
+      <section id="cultivation-journey" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Cultivation and Leveling Systems: A Path to Power</h2>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-green-400 mb-4">
+                <i class="fas fa-seedling mr-2"></i>Novice Stage
+              </h3>
+              <div class="space-y-3">
+                <div class="flex justify-between text-sm">
+                  <span>Law Bit Capacity</span>
+                  <span class="text-green-400 font-bold">50-100</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 20%"></div>
+                </div>
+                <ul class="text-xs text-slate-400 space-y-1">
+                  <li>• Basic duality manipulation</li>
+                  <li>• Simple spell casting</li>
+                  <li>• Limited duration effects</li>
+                  <li>• High energy consumption</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-blue-400 mb-4">
+                <i class="fas fa-mountain mr-2"></i>Adept Stage
+              </h3>
+              <div class="space-y-3">
+                <div class="flex justify-between text-sm">
+                  <span>Law Bit Capacity</span>
+                  <span class="text-blue-400 font-bold">200-500</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 60%"></div>
+                </div>
+                <ul class="text-xs text-slate-400 space-y-1">
+                  <li>• Complex duality combinations</li>
+                  <li>• Sustained magical effects</li>
+                  <li>• Elemental mastery</li>
+                  <li>• Reduced energy costs</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-purple-400 mb-4">
+                <i class="fas fa-crown mr-2"></i>Master Stage
+              </h3>
+              <div class="space-y-3">
+                <div class="flex justify-between text-sm">
+                  <span>Law Bit Capacity</span>
+                  <span class="text-purple-400 font-bold">1000+</span>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <ul class="text-xs text-slate-400 space-y-1">
+                  <li>• Multiple simultaneous effects</li>
+                  <li>• Reality manipulation</li>
+                  <li>• Divine artifact creation</li>
+                  <li>• Near-effortless casting</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-6">
+              <i class="fas fa-chart-line mr-2 text-amber-400"></i>Cultivation Progression Formula
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Progression Factors:</h4>
+                <div class="space-y-4">
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm font-medium">Order (Foundation)</span>
+                      <span class="text-sm text-blue-400">40%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 40%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm font-medium">Life (Energy)</span>
+                      <span class="text-sm text-green-400">35%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 35%"></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between mb-1">
+                      <span class="text-sm font-medium">Light (Awareness)</span>
+                      <span class="text-sm text-yellow-400">25%</span>
+                    </div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 25%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Breakthrough Mechanism:</h4>
+                <div class="bg-slate-900/50 rounded-lg p-4">
+                  <div class="text-center mb-4">
+                    <div class="text-2xl font-bold text-amber-400">Order + Chaos</div>
+                    <div class="text-sm text-slate-400">Foundation + Breakthrough</div>
+                  </div>
+                  <p class="text-sm text-slate-300">
+                    Cultivators use <strong>Order</strong> to build stable foundations, then harness controlled <strong>Chaos</strong> to break through bottlenecks and reach higher stages of power.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Leveling Systems -->
+      <section id="leveling-systems" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Leveling Systems: Enhancing Attributes and Abilities</h2>
+
+          <div class="grid md:grid-cols-2 gap-12 mb-12">
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">The Influence of Life and Order</h3>
+              <p class="text-slate-300">
+                Character progression through leveling systems directly reflects increasing mastery over fundamental dualities. <strong>Life</strong> governs physical and mental growth, while <strong>Order</strong> provides the structure for efficient energy utilization.
+              </p>
+
+              <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-6">
+                <h4 class="font-bold text-green-400 mb-3">Life Energy Enhancement</h4>
+                <div class="space-y-2 text-sm text-slate-300">
+                  <div class="flex justify-between">
+                    <span>Strength &amp; Vitality</span>
+                    <span class="text-green-400">↑ Direct increase</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Agility &amp; Speed</span>
+                    <span class="text-green-400">↑ Enhanced reflexes</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Health &amp; Endurance</span>
+                    <span class="text-green-400">↑ Superhuman resilience</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-6">
+                <h4 class="font-bold text-blue-400 mb-3">Order Structure Benefits</h4>
+                <div class="space-y-2 text-sm text-slate-300">
+                  <div class="flex justify-between">
+                    <span>Intelligence &amp; Wisdom</span>
+                    <span class="text-blue-400">↑ Faster learning</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Skill Precision</span>
+                    <span class="text-blue-400">↑ Technical mastery</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>Mana Efficiency</span>
+                    <span class="text-blue-400">↑ Reduced costs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">The Role of Light (Awareness)</h3>
+              <p class="text-slate-300">
+                The duality of <strong>Light</strong> governs knowledge acquisition, skill learning, and the ability to perceive hidden patterns in reality. It represents the expansion of awareness and understanding.
+              </p>
+
+              <div class="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-6">
+                <h4 class="font-bold text-yellow-400 mb-3">Light-Governed Abilities:</h4>
+                <ul class="text-sm text-slate-300 space-y-2">
+                  <li>• Rapid skill acquisition</li>
+                  <li>• Pattern recognition</li>
+                  <li>• Hidden knowledge discovery</li>
+                  <li>• Magical theory comprehension</li>
+                  <li>• Creative problem-solving</li>
+                </ul>
+              </div>
+
+              <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+                <h4 class="font-semibold text-amber-400 mb-3">Knowledge Progression:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center text-xs">1</div>
+                    <span class="text-sm">Recipe/Blueprint Discovery</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center text-xs">2</div>
+                    <span class="text-sm">Technique Comprehension</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center text-xs">3</div>
+                    <span class="text-sm">Innovation &amp; Adaptation</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-6 h-6 bg-slate-600 rounded-full flex items-center justify-center text-xs">4</div>
+                    <span class="text-sm">Mastery &amp; Teaching</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-users mr-2"></i>Hybrid Progression Systems
+            </h4>
+            <p class="text-slate-200">
+              The system supports both <strong>magical and non-magical advancement</strong>. Warriors can use Life and Matter to enhance physical abilities, while scholars use Light and Order to master knowledge. This creates diverse character paths within the same fundamental system.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Divine Treasures -->
+      <section id="treasure-creation" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Divine Treasures: Artifacts of Power</h2>
+
+          <div class="grid md:grid-cols-2 gap-12 mb-12">
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">The Role of Self and Special Talents</h3>
+              <p class="text-slate-300">
+                Creating Divine Treasures requires practitioners with exceptionally refined <strong>Selves</strong> and unique talents for manipulating dualities. These rare individuals can channel immense amounts of Law energy and shape it into artifacts that transcend normal magical limitations.
+              </p>
+
+              <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-6">
+                <h4 class="font-bold text-purple-400 mb-3">Required Abilities:</h4>
+                <ul class="text-sm text-slate-300 space-y-2">
+                  <li>• Exceptionally strong Self</li>
+                  <li>• Innate duality manipulation talent</li>
+                  <li>• Deep understanding of cosmic laws</li>
+                  <li>• Years of dedicated practice</li>
+                  <li>• Access to divine materials</li>
+                </ul>
+              </div>
+
+              <div class="bg-slate-800/50 rounded-lg p-6 border border-slate-700">
+                <h4 class="font-semibold text-amber-400 mb-3">Talent Manifestations:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <span class="text-sm">Fire duality mastery</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <span class="text-sm">Consciousness imbuing</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span class="text-sm">Reality bending</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <span class="text-sm">Multi-duality fusion</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Manipulating Awareness and Ignorance</h3>
+              <p class="text-slate-300">
+                The dualities of <strong>Light and Dark</strong> play crucial roles in Divine Treasure creation, determining how the artifact interacts with the world and conceals its true nature.
+              </p>
+
+              <div class="grid grid-cols-1 gap-4">
+                <div class="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-yellow-400 mb-2">
+                    <i class="fas fa-sun mr-2"></i>Light (Awareness)
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Imbues clarity of purpose</li>
+                    <li>• Reveals hidden truths</li>
+                    <li>• Dispels illusions</li>
+                    <li>• Grants insight to wielder</li>
+                  </ul>
+                </div>
+                <div class="bg-gray-900/20 border border-gray-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-gray-400 mb-2">
+                    <i class="fas fa-moon mr-2"></i>Dark (Ignorance)
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Conceals true nature</li>
+                    <li>• Protects from detection</li>
+                    <li>• Shrouds in mystery</li>
+                    <li>• Hides from enemies</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-6">
+              <i class="fas fa-star mr-2 text-amber-400"></i>Divine Treasure Creation Formula
+            </h3>
+
+            <div class="text-center mb-6">
+              <div class="text-lg font-mono">
+                [Strong Self] + [Special Talent] + [Advanced Materials] + [Light/Dark Balance] = [Divine Treasure]
+              </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="bg-slate-900/50 rounded-lg p-4">
+                <h4 class="font-semibold text-amber-400 mb-3">Material Stabilization</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Advanced materials require perfect balance of <strong>Matter and Spirit</strong> for stability and power.
+                </p>
+                <div class="text-xs text-slate-400">
+                  Example: Starmetal requires precise Matter compression with Spirit infusion to prevent catastrophic failure.
+                </div>
+              </div>
+
+              <div class="bg-slate-900/50 rounded-lg p-4">
+                <h4 class="font-semibold text-amber-400 mb-3">Consciousness Integration</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  The creator&#39;s Self becomes part of the item, granting it unique abilities and sometimes autonomous behavior.
+                </p>
+                <div class="text-xs text-slate-400">
+                  Result: Items may choose their wielders, refuse commands, or demonstrate independent will.
+                </div>
+              </div>
+
+              <div class="bg-slate-900/50 rounded-lg p-4">
+                <h4 class="font-semibold text-amber-400 mb-3">Reality Bypass</h4>
+                <p class="text-sm text-slate-300 mb-3">
+                  Divine Treasures can bypass normal Law Bit costs and limitations, effectively creating their own power source.
+                </p>
+                <div class="text-xs text-slate-400">
+                  Effect: Wielders can use abilities beyond their normal capabilities without draining personal reserves.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Treasure Properties -->
+      <section id="treasure-properties" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Properties and Abilities of Divine Treasures</h2>
+
+          <div class="grid md:grid-cols-2 gap-12 mb-12">
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Passive Buffs and Debuffs</h3>
+              <p class="text-slate-300">
+                Divine Treasures provide constant, automatic effects that enhance their wielders and hinder their enemies. These passive abilities reflect the dualities used in their creation.
+              </p>
+
+              <div class="space-y-4">
+                <div class="bg-green-900/20 border border-green-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-green-400 mb-2">
+                    <i class="fas fa-heart mr-2"></i>Life-Based Buffs
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Continuous healing effects</li>
+                    <li>• Disease and poison immunity</li>
+                    <li>• Extended lifespan</li>
+                    <li>• Enhanced vitality</li>
+                  </ul>
+                </div>
+
+                <div class="bg-blue-900/20 border border-blue-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-blue-400 mb-2">
+                    <i class="fas fa-shield-alt mr-2"></i>Order-Based Buffs
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Enhanced defense</li>
+                    <li>• Mental clarity</li>
+                    <li>• Magic resistance</li>
+                    <li>• Stability in chaos</li>
+                  </ul>
+                </div>
+
+                <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-red-400 mb-2">
+                    <i class="fas fa-skull mr-2"></i>Death-Based Debuffs
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Life drain on enemies</li>
+                    <li>• Decay effects</li>
+                    <li>• Fear aura</li>
+                    <li>• Soul corruption</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <h3 class="serif text-2xl font-bold text-slate-200">Wondrous Abilities and Supernatural Powers</h3>
+              <p class="text-slate-300">
+                Beyond passive effects, Divine Treasures possess active abilities that can be consciously wielded. These powers often reflect the creator&#39;s own mastery and understanding of cosmic laws.
+              </p>
+
+              <div class="space-y-4">
+                <div class="bg-purple-900/20 border border-purple-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-purple-400 mb-2">
+                    <i class="fas fa-magic mr-2"></i>Spell-Like Powers
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Powerful spell casting</li>
+                    <li>• Elemental manipulation</li>
+                    <li>• Dimensional travel</li>
+                    <li>• Time distortion</li>
+                  </ul>
+                </div>
+
+                <div class="bg-yellow-900/20 border border-yellow-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-yellow-400 mb-2">
+                    <i class="fas fa-eye mr-2"></i>Divine Perception
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Truth revealing</li>
+                    <li>• Future sight</li>
+                    <li>• Hidden knowledge access</li>
+                    <li>• Deception detection</li>
+                  </ul>
+                </div>
+
+                <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-4">
+                  <h4 class="font-bold text-cyan-400 mb-2">
+                    <i class="fas fa-dna mr-2"></i>Reality Alteration
+                  </h4>
+                  <ul class="text-sm text-slate-300 space-y-1">
+                    <li>• Law manipulation</li>
+                    <li>• Matter transformation</li>
+                    <li>• Space bending</li>
+                    <li>• Probability control</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-6">
+              <i class="fas fa-infinity mr-2 text-amber-400"></i>Bypassing Normal Limitations
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Law Bit Independence:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-battery-full text-green-400"></i>
+                    <span class="text-sm">Self-powered abilities</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-arrow-up text-blue-400"></i>
+                    <span class="text-sm">Beyond wielder&#39;s cultivation level</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-shield text-purple-400"></i>
+                    <span class="text-sm">Bypass normal requirements</span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Unique Properties:</h4>
+                <div class="space-y-3">
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-cog text-orange-400"></i>
+                    <span class="text-sm">Autonomous function</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-handshake text-pink-400"></i>
+                    <span class="text-sm">Choose their wielders</span>
+                  </div>
+                  <div class="flex items-center space-x-3">
+                    <i class="fas fa-sync text-cyan-400"></i>
+                    <span class="text-sm">Self-repair and growth</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight mt-8">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-legend mr-2"></i>Legendary Artifact Examples
+            </h4>
+            <p class="text-slate-200">
+              True Divine Treasures become legendary, with names and stories passed down through generations. These items often have their own wills and agendas, choosing worthy wielders and sometimes guiding the course of history through subtle influence or direct intervention.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- System Flexibility -->
+      <section id="system-flexibility" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">Flexibility and Adaptation: A Guideline for World-Builders</h2>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-amber-400 mb-4">
+                <i class="fas fa-sliders-h mr-2"></i>Adjustable Parameters
+              </h3>
+              <ul class="text-sm text-slate-300 space-y-2">
+                <li>• Base Law Bit values</li>
+                <li>• Cost scaling formulas</li>
+                <li>• Cultivation stage names</li>
+                <li>• Duality combinations</li>
+                <li>• Power level ranges</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-amber-400 mb-4">
+                <i class="fas fa-globe mr-2"></i>World Integration
+              </h3>
+              <ul class="text-sm text-slate-300 space-y-2">
+                <li>• Cosmology alignment</li>
+                <li>• Cultural interpretations</li>
+                <li>• Historical context</li>
+                <li>• Geographic influences</li>
+                <li>• Social structures</li>
+              </ul>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-amber-400 mb-4">
+                <i class="fas fa-gamepad mr-2"></i>Mechanical Integration
+              </h3>
+              <ul class="text-sm text-slate-300 space-y-2">
+                <li>• Existing magic systems</li>
+                <li>• Character classes</li>
+                <li>• Skill trees</li>
+                <li>• Crafting systems</li>
+                <li>• Progression mechanics</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-6">
+              <i class="fas fa-cogs mr-2 text-amber-400"></i>Customization Framework
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Power Level Adjustment:</h4>
+                <div class="space-y-4">
+                  <div class="bg-slate-900/50 rounded-lg p-4">
+                    <h5 class="font-semibold text-green-400 text-sm mb-1">High Magic World</h5>
+                    <ul class="text-xs text-slate-300 space-y-1">
+                      <li>• Reduce base Law Bit costs</li>
+                      <li>• Increase cultivation speed</li>
+                      <li>• Add more duality combinations</li>
+                      <li>• Higher starting capacities</li>
+                    </ul>
+                  </div>
+                  <div class="bg-slate-900/50 rounded-lg p-4">
+                    <h5 class="font-semibold text-red-400 text-sm mb-1">Low Magic World</h5>
+                    <ul class="text-xs text-slate-300 space-y-1">
+                      <li>• Increase base Law Bit costs</li>
+                      <li>• Slower progression rate</li>
+                      <li>• Limited duality access</li>
+                      <li>• Focus on non-magical advancement</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Cultural Adaptation:</h4>
+                <div class="space-y-4">
+                  <div class="bg-slate-900/50 rounded-lg p-4">
+                    <h5 class="font-semibold text-blue-400 text-sm mb-1">Eastern Fantasy</h5>
+                    <ul class="text-xs text-slate-300 space-y-1">
+                      <li>• Emphasize cultivation stages</li>
+                      <li>• Add elemental affinities</li>
+                      <li>• Include qi manipulation</li>
+                      <li>• Focus on personal enlightenment</li>
+                    </ul>
+                  </div>
+                  <div class="bg-slate-900/50 rounded-lg p-4">
+                    <h5 class="font-semibold text-purple-400 text-sm mb-1">Western Fantasy</h5>
+                    <ul class="text-xs text-slate-300 space-y-1">
+                      <li>• Tie to divine sources</li>
+                      <li>• Add spell components</li>
+                      <li>• Include magic schools</li>
+                      <li>• Focus on external power sources</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight mt-12">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-lightbulb mr-2"></i>Design Philosophy
+            </h4>
+            <p class="text-slate-200">
+              The duality-based system serves as a <strong>framework, not a rigid rule set</strong>. World-builders are encouraged to modify, expand, or simplify components to fit their specific needs. The core principles—Self as the agent of change, dualities as fundamental forces, and Law as quantifiable resource—provide a flexible foundation for endless creative applications.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- World Integration -->
+      <section id="world-integration" class="px-8 py-16">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="serif text-4xl font-bold text-amber-400 mb-8">World Integration and Similarities</h2>
+
+          <div class="grid md:grid-cols-3 gap-8 mb-12">
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-green-400 mb-4">
+                <i class="fas fa-dragon mr-2"></i>Wuxia &amp; Xianxia
+              </h3>
+              <div class="space-y-3">
+                <div class="text-sm text-slate-300">
+                  <strong>Cultivation Systems:</strong> Progressive stages of power development
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Qi Manipulation:</strong> Energy-based abilities and techniques
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Personal Growth:</strong> Emphasis on self-improvement and enlightenment
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Cosmic Laws:</strong> Underlying principles governing reality
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-blue-400 mb-4">
+                <i class="fas fa-dice-d20 mr-2"></i>RPG Systems
+              </h3>
+              <div class="space-y-3">
+                <div class="text-sm text-slate-300">
+                  <strong>Class Systems:</strong> Specialization in different abilities
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Skill Trees:</strong> Progressive ability unlocking
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Leveling Mechanics:</strong> Quantified character progression
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Resource Management:</strong> Mana/energy systems
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700">
+              <h3 class="serif text-xl font-bold text-purple-400 mb-4">
+                <i class="fas fa-code mr-2"></i>Game Mechanics
+              </h3>
+              <div class="space-y-3">
+                <div class="text-sm text-slate-300">
+                  <strong>Mana Systems:</strong> Quantified magical resources
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Crafting Systems:</strong> Item creation and enhancement
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Progression Systems:</strong> Character advancement mechanics
+                </div>
+                <div class="text-sm text-slate-300">
+                  <strong>Combo Systems:</strong> Ability combination mechanics
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="formula-box">
+            <h3 class="serif text-xl font-bold text-slate-200 mb-6">
+              <i class="fas fa-puzzle-piece mr-2 text-amber-400"></i>Integration Examples
+            </h3>
+
+            <div class="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Magic System Integration:</h4>
+                <div class="space-y-3">
+                  <div class="bg-slate-900/50 rounded-lg p-3">
+                    <h5 class="font-semibold text-blue-400 text-sm mb-1">D&amp;D Spell System</h5>
+                    <p class="text-xs text-slate-300">Spell slots ↔ Law Bit costs, Schools ↔ Duality combinations</p>
+                  </div>
+                  <div class="bg-slate-900/50 rounded-lg p-3">
+                    <h5 class="font-semibold text-green-400 text-sm mb-1">Mage: The Ascension</h5>
+                    <p class="text-xs text-slate-300">Spheres ↔ Dualities, Paradox ↔ Law conservation violations</p>
+                  </div>
+                  <div class="bg-slate-900/50 rounded-lg p-3">
+                    <h5 class="font-semibold text-purple-400 text-sm mb-1">Ars Magica</h5>
+                    <p class="text-xs text-slate-300">Techniques + Forms ↔ Duality combinations</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-semibold text-amber-400 mb-4">Progression System Integration:</h4>
+                <div class="space-y-3">
+                  <div class="bg-slate-900/50 rounded-lg p-3">
+                    <h5 class="font-semibold text-orange-400 text-sm mb-1">Dark Souls</h5>
+                    <p class="text-xs text-slate-300">Soul currency ↔ Law Bits, stat scaling ↔ Duality investment</p>
+                  </div>
+                  <div class="bg-slate-900/50 rounded-lg p-3">
+                    <h5 class="font-semibold text-cyan-400 text-sm mb-1">Final Fantasy</h5>
+                    <p class="text-xs text-slate-300">Materia system ↔ Duality combination mechanics</p>
+                  </div>
+                  <div class="bg-slate-900/50 rounded-lg p-3">
+                    <h5 class="font-semibold text-pink-400 text-sm mb-1">Persona Series</h5>
+                    <p class="text-xs text-slate-300">Persona fusion ↔ Duality combination, Social Links ↔ Self development</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-highlight mt-12">
+            <h4 class="serif text-lg font-bold text-amber-400 mb-3">
+              <i class="fas fa-bridge mr-2"></i>Universal Foundation
+            </h4>
+            <p class="text-slate-200">
+              The duality system&#39;s strength lies in its <strong>universal applicability</strong>. Whether adapting to high fantasy, cultivation novels, modern supernatural settings, or science fiction worlds, the core concepts of Self, dualities, and Law provide a consistent framework that can be customized to fit any narrative or mechanical need.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Copyright Footer -->
+      <footer class="copyright-footer">
+        <div class="copyright-symbol">
+          <i class="fas fa-copyright mr-2"></i>
+          <span>&copy; 2026 Zeiendos. All Rights Reserved.</span>
+        </div>
+        <p>A Duality-Based System for World-Building: Magic, Cultivation, and Professions</p>
+        <p>The Duality-Based System and all associated concepts are proprietary intellectual property of Zeiendos.</p>
+        <p>This material may not be reproduced, distributed, or transmitted without express written permission.</p>
+      </footer>
+    </main>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active TOC link highlighting
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -80% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Remove active class from all TOC links
+                    document.querySelectorAll('.toc-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    
+                    // Add active class to current section's TOC link
+                    const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section[id]').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile TOC toggle (for responsive design)
+        function toggleTOC() {
+            const toc = document.querySelector('.fixed-toc');
+            toc.classList.toggle('open');
+            
+            // Toggle body scroll prevention
+            if (toc.classList.contains('open')) {
+                document.body.classList.add('overflow-hidden');
+            } else {
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+        
+        // Add mobile menu button for smaller screens
+        if (window.innerWidth <= 1024) {
+            const menuButton = document.createElement('button');
+            menuButton.innerHTML = '<i class="fas fa-bars"></i>';
+            menuButton.className = 'fixed top-4 left-4 z-[1001] bg-slate-800 text-amber-400 p-3 rounded-lg border border-slate-700';
+            menuButton.onclick = toggleTOC;
+            document.body.appendChild(menuButton);
+        }
+        
+        // Close TOC when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const toc = document.querySelector('.fixed-toc');
+            const menuButton = document.querySelector('button[onclick="toggleTOC()"]');
+            
+            // Only handle if we are in mobile view and TOC is open
+            if (window.innerWidth <= 1024 && toc && toc.classList.contains('open')) {
+                // Check if click is outside TOC and not on menu button
+                if (!toc.contains(event.target) && event.target !== menuButton) {
+                    toggleTOC();
+                }
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const toc = document.querySelector('.fixed-toc');
+            if (window.innerWidth > 1024 && toc && toc.classList.contains('open')) {
+                // In large screen, remove mobile open state and enable body scroll
+                toc.classList.remove('open');
+                document.body.classList.remove('overflow-hidden');
+            }
+        });
+    </script>
+  </body>
+</html>
