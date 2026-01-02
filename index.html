@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infiniology Hub - The Writer's Role in Worldbuilding</title>
+    <meta name="description" content="Explore the Infiniology framework where writers become the 'One past Infinity' - shaping worlds through fundamental laws and narrative will.">
+    <meta name="copyright" content="© 2026 Zeiendos. All rights reserved.">
+    <meta name="author" content="Zeiendos">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Crimson Text', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1e3a8a',
+                        'secondary': '#374151',
+                        'accent': '#d97706',
+                        'neutral': '#374151',
+                        'base': '#f9fafb',
+                        'info': '#0ea5e9',
+                        'success': '#059669',
+                        'warning': '#d97706',
+                        'error': '#dc2626',
+                        'cosmic': '#6366f1',
+                        'mystical': '#8b5cf6',
+                        'infinity': '#f59e0b',
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        .cosmic-gradient {
+            background: linear-gradient(135deg, 
+                #1e3a8a 0%, 
+                #3730a3 25%, 
+                #581c87 50%, 
+                #7c2d12 75%, 
+                #92400e 100%);
+        }
+        
+        .infinity-symbol {
+            animation: pulse 2s infinite;
+        }
+        
+        .writer-glow {
+            box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #f59e0b, #8b5cf6, #1e3a8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #f59e0b, #8b5cf6);
+            transition: left 0.3s ease;
+        }
+        
+        .nav-link:hover::before {
+            left: 0;
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .expandable-content.expanded {
+            max-height: 1000px;
+        }
+
+        /* New styles for page cards */
+        .page-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--cosmic), var(--mystical));
+        }
+
+        .difficulty-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .difficulty-beginner {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .difficulty-intermediate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .difficulty-advanced {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .page-preview {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .feature-item i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            max-width: 4xl;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body class="bg-base text-neutral font-sans leading-relaxed">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="infinity-symbol text-2xl text-infinity">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h1 class="font-serif text-xl font-semibold text-primary">Infiniology Hub</h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#origins" class="nav-link text-neutral hover:text-primary transition-colors">Origins</a>
+                    <a href="#writer-role" class="nav-link text-neutral hover:text-primary transition-colors">The Writer's Role</a>
+                    <a href="#framework" class="nav-link text-neutral hover:text-primary transition-colors">Framework</a>
+                    <a href="#pages" class="nav-link text-neutral hover:text-primary transition-colors">Pages</a>
+                    <a href="#license" class="nav-link text-neutral hover:text-primary transition-colors">License</a>
+                    <a href="#contact" class="nav-link text-neutral hover:text-primary transition-colors">Connect</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-neutral hover:text-primary">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-2 space-y-2">
+                <a href="#origins" class="block py-2 text-neutral hover:text-primary">Origins</a>
+                <a href="#writer-role" class="block py-2 text-neutral hover:text-primary">The Writer's Role</a>
+                <a href="#framework" class="block py-2 text-neutral hover:text-primary">Framework</a>
+                <a href="#pages" class="block py-2 text-neutral hover:text-primary">Pages</a>
+                <a href="#license" class="block py-2 text-neutral hover:text-primary">License</a>
+                <a href="#contact" class="block py-2 text-neutral hover:text-primary">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="cosmic-gradient text-white relative overflow-hidden pt-16">
+        <div class="absolute inset-0 opacity-10">
+            <div class="floating-element absolute top-20 left-10 text-6xl">🌌</div>
+            <div class="floating-element absolute top-40 right-20 text-4xl" style="animation-delay: -2s;">✨</div>
+            <div class="floating-element absolute bottom-20 left-1/3 text-5xl" style="animation-delay: -4s;">🪐</div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-8 py-20">
+            <div class="text-center space-y-8">
+                <h1 class="font-serif text-5xl md:text-7xl font-semibold leading-tight animate__animated animate__fadeInUp">
+                    <span class="text-gradient italic">The Writer</span>
+                    <br>
+                    <span class="text-2xl md:text-4xl font-light">as One Past Infinity</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-4xl mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+                    In the Infiniological framework, the Writer transcends the role of mere storyteller to become 
+                    the <strong>One Past Infinity</strong>—the conscious architect who shapes worlds through fundamental laws 
+                    and breathes life into narratives through the will of creation.
+                </p>
+                
+                <div class="flex justify-center space-x-6 animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="writer-glow bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                        <h3 class="font-serif text-lg font-semibold mb-2 text-infinity">
+                            <i class="fas fa-pen-fancy mr-2"></i>The Source
+                        </h3>
+                        <p class="text-sm text-gray-300">Limits set upon the world</p>
+                    </div>
+                    <div class="writer-glow bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                        <h3 class="font-serif text-lg font-semibold mb-2 text-mystical">
+                            <i class="fas fa-heart mr-2"></i>The Self
+                        </h3>
+                        <p class="text-sm text-gray-300">Will to shape lore and story</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Origins Section -->
+    <section id="origins" class="py-20 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">The Genesis of Infiniology</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Every great framework has its beginning. Infiniology emerged from a fundamental question about the nature of creation itself.
+                </p>
+            </header>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-amber-200">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-amber-500 text-white rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-seedling text-xl"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-semibold text-primary">The Starting Point</h3>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Infiniology began with a simple yet profound exploration: <strong>"Limitations of Infinity"</strong> - 
+                            a foundational work that questioned how infinite potential could be structured into meaningful reality.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            This initial exploration became the core philosophical seed from which the entire Infiniological 
+                            framework grew, establishing the relationship between boundless possibility and the creative 
+                            constraints that give it form.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-amber-200">
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-6">The Foundational Document</h3>
+                    <div class="bg-amber-50 p-6 rounded-lg border border-amber-200 mb-6">
+                        <h4 class="font-semibold text-amber-800 mb-2">
+                            <i class="fas fa-book-open mr-2"></i>Limitations of Infinity
+                        </h4>
+                        <p class="text-amber-700 text-sm mb-3">
+                            The original work that sparked the Infiniological framework, exploring the paradoxical 
+                            relationship between infinite potential and structured reality.
+                        </p>
+                        <a href="https://zeiendos.github.io/limitations-of-infinity/" target="_blank" class="inline-flex items-center text-amber-600 hover:text-amber-800 text-sm font-semibold">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Visit Original Document
+                        </a>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-primary">Core Questions Explored</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-question-circle text-amber-500 mr-2 mt-1"></i>
+                                <span>How does infinity become structured into finite reality?</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-question-circle text-amber-500 mr-2 mt-1"></i>
+                                <span>What role do limitations play in creative expression?</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-question-circle text-amber-500 mr-2 mt-1"></i>
+                                <span>How do opposing forces create dynamic balance?</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-question-circle text-amber-500 mr-2 mt-1"></i>
+                                <span>What is the relationship between creator and creation?</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white p-8 rounded-xl shadow-lg border border-amber-200">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-6 text-center">From Seed to Framework</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-lightbulb text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Question</h4>
+                        <p class="text-sm text-gray-600">How does infinity become structured?</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-search text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Explore</h4>
+                        <p class="text-sm text-gray-600">Investigate limitations and structure</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-puzzle-piece text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Framework</h4>
+                        <p class="text-sm text-gray-600">Develop systematic approach</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-rocket text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Application</h4>
+                        <p class="text-sm text-gray-600">Apply to worldbuilding and narrative</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writer's Role Section -->
+    <section id="writer-role" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">The Writer as Divine Architect</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Understanding your role as the creative force behind infinite worlds
+                </p>
+            </header>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="font-serif text-3xl font-semibold text-primary">The Source: Limit as Creative Force</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        In Infiniology, <strong>you, the Writer, are the Source</strong>—the One Past Infinity who imposes 
+                        the fundamental limits that give form to infinite potential. Just as the Limit of Infinity 
+                        shapes reality from boundless possibility, your creative choices establish the laws, 
+                        boundaries, and constraints that make your world coherent and meaningful.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6">
+                        <h4 class="font-semibold text-blue-800 mb-2">
+                            <i class="fas fa-lightbulb mr-2"></i>The Paradox of Creation
+                        </h4>
+                        <p class="text-blue-700">
+                            You create by limiting. Every rule you establish, every law you define, every boundary 
+                            you set—these are not constraints but the very tools that transform infinite possibility 
+                            into tangible reality. Your limits are the canvas upon which your world takes shape.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 rounded-xl border border-blue-200">
+                    <h4 class="font-serif text-xl font-semibold text-primary mb-4">How Writers Establish Limits</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">1</div>
+                            <div>
+                                <h5 class="font-semibold text-blue-800">Physical Laws</h5>
+                                <p class="text-blue-700 text-sm">Define magic systems, technology levels, and natural laws</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">2</div>
+                            <div>
+                                <h5 class="font-semibold text-indigo-800">Moral Frameworks</h5>
+                                <p class="text-indigo-700 text-sm">Establish what is good, evil, and the gray areas between</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">3</div>
+                            <div>
+                                <h5 class="font-semibold text-purple-800">Cultural Boundaries</h5>
+                                <p class="text-purple-700 text-sm">Create societies, traditions, and belief systems</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-purple-800 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">4</div>
+                            <div>
+                                <h5 class="font-semibold text-purple-800">Narrative Constraints</h5>
+                                <p class="text-purple-800 text-sm">Determine what stories can and cannot be told</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl border border-purple-200 order-2 lg:order-1">
+                    <h4 class="font-serif text-xl font-semibold text-primary mb-4">The Self: Conscious Creation</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">1</div>
+                            <div>
+                                <h5 class="font-semibold text-purple-800">Lore Crafting</h5>
+                                <p class="text-purple-700 text-sm">Weaving history, mythology, and culture into coherent narratives</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-pink-400 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">2</div>
+                            <div>
+                                <h5 class="font-semibold text-pink-400">Character Arcs</h5>
+                                <p class="text-pink-400 text-sm">Guiding beings through transformation and growth</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-red-400 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">3</div>
+                            <div>
+                                <h5 class="font-semibold text-red-400">Plot Weaving</h5>
+                                <p class="text-red-400 text-sm">Connecting events through cause, effect, and meaning</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-red-700 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">4</div>
+                            <div>
+                                <h5 class="font-semibold text-red-700">Theme Integration</h5>
+                                <p class="text-red-700 text-sm">Embedding deeper meanings and philosophical explorations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6 order-1 lg:order-2">
+                    <h3 class="font-serif text-3xl font-semibold text-primary">The Self: Conscious Creation</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        As <strong>the Self</strong>, you are the active consciousness that shapes and directs the world 
+                        you've limited. Your will, imagination, and narrative choices become the forces that guide 
+                        your creation toward its ultimate expression. This is where your personal vision, 
+                        emotional truth, and creative intuition transform abstract potential into living story.
+                    </p>
+                    <div class="bg-purple-50 border-l-4 border-purple-500 p-6">
+                        <h4 class="font-semibold text-purple-800 mb-2">
+                            <i class="fas fa-heart mr-2"></i>The Living Narrative
+                        </h4>
+                        <p class="text-purple-700">
+                            Your world becomes a living entity through your conscious engagement with it. 
+                            Every character you breathe life into, every story you tell, every theme you 
+                            explore—these are manifestations of your creative will shaping the infinite 
+                            into the meaningful.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Framework Overview -->
+    <section id="framework" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">The Infiniology Framework</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Core principles that govern the relationship between Writer, World, and Narrative
+                </p>
+            </header>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="w-16 h-16 bg-infinity/20 text-infinity rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-infinity text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Infinity</h3>
+                    <p class="text-gray-700 mb-4">
+                        The boundless source of all creative potential. As a Writer, you draw from the infinite 
+                        well of imagination, possibility, and inspiration.
+                    </p>
+                    <div class="text-sm text-gray-600">
+                        <strong>Writer's Role:</strong> Channel infinite potential into focused creation
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="w-16 h-16 bg-cosmic/20 text-cosmic rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Limit</h3>
+                    <p class="text-gray-700 mb-4">
+                        The structuring principle that transforms potential into reality. Your creative choices, 
+                        rules, and boundaries give form to your world.
+                    </p>
+                    <div class="text-sm text-gray-600">
+                        <Writer's Role:</strong> Establish laws that govern your creation
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="w-16 h-16 bg-mystical/20 text-mystical rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-yin-yang text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Dualities</h3>
+                    <p class="text-gray-700 mb-4">
+                        The opposing forces that create dynamic tension and narrative possibility. Order/Chaos, 
+                        Love/Hate, Light/Dark drive all stories.
+                    </p>
+                    <div class="text-sm text-gray-600">
+                        <strong>Writer's Role:</strong> Balance opposing forces for compelling narratives
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-6 text-center">The Creative Process</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">1</span>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Conceive</h4>
+                        <p class="text-sm text-gray-600">Draw from Infinity—the infinite well of creative potential</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-cosmic/20 text-cosmic rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">2</span>
+                        </div>
+                        <h4 class="font-semibold text-cosmic mb-2">Limit</h4>
+                        <p class="text-sm text-gray-600">Establish laws, rules, and boundaries for your world</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-mystical/20 text-mystical rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">3</span>
+                        </div>
+                        <h4 class="font-semibold text-mystical mb-2">Shape</h4>
+                        <p class="text-sm text-gray-600">Apply your will to craft lore, characters, and stories</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-infinity/20 text-infinity rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">4</span>
+                        </div>
+                        <h4 class="font-semibold text-infinity mb-2">Manifest</h4>
+                        <p class="text-sm text-gray-600">Bring your world into being through narrative</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pages Overview - FIXED SECTION -->
+    <section id="pages" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">Explore the Infiniology Pages</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Each page explores different aspects of the framework, from core concepts to practical applications
+                </p>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Worldbuilding Framework Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-balance-scale text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">The Primordial Dualities</h3>
+                                <div class="difficulty-badge difficulty-intermediate">Intermediate</div>
+                            </div>
+                        </div>
+                        <a href="Worldbuilding-framework.html" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A comprehensive framework for defining the six core dualities that govern existence—Life & Death, Matter & Spirit, Light & Dark, Order & Chaos, Male & Female, and Love & Hate—examined through mythology, cosmology, and world-building applications.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-yin-yang"></i>
+                            <span>Six primordial dualities</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-scroll"></i>
+                            <span>Mythological frameworks</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-magic"></i>
+                            <span>Magic system applications</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-book-open"></i>
+                            <span>Writer's applications guide</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> The Primordial of Life & Death represents the most fundamental cycle in any cosmos: the transition between existence and non-existence. This duality governs the flow of vital energy, the process of decay and renewal, and the ultimate fate of all things...
+                    </div>
+                    <div class="mt-4">
+                        <a href="Worldbuilding-framework.html" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm inline-flex items-center">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            Visit Page
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Infiniology Narrative Framework Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-infinity text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">Infiniology Framework</h3>
+                                <div class="difficulty-badge difficulty-beginner">Beginner</div>
+                            </div>
+                        </div>
+                        <a href="infiniology-narative-framework.html" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A narrative-driven worldbuilding framework that uses the concepts of a foundational Infinity, a structuring Limit, and dynamic Dualities to create fictional worlds, characters, and stories.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-star"></i>
+                            <span>Infinity as source</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Limit as structure</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-yin-yang"></i>
+                            <span>Dynamic dualities</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-brain"></i>
+                            <span>Psychological depth</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> Infiniology is a narrative-driven worldbuilding framework that uses the concepts of a foundational Infinity, a structuring Limit, and dynamic Dualities (like Order/Chaos, Love/Hate) to create fictional worlds...
+                    </div>
+                    <div class="mt-4">
+                        <a href="infiniology-narative-framework.html" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm inline-flex items-center">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            Visit Page
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mythological Framework Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-amber-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-temple text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">Mythological Framework</h3>
+                                <div class="difficulty-badge difficulty-advanced">Advanced</div>
+                            </div>
+                        </div>
+                        <a href="mythological-framework.html" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A systematic tool for creating rich, coherent mythologies and religions for fictional worlds. Uses the Infiniology Chart to deconstruct and reconstruct belief systems through core concepts of Infinity, Laws, and Stability.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <span>Pantheon creation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Creation myths</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-fire"></i>
+                            <span>Cosmic cycles</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-scroll"></i>
+                            <span>Interactive guide</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> The creation of mythologies and religions is a fundamental aspect of human culture, serving as a powerful tool for explaining the unexplainable, providing meaning and purpose, and establishing a shared identity...
+                    </div>
+                    <div class="mt-4">
+                        <a href="mythological-framework.html" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm inline-flex items-center">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            Visit Page
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Narrative Systems Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-red-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-flask text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">Narrative Systems</h3>
+                                <div class="difficulty-badge difficulty-intermediate">Intermediate</div>
+                            </div>
+                        </div>
+                        <a href="narrative-systems.html" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A duality-based system for world-building covering magic, cultivation, and professions. Uses Law Bits as quantifiable resources for manipulating fundamental cosmic forces through systematic frameworks.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-magic"></i>
+                            <span>Magic & Qi systems</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-mountain"></i>
+                            <span>Cultivation paths</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-hammer"></i>
+                            <span>Professions & crafting</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-star"></i>
+                            <span>Divine treasures</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> The foundational concept of this world-building system is the "Self," a metaphysical entity that serves as the agent of change and the source of all supernatural abilities. The Self is the intrinsic power that allows an individual to perceive, interact with, and ultimately manipulate the fundamental laws of reality...
+                    </div>
+                    <div class="mt-4">
+                        <a href="narrative-systems.html" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors text-sm inline-flex items-center">
+                            <i class="fas fa-arrow-right mr-2"></i>
+                            Visit Page
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- License Section -->
+    <section id="license" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">License & Usage</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    The Infiniology Framework is open source and available under the MIT License
+                </p>
+            </header>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-xl border border-green-200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-balance-scale text-xl"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-semibold text-primary">MIT License</h3>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-sm mb-6">
+                        <h4 class="font-semibold text-green-800 mb-3">What You CAN Do:</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Use the Infiniology framework in personal and commercial projects</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Modify, adapt, and extend the framework for your needs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Create derivative works and build upon the concepts</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Include the framework in educational materials and courses</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                <span>Share and distribute the framework with others</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-red-50 p-6 rounded-lg shadow-sm">
+                        <h4 class="font-semibold text-red-800 mb-3">What You CANNOT Do:</h4>
+                        <ul class="space-y-2 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mr-2 mt-1"></i>
+                                <span>Claim ownership of the original framework or remove attribution</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mr-2 mt-1"></i>
+                                <span>Use the framework in ways that imply endorsement by Zeiendos</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mr-2 mt-1"></i>
+                                <span>Hold Zeiendos liable for any damages or issues arising from use</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                        <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Example Usage</h3>
+                        <div class="space-y-4">
+                            <div class="bg-blue-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-blue-800 mb-2">✅ Permitted Use</h4>
+                                <p class="text-blue-700 text-sm">
+                                    "I'm using the Infiniology framework to create a fantasy world for my novel. 
+                                    I've adapted the duality concepts to fit my story's magical system and 
+                                    created my own interpretation of the Limit principles."
+                                </p>
+                            </div>
+                            
+                            <div class="bg-red-50 p-4 rounded-lg">
+                                <h4 class="font-semibold text-red-800 mb-2">❌ Not Permitted</h4>
+                                <p class="text-red-700 text-sm">
+                                    "I created this worldbuilding system called 'Infinitology' that's totally 
+                                    original and mine. The fact that it has similar concepts to some other 
+                                    framework is just coincidence."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
+                        <h4 class="font-semibold text-primary mb-3">
+                            <i class="fas fa-info-circle mr-2"></i>Attribution Requirements
+                        </h4>
+                        <p class="text-gray-700 text-sm mb-3">
+                            When using or referencing the Infiniology framework, please include attribution such as:
+                        </p>
+                        <div class="bg-white p-3 rounded border text-xs text-gray-600 font-mono">
+                            "Based on the Infiniology framework by Zeiendos"
+                            <br>
+                            "Using concepts from Infiniology (© 2026 Zeiendos)"
+                            <br>
+                            "Inspired by the Infiniological framework"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-gray-50 p-8 rounded-xl">
+                <h3 class="font-serif text-xl font-semibold text-primary mb-4 text-center">Full License Text</h3>
+                <div class="bg-white p-6 rounded-lg border text-sm text-gray-700 font-mono leading-relaxed max-h-64 overflow-y-auto">
+                    <p class="mb-4">MIT License</p>
+                    <p class="mb-4">Copyright (c) 2026 Zeiendos</p>
+                    <p class="mb-4">
+                        Permission is hereby granted, free of charge, to any person obtaining a copy
+                        of this software and associated documentation files (the "Software"), to deal
+                        in the Software without restriction, including without limitation the rights
+                        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                        copies of the Software, and to permit persons to whom the Software is
+                        furnished to do so, subject to the following conditions:
+                    </p>
+                    <p class="mb-4">
+                        The above copyright notice and this permission notice shall be included in all
+                        copies or substantial portions of the Software.
+                    </p>
+                    <p>
+                        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+                        SOFTWARE.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto px-8 text-center">
+            <h2 class="font-serif text-4xl font-semibold mb-6">Join the Infiniology Community</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                Connect with fellow worldbuilders who are exploring the infinite possibilities of narrative creation
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="w-12 h-12 bg-primary text-white rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-github text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Main Repository</h3>
+                    <p class="text-sm text-gray-300 mb-4">Explore the full Infiniology framework and contribute to its development</p>
+                    <a href="https://github.com/Zeiendos/worldbuilding-with-infiniology" target="_blank" class="text-primary hover:text-primary/80 text-sm font-semibold">
+                        View Repository <i class="fas fa-external-link-alt ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="w-12 h-12 bg-amber-500 text-white rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-seedling text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Original Work</h3>
+                    <p class="text-sm text-gray-300 mb-4">The foundational document that sparked the Infiniological framework</p>
+                    <a href="https://github.com/Zeiendos/limitations-of-infinity" target="_blank" class="text-amber-400 hover:text-amber-300 text-sm font-semibold">
+                        View Original <i class="fas fa-external-link-alt ml-1"></i>
+                    </a>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20">
+                    <div class="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Community Discussion</h3>
+                    <p class="text-sm text-gray-300 mb-4">Share your worldbuilding experiences and learn from others</p>
+                    <button onclick="showComingSoon()" class="text-purple-400 hover:text-purple-300 text-sm font-semibold">
+                        Join Discussion <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20 mb-12">
+                <h3 class="font-serif text-2xl font-semibold mb-6">Direct Contact</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-infinity mb-3">
+                            <i class="fas fa-envelope mr-2"></i>Email Contact
+                        </h4>
+                        <p class="text-gray-300 mb-4">
+                            For direct communication, collaboration opportunities, or detailed inquiries 
+                            about the Infiniology framework:
+                        </p>
+                        <div class="bg-white/10 p-4 rounded-lg">
+                            <a href="mailto:zeiendosinfinity@gmial.com" class="text-infinity hover:text-infinity/80 font-semibold text-lg">
+                                <i class="fas fa-at mr-2"></i>zeiendosinfinity@gmial.com
+                            </a>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-2">
+                            Please allow 24-48 hours for responses. For urgent matters, consider reaching 
+                            out through the GitHub repository.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-infinity mb-3">
+                            <i class="fas fa-handshake mr-2"></i>Collaboration Opportunities
+                        </h4>
+                        <p class="text-gray-300 mb-4">
+                            Open to collaboration on:
+                        </p>
+                        <ul class="text-sm text-gray-300 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>Academic research on narrative frameworks</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>Worldbuilding consultation for creative projects</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>Educational content development</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>Framework expansion and refinement</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-400 mr-2"></i>
+                                <span>Speaking engagements and workshops</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white/5 backdrop-blur-sm p-8 rounded-xl border border-white/10">
+                <h3 class="font-serif text-2xl font-semibold mb-4">Expandable Framework</h3>
+                <p class="text-gray-300 mb-6">
+                    This hub is designed to grow with your project. New pages can be easily incorporated 
+                    into the navigation system, maintaining consistency while allowing for expansion.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 text-left">
+                    <div>
+                        <h4 class="font-semibold text-infinity mb-2">Easy Integration</h4>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• Consistent navigation structure</li>
+                            <li>• Expandable card system</li>
+                            <li>• Modular page summaries</li>
+                            <li>• Responsive design framework</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-infinity mb-2">Growth Ready</h4>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• Scalable architecture</li>
+                            <li>• Thematic consistency</li>
+                            <li>• User experience focus</li>
+                            <li>• Community integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="max-w-6xl mx-auto px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="text-infinity text-2xl">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold">Infiniology Framework</h3>
+                </div>
+                <p class="text-gray-400 mb-4 max-w-2xl mx-auto">
+                    Bridging the infinite potential of imagination with the structured beauty of narrative creation
+                </p>
+                <div class="flex justify-center items-center space-x-6 text-sm text-gray-500">
+                    <span>© 2026 Zeiendos. All rights reserved.</span>
+                    <span>•</span>
+                    <span>© 2026 Zeiendos Infinity</span>
+                    <span>•</span>
+                    <span>Narrative-Driven Worldbuilding</span>
+                    <span>•</span>
+                    <span>One Past Infinity</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed nav
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Coming soon popup
+        function showComingSoon() {
+            alert('This page is coming soon! Stay tuned for more Infiniology content.');
+        }
+
+        // Add scroll effects
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.card-hover').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

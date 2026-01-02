@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infiniology Narrative Framework - Core Concepts</title>
+    <meta name="description" content="The foundational framework of Infiniology: Infinity, Limit, and Dynamic Dualities for worldbuilding and narrative creation.">
+    <meta name="author" content="Zeiendos">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Crimson Text', 'Georgia', 'serif'],
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#1e3a8a',
+                        'secondary': '#374151',
+                        'accent': '#d97706',
+                        'neutral': '#374151',
+                        'base': '#f9fafb',
+                        'cosmic': '#6366f1',
+                        'mystical': '#8b5cf6',
+                        'infinity': '#f59e0b',
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        .cosmic-gradient {
+            background: linear-gradient(135deg, 
+                #1e3a8a 0%, 
+                #3730a3 25%, 
+                #581c87 50%, 
+                #7c2d12 75%, 
+                #92400e 100%);
+        }
+        
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #f59e0b, #8b5cf6);
+            transition: left 0.3s ease;
+        }
+        
+        .nav-link:hover::before {
+            left: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-base text-neutral font-sans leading-relaxed">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-sm shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="text-2xl text-infinity">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h1 class="font-serif text-xl font-semibold text-primary">Infiniology Hub</h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-neutral hover:text-primary transition-colors">Home</a>
+                    <a href="#infinity" class="nav-link text-neutral hover:text-primary transition-colors">Infinity</a>
+                    <a href="#limit" class="nav-link text-neutral hover:text-primary transition-colors">Limit</a>
+                    <a href="#dualities" class="nav-link text-neutral hover:text-primary transition-colors">Dualities</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-neutral hover:text-primary">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="cosmic-gradient text-white pt-16 py-20">
+        <div class="max-w-4xl mx-auto px-8 text-center">
+            <h1 class="font-serif text-5xl md:text-6xl font-semibold mb-6">
+                Infiniology Framework
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+                A narrative-driven worldbuilding framework that uses the concepts of a foundational Infinity, 
+                a structuring Limit, and dynamic Dualities to create fictional worlds, characters, and stories.
+            </p>
+        </div>
+    </section>
+
+    <!-- Infinity Section -->
+    <section id="infinity" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">Infinity: The Source</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    The boundless, uncreated source from which all potential emerges—the infinite well of creative possibility.
+                </p>
+            </header>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="font-serif text-3xl font-semibold text-primary">The Infinite Potential</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Infinity represents the ultimate source of all creative potential—the boundless, formless, 
+                        eternal well from which all realities emerge. It is the "uncreated" that precedes all 
+                        creation, the chaos that contains all order, the nothing that holds everything.
+                    </p>
+                    <div class="bg-amber-50 border-l-4 border-amber-500 p-6">
+                        <h4 class="font-semibold text-amber-800 mb-2">
+                            <i class="fas fa-lightbulb mr-2"></i>The Writer's Connection to Infinity
+                        </h4>
+                        <p class="text-amber-700">
+                            As a Writer, you are the channel through which Infinity flows into structured reality. 
+                            Your imagination is the bridge between the infinite potential and the finite form of 
+                            your created world.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl border border-amber-200">
+                    <h4 class="font-serif text-xl font-semibold text-primary mb-4">Aspects of Infinity</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">1</div>
+                            <div>
+                                <h5 class="font-semibold text-amber-800">Unbound Potential</h5>
+                                <p class="text-amber-700 text-sm">All possibilities exist simultaneously without contradiction</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">2</div>
+                            <div>
+                                <h5 class="font-semibold text-orange-800">Eternal Source</h5>
+                                <p class="text-orange-700 text-sm">Timeless existence beyond beginning or end</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-yellow-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">3</div>
+                            <div>
+                                <h5 class="font-semibold text-yellow-800">Formless Chaos</h5>
+                                <p class="text-yellow-700 text-sm">Pure potential without structure or limitation</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">4</div>
+                            <div>
+                                <h5 class="font-semibold text-red-800">Creative Void</h5>
+                                <p class="text-red-700 text-sm">The emptiness that contains all form</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-6 text-center">The Infinity-Writer Relationship</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-infinity/20 text-infinity rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-water text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Drawing</h4>
+                        <p class="text-sm text-gray-600">
+                            The Writer draws from Infinity like water from an infinite well, accessing 
+                            endless creative potential.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-cosmic/20 text-cosmic rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-filter text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-cosmic mb-2">Filtering</h4>
+                        <p class="text-sm text-gray-600">
+                            Through consciousness and intention, the Writer filters infinite possibility 
+                            into coherent concepts.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-mystical/20 text-mystical rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-seed text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold text-mystical mb-2">Seeding</h4>
+                        <p class="text-sm text-gray-600">
+                            The Writer plants seeds of infinite potential within the structured 
+                            soil of their created world.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Limit Section -->
+    <section id="limit" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">The Limit of Infinity</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    The structuring principle that transforms infinite potential into coherent reality—the necessary constraint that gives form to formlessness.
+                </p>
+            </header>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-6">The Paradox of Creation</h3>
+                    <p class="text-gray-700 mb-4">
+                        The Limit of Infinity is the paradoxical principle that infinite potential requires 
+                        constraint to become real. Without limits, possibility remains formless and unrealized. 
+                        Through limitation, the infinite becomes finite, the formless takes shape, and 
+                        potential becomes actual.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <h4 class="font-semibold text-blue-800 mb-2">The Writer as Limit-Maker</h4>
+                        <p class="text-blue-700 text-sm">
+                            You, the Writer, are the One Past Infinity who imposes the limits that give 
+                            form to your creation. Your choices, rules, and boundaries are not constraints 
+                            but the very tools of creation.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <h3 class="font-serif text-3xl font-semibold text-primary">Types of Limits</h3>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                            <h4 class="font-semibold text-blue-800 mb-2">Physical Laws</h4>
+                            <p class="text-blue-700 text-sm">
+                                Gravity, thermodynamics, conservation of energy—the fundamental rules 
+                                that govern how the world operates.
+                            </p>
+                        </div>
+                        <div class="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                            <h4 class="font-semibold text-purple-800 mb-2">Moral Frameworks</h4>
+                            <p class="text-purple-700 text-sm">
+                                Definitions of good and evil, right and wrong, that shape character 
+                                motivations and societal values.
+                            </p>
+                        </div>
+                        <div class="bg-green-50 p-6 rounded-lg border border-green-200">
+                            <h4 class="font-semibold text-green-800 mb-2">Magical Constraints</h4>
+                            <p class="text-green-700 text-sm">
+                                Rules that govern supernatural forces: costs, limitations, and 
+                                consequences of using magic.
+                            </p>
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-lg border border-red-200">
+                            <h4 class="font-semibold text-red-800 mb-2">Narrative Boundaries</h4>
+                            <p class="text-red-700 text-sm">
+                                The scope of what stories can be told, the themes that can be explored, 
+                                and the questions that can be asked.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-6 text-center">The Creative Process: From Infinity to Form</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-infinity/20 text-infinity rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">1</span>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Conceive</h4>
+                        <p class="text-sm text-gray-600">
+                            Draw infinite potential from the boundless source of creativity
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-primary/20 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">2</span>
+                        </div>
+                        <h4 class="font-semibold text-primary mb-2">Limit</h4>
+                        <p class="text-sm text-gray-600">
+                            Impose structure and boundaries to give form to formless potential
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-cosmic/20 text-cosmic rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">3</span>
+                        </div>
+                        <h4 class="font-semibold text-cosmic mb-2">Shape</h4>
+                        <p class="text-sm text-gray-600">
+                            Apply conscious will to craft characters, plots, and themes
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-mystical/20 text-mystical rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="font-bold text-xl">4</span>
+                        </div>
+                        <h4 class="font-semibold text-mystical mb-2">Manifest</h4>
+                        <p class="text-sm text-gray-600">
+                            Bring the world into being through narrative and story
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dualities Section -->
+    <section id="dualities" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">Dynamic Dualities</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    The fundamental opposing forces that create tension, drive narrative, and allow for 
+                    the dynamic interplay between Infinity and Limit.
+                </p>
+            </header>
+
+            <div class="grid lg:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="w-16 h-16 bg-primary/20 text-primary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-balance-scale text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Order & Chaos</h3>
+                    <p class="text-gray-700 mb-4">
+                        The fundamental tension between structure and entropy, stability and change, 
+                        law and freedom.
+                    </p>
+                    <div class="text-sm text-gray-600">
+                        <strong>Narrative Use:</strong> Political conflicts, cosmic struggles, character alignments
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="w-16 h-16 bg-red-500/20 text-red-500 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-heart-broken text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Love & Hate</h3>
+                    <p class="text-gray-700 mb-4">
+                        The duality of connection and division, representing the forces that unite 
+                        and separate beings.
+                    </p>
+                    <div class="text-sm text-gray-600">
+                        <strong>Narrative Use:</strong> Character motivations, relationships, social conflicts
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="w-16 h-16 bg-yellow-500/20 text-yellow-500 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-sun text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-4">Light & Dark</h3>
+                    <p class="text-gray-700 mb-4">
+                        The interplay between knowledge and mystery, revelation and concealment, 
+                        truth and the unknown.
+                    </p>
+                    <div class="text-sm text-gray-600">
+                        <strong>Narrative Use:</strong> Knowledge systems, moral symbolism, hidden truths
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 p-8 rounded-xl">
+                <h3 class="font-serif text-2xl font-semibold text-primary mb-6 text-center">The Balance Dynamics</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-primary mb-4">Balance States</h4>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span><strong>Harmony:</strong> Both poles exist in productive tension</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2 mt-1"></i>
+                                <span><strong>Imbalance:</strong> One pole dominates, creating instability</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times-circle text-red-500 mr-2 mt-1"></i>
+                                <span><strong>Distortion:</strong> Duality collapses into destructive conflict</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-sync text-blue-500 mr-2 mt-1"></i>
+                                <span><strong>Cycle:</strong> Natural rhythm between the poles</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-primary mb-4">Narrative Applications</h4>
+                        <ul class="space-y-3 text-sm text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-user text-purple-500 mr-2 mt-1"></i>
+                                <span><strong>Character Arcs:</strong> Journey from imbalance to balance</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-globe text-green-500 mr-2 mt-1"></i>
+                                <span><strong>World Events:</strong> Cosmic struggles that threaten existence</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-bolt text-yellow-500 mr-2 mt-1"></i>
+                                <span><strong>Magic Systems:</strong> Power drawn from manipulating dualities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-heart text-red-500 mr-2 mt-1"></i>
+                                <span><strong>Themes:</strong> Exploration of opposing forces and their resolution</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8">
+        <div class="max-w-6xl mx-auto px-8">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-4">
+                    <div class="text-infinity text-2xl">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="font-serif text-xl font-semibold">Infiniology Framework</h3>
+                </div>
+                <p class="text-gray-400 mb-4 max-w-2xl mx-auto">
+                    Bridging the infinite potential of imagination with the structured beauty of narrative creation
+                </p>
+                <div class="flex justify-center items-center space-x-6 text-sm text-gray-500">
+                    <span>© 2026 Zeiendos. All rights reserved.</span>
+                    <span>•</span>
+                    <span>© 2026 Zeiendos Infinity</span>
+                    <span>•</span>
+                    <span>Narrative-Driven Worldbuilding</span>
+                    <span>•</span>
+                    <span>One Past Infinity</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', function() {
+            // Mobile menu functionality would go here
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
