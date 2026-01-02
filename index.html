@@ -7,7 +7,6 @@
     <meta name="description" content="Explore the Infiniology framework where writers become the 'One past Infinity' - shaping worlds through fundamental laws and narrative will.">
     <meta name="copyright" content="© 2026 Zeiendos. All rights reserved.">
     <meta name="author" content="Zeiendos">
-    <meta name="owner" content="Zeiendos">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -47,7 +46,7 @@
                     }
                 }
             }
-        }
+        };
     </script>
 
     <style>
@@ -121,6 +120,127 @@
         
         .expandable-content.expanded {
             max-height: 1000px;
+        }
+
+        /* New styles for page cards */
+        .page-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--cosmic), var(--mystical));
+        }
+
+        .difficulty-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .difficulty-beginner {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .difficulty-intermediate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .difficulty-advanced {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .page-preview {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .feature-item i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            max-width: 4xl;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #f1f5f9;
+            border: none;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: #e2e8f0;
         }
     </style>
 </head>
@@ -382,7 +502,7 @@
 
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl border border-purple-200 order-2 lg:order-1">
-                    <h4 class="font-serif text-xl font-semibold text-primary mb-4">The Self: Will as Shaping Force</h4>
+                    <h4 class="font-serif text-xl font-semibold text-primary mb-4">The Self: Conscious Creation</h4>
                     <div class="space-y-4">
                         <div class="flex items-start space-x-3">
                             <div class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center text-sm font-semibold flex-shrink-0">1</div>
@@ -474,7 +594,7 @@
                         rules, and boundaries give form to your world.
                     </p>
                     <div class="text-sm text-gray-600">
-                        <strong>Writer's Role:</strong> Establish laws that govern your creation
+                        <Writer's Role:</strong> Establish laws that govern your creation
                     </div>
                 </div>
 
@@ -523,6 +643,259 @@
                         </div>
                         <h4 class="font-semibold text-infinity mb-2">Manifest</h4>
                         <p class="text-sm text-gray-600">Bring your world into being through narrative</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pages Overview - INTEGRATED SECTION -->
+    <section id="pages" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-8">
+            <header class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">Explore the Infiniology Pages</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Each page explores different aspects of the framework, from core concepts to practical applications
+                </p>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <!-- Worldbuilding Framework Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-balance-scale text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">The Primordial Dualities</h3>
+                                <div class="difficulty-badge difficulty-intermediate">Intermediate</div>
+                            </div>
+                        </div>
+                        <button onclick="openModal('worldbuilding-modal')" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A comprehensive framework for defining the six core dualities that govern existence—Life & Death, Matter & Spirit, Light & Dark, Order & Chaos, Male & Female, and Love & Hate—examined through mythology, cosmology, and world-building applications.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-yin-yang"></i>
+                            <span>Six primordial dualities</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-scroll"></i>
+                            <span>Mythological frameworks</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-magic"></i>
+                            <span>Magic system applications</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-book-open"></i>
+                            <span>Writer's applications guide</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> The Primordial of Life & Death represents the most fundamental cycle in any cosmos: the transition between existence and non-existence. This duality governs the flow of vital energy, the process of decay and renewal, and the ultimate fate of all things...
+                    </div>
+                </div>
+
+                <!-- Infiniology Narrative Framework Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-infinity text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">Infiniology Framework</h3>
+                                <div class="difficulty-badge difficulty-beginner">Beginner</div>
+                            </div>
+                        </div>
+                        <button onclick="openModal('infiniology-modal')" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A narrative-driven worldbuilding framework that uses the concepts of a foundational Infinity, a structuring Limit, and dynamic Dualities to create fictional worlds, characters, and stories.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-star"></i>
+                            <span>Infinity as source</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Limit as structure</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-yin-yang"></i>
+                            <span>Dynamic dualities</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-brain"></i>
+                            <span>Psychological depth</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> Infiniology is a narrative-driven worldbuilding framework that uses the concepts of a foundational Infinity, a structuring Limit, and dynamic Dualities (like Order/Chaos, Love/Hate) to create fictional worlds...
+                    </div>
+                </div>
+
+                <!-- Mythological Framework Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-amber-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-temple text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">Mythological Framework</h3>
+                                <div class="difficulty-badge difficulty-advanced">Advanced</div>
+                            </div>
+                        </div>
+                        <button onclick="openModal('mythology-modal')" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A systematic tool for creating rich, coherent mythologies and religions for fictional worlds. Uses the Infiniology Chart to deconstruct and reconstruct belief systems through core concepts of Infinity, Laws, and Stability.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-users"></i>
+                            <span>Pantheon creation</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-globe"></i>
+                            <span>Creation myths</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-fire"></i>
+                            <span>Cosmic cycles</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-scroll"></i>
+                            <span>Interactive guide</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> The creation of mythologies and religions is a fundamental aspect of human culture, serving as a powerful tool for explaining the unexplainable, providing meaning and purpose, and establishing a shared identity...
+                    </div>
+                </div>
+
+                <!-- Narrative Systems Page -->
+                <div class="page-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-red-500 text-white rounded-lg flex items-center justify-center">
+                                <i class="fas fa-flask text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-serif text-xl font-semibold text-primary">Narrative Systems</h3>
+                                <div class="difficulty-badge difficulty-intermediate">Intermediate</div>
+                            </div>
+                        </div>
+                        <button onclick="openModal('narrative-modal')" class="text-primary hover:text-primary/80">
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-700 mb-4">
+                        A duality-based system for world-building covering magic, cultivation, and professions. Uses Law Bits as quantifiable resources for manipulating fundamental cosmic forces through systematic frameworks.
+                    </p>
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i class="fas fa-magic"></i>
+                            <span>Magic & Qi systems</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-mountain"></i>
+                            <span>Cultivation paths</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-hammer"></i>
+                            <span>Professions & crafting</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-star"></i>
+                            <span>Divine treasures</span>
+                        </div>
+                    </div>
+                    <div class="page-preview">
+                        <strong>Preview:</strong> The foundational concept of this world-building system is the "Self," a metaphysical entity that serves as the agent of change and the source of all supernatural abilities. The Self is the intrinsic power that allows an individual to perceive, interact with, and ultimately manipulate the fundamental laws of reality...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expandable Detailed Overview -->
+            <div class="mt-16">
+                <div class="text-center mb-8">
+                    <button id="expand-overview" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                        <i class="fas fa-chevron-down mr-2"></i>View Detailed Page Summaries
+                    </button>
+                </div>
+                
+                <div id="detailed-overview" class="expandable-content bg-gray-50 rounded-xl p-8">
+                    <h3 class="font-serif text-2xl font-semibold text-primary mb-8 text-center">Detailed Page Summaries</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">The Primordial Dualities Deep Dive</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li><strong>Life & Death:</strong> The cycle of vital essence through energy and dispersal</li>
+                                    <li><strong>Matter & Spirit:</strong> The foundation of existence with Earth and Wind elements</li>
+                                    <li><strong>Light & Dark:</strong> Illumination of shadows through revelation and mystery</li>
+                                    <li><strong>Order & Chaos:</strong> The structure of cosmos through holy and unholy forces</li>
+                                    <li><strong>Male & Female:</strong> The dance of creation through fire and water</li>
+                                    <li><strong>Love & Hate:</strong> The duality of the heart through compassion and wrath</li>
+                                    <li><strong>Applications:</strong> Building worlds and mythologies through synthesis</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">Infiniology Framework</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li><strong>Infinity as Source:</strong> Understanding the boundless potential from which all realities emerge</li>
+                                    <li><strong>Limit of Infinity:</strong> How constraints shape infinite potential into coherent worlds</li>
+                                    <li><strong>Aspects of Infinity:</strong> Different dimensions as unique manifestations of the singular source</li>
+                                    <li><strong>Framework of Dualities:</strong> Order/Chaos, Love/Hate as fundamental opposing forces</li>
+                                    <li><strong>Balance and Imbalance:</strong> The dynamic equilibrium that governs existence</li>
+                                    <li><strong>Distortion:</strong> When dualities collapse into destructive conflict</li>
+                                    <li><strong>Stabilization:</strong> The hero's journey as restoration of cosmic balance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">Mythological Framework</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li><strong>Infinity:</strong> The uncreated source and primordial chaos</li>
+                                    <li><strong>Laws:</strong> The active principle of order and divine breath</li>
+                                    <li><strong>Stability:</strong> The mediating force and cosmic bridge</li>
+                                    <li><strong>Pantheon Creation:</strong> Defining scope, divine relationships, and mortal connections</li>
+                                    <li><strong>Creation Myth:</strong> From primordial state to genesis narrative</li>
+                                    <li><strong>Cosmic Cycle:</strong> Antichrist, tribulation, and mythological parallels</li>
+                                    <li><strong>Interactive Guide:</strong> Step-by-step worldbuilding tools</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white p-6 rounded-lg shadow-sm">
+                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">Narrative Systems</h4>
+                                <ul class="space-y-2 text-sm text-gray-700">
+                                    <li><strong>Self & Dualities:</strong> Foundation of supernatural abilities</li>
+                                    <li><strong>Law Bits:</strong> Quantifiable resource for manipulation</li>
+                                    <li><strong>Magic System:</strong> Elemental combinations and spell structure</li>
+                                    <li><strong>Professions:</strong> Alchemy, arrays, runes, and smithing</li>
+                                    <li><strong>Cultivation:</strong> Journey through novice to master stages</li>
+                                    <li><strong>Leveling:</strong> Attribute enhancement through duality mastery</li>
+                                    <li><strong>Divine Treasures:</strong> Artifacts of power and consciousness</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -661,257 +1034,6 @@
                         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
                         SOFTWARE.
                     </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pages Overview -->
-    <section id="pages" class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-8">
-            <header class="text-center mb-16">
-                <h2 class="font-serif text-4xl font-semibold text-primary mb-6">Explore the Infiniology Pages</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Each page explores different aspects of the framework, from core concepts to practical applications
-                </p>
-            </header>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Core Concepts Page -->
-                <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl border border-blue-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center">
-                            <i class="fas fa-book-open text-xl"></i>
-                        </div>
-                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Core</span>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold text-primary mb-3">Core Concepts</h3>
-                    <p class="text-gray-700 text-sm mb-4">
-                        The foundational principles of Infiniology: Infinity as source, Limit as structure, 
-                        and Dualities as the forces that shape all existence.
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center text-xs text-blue-700">
-                            <i class="fas fa-infinity mr-2"></i>Infinity as Foundational Source
-                        </div>
-                        <div class="flex items-center text-xs text-blue-700">
-                            <i class="fas fa-shield-alt mr-2"></i>The Limit of Infinity
-                        </div>
-                        <div class="flex items-center text-xs text-blue-700">
-                            <i class="fas fa-yin-yang mr-2"></i>Framework of Dualities
-                        </div>
-                    </div>
-                    <a href="infiniology.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-semibold">
-                        Explore Page <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
-                </div>
-
-                <!-- Mythological Foundations Page -->
-                <div class="card-hover bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-xl border border-amber-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-amber-500 text-white rounded-lg flex items-center justify-center">
-                            <i class="fas fa-scroll text-xl"></i>
-                        </div>
-                        <span class="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded">Mythology</span>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold text-primary mb-3">Mythological Foundations</h3>
-                    <p class="text-gray-700 text-sm mb-4">
-                        A comparative analysis of world mythologies that inform the Infiniological framework, 
-                        from Christian theology to Norse cosmology.
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center text-xs text-amber-700">
-                            <i class="fas fa-cross mr-2"></i>Christianity: Infinite God
-                        </div>
-                        <div class="flex items-center text-xs text-amber-700">
-                            <i class="fas fa-eye-of-horus mr-2"></i>Egyptian: Ma'at and Isfet
-                        </div>
-                        <div class="flex items-center text-xs text-amber-700">
-                            <i class="fas fa-tree mr-2"></i>Norse: Yggdrasil
-                        </div>
-                    </div>
-                    <button onclick="showComingSoon()" class="inline-flex items-center text-amber-600 hover:text-amber-800 text-sm font-semibold">
-                        Explore Page <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-
-                <!-- Multiverse & Time Travel Page -->
-                <div class="card-hover bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl border border-purple-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center">
-                            <i class="fas fa-network-wired text-xl"></i>
-                        </div>
-                        <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Cosmology</span>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold text-primary mb-3">Multiverse & Time Travel</h3>
-                    <p class="text-gray-700 text-sm mb-4">
-                        Exploring interconnected dimensions, temporal mechanics, and reality variations 
-                        through the lens of Infiniological principles.
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center text-xs text-purple-700">
-                            <i class="fas fa-sitemap mr-2"></i>Multiverse Structure
-                        </div>
-                        <div class="flex items-center text-xs text-purple-700">
-                            <i class="fas fa-clock mr-2"></i>Time Travel Mechanics
-                        </div>
-                        <div class="flex items-center text-xs text-purple-700">
-                            <i class="fas fa-magic mr-2"></i>Reality Variations
-                        </div>
-                    </div>
-                    <button onclick="showComingSoon()" class="inline-flex items-center text-purple-600 hover:text-purple-800 text-sm font-semibold">
-                        Explore Page <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-
-                <!-- Cultural Frameworks Page -->
-                <div class="card-hover bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center">
-                            <i class="fas fa-users text-xl"></i>
-                        </div>
-                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Culture</span>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold text-primary mb-3">Cultural Frameworks</h3>
-                    <p class="text-gray-700 text-sm mb-4">
-                        How mythology shapes society, drives technological advancement, and influences 
-                        the corruption of power within the Infiniological framework.
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center text-xs text-green-700">
-                            <i class="fas fa-landmark mr-2"></i>Mythology's Influence
-                        </div>
-                        <div class="flex items-center text-xs text-green-700">
-                            <i class="fas fa-cogs mr-2"></i>Technology & Advancement
-                        </div>
-                        <div class="flex items-center text-xs text-green-700">
-                            <i class="fas fa-crown mr-2"></i>Corruption of Power
-                        </div>
-                    </div>
-                    <button onclick="showComingSoon()" class="inline-flex items-center text-green-600 hover:text-green-800 text-sm font-semibold">
-                        Explore Page <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-
-                <!-- Science & Psychology Page -->
-                <div class="card-hover bg-gradient-to-br from-cyan-50 to-blue-50 p-6 rounded-xl border border-cyan-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-cyan-500 text-white rounded-lg flex items-center justify-center">
-                            <i class="fas fa-brain text-xl"></i>
-                        </div>
-                        <span class="text-xs bg-cyan-100 text-cyan-800 px-2 py-1 rounded">Science</span>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold text-primary mb-3">Science & Psychology</h3>
-                    <p class="text-gray-700 text-sm mb-4">
-                        Psychological applications and physical sciences through the lens of duality and Infinity, 
-                        bridging myth and modern understanding.
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center text-xs text-cyan-700">
-                            <i class="fas fa-user-md mr-2"></i>Psychological Applications
-                        </div>
-                        <div class="flex items-center text-xs text-cyan-700">
-                            <i class="fas fa-atom mr-2"></i>Physical Sciences
-                        </div>
-                        <div class="flex items-center text-xs text-cyan-700">
-                            <i class="fas fa-atom mr-2"></i>Fundamental Energies
-                        </div>
-                    </div>
-                    <button onclick="showComingSoon()" class="inline-flex items-center text-cyan-600 hover:text-cyan-800 text-sm font-semibold">
-                        Explore Page <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-
-                <!-- Practical Applications Page -->
-                <div class="card-hover bg-gradient-to-br from-gray-50 to-slate-50 p-6 rounded-xl border border-gray-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 bg-gray-500 text-white rounded-lg flex items-center justify-center">
-                            <i class="fas fa-tools text-xl"></i>
-                        </div>
-                        <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Practical</span>
-                    </div>
-                    <h3 class="font-serif text-xl font-semibold text-primary mb-3">Practical Applications</h3>
-                    <p class="text-gray-700 text-sm mb-4">
-                        Concrete tools and techniques for implementing Infiniology in creative projects, 
-                        from world lore to game systems.
-                    </p>
-                    <div class="space-y-2 mb-4">
-                        <div class="flex items-center text-xs text-gray-700">
-                            <i class="fas fa-book-open mr-2"></i>World Lore & History
-                        </div>
-                        <div class="flex items-center text-xs text-gray-700">
-                            <i class="fas fa-gamepad mr-2"></i>Game Systems & Mechanics
-                        </div>
-                        <div class="flex items-center text-xs text-gray-700">
-                            <i class="fas fa-feather-alt mr-2"></i>Narrative Storytelling
-                        </div>
-                    </div>
-                    <button onclick="showComingSoon()" class="inline-flex items-center text-gray-600 hover:text-gray-800 text-sm font-semibold">
-                        Explore Page <i class="fas fa-arrow-right ml-2"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Expandable Detailed Overview -->
-            <div class="mt-16">
-                <div class="text-center mb-8">
-                    <button id="expand-overview" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
-                        <i class="fas fa-chevron-down mr-2"></i>View Detailed Page Summaries
-                    </button>
-                </div>
-                
-                <div id="detailed-overview" class="expandable-content bg-gray-50 rounded-xl p-8">
-                    <h3 class="font-serif text-2xl font-semibold text-primary mb-8 text-center">Detailed Page Summaries</h3>
-                    
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="space-y-6">
-                            <div class="bg-white p-6 rounded-lg shadow-sm">
-                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">Core Concepts Deep Dive</h4>
-                                <ul class="space-y-2 text-sm text-gray-700">
-                                    <li><strong>Infinity as Source:</strong> Understanding the boundless potential from which all realities emerge</li>
-                                    <li><strong>Limit of Infinity:</strong> How constraints shape infinite potential into coherent worlds</li>
-                                    <li><strong>Aspects of Infinity:</strong> Different dimensions as unique manifestations of the singular source</li>
-                                    <li><strong>Framework of Dualities:</strong> Order/Chaos, Love/Hate as fundamental opposing forces</li>
-                                    <li><strong>Balance and Imbalance:</strong> The dynamic equilibrium that governs existence</li>
-                                    <li><strong>Distortion:</strong> When dualities collapse into destructive conflict</li>
-                                    <li><strong>Stabilization:</strong> The hero's journey as restoration of cosmic balance</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-white p-6 rounded-lg shadow-sm">
-                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">Mythological Foundations</h4>
-                                <ul class="space-y-2 text-sm text-gray-700">
-                                    <li><strong>Christian Framework:</strong> Infinite God and the creation of finite reality</li>
-                                    <li><strong>Egyptian Cosmology:</strong> Ma'at vs. Isfet - order versus chaos</li>
-                                    <li><strong>Norse Mythology:</strong> Yggdrasil and cyclical creation/destruction</li>
-                                    <li><strong>Hindu Purusha:</strong> Cosmic sacrifice and divine trinity</li>
-                                    <li><strong>Mesopotamian Enuma Elish:</strong> Marduk vs. Tiamat - order from chaos</li>
-                                </ul>
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-6">
-                            <div class="bg-white p-6 rounded-lg shadow-sm">
-                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">Multiverse & Time Travel</h4>
-                                <ul class="space-y-2 text-sm text-gray-700">
-                                    <li><strong>Multiverse Structure:</strong> Interconnected realities with common source</li>
-                                    <li><strong>Dimensional Shifting:</strong> Time travel as movement between parallel worlds</li>
-                                    <li><strong>Reality Variations:</strong> High-limit and low-limit worlds</li>
-                                    <li><strong>Light/Dark Influence:</strong> How fundamental forces shape different planes</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-white p-6 rounded-lg shadow-sm">
-                                <h4 class="font-serif text-lg font-semibold text-primary mb-3">Practical Applications</h4>
-                                <ul class="space-y-2 text-sm text-gray-700">
-                                    <li><strong>World Lore Creation:</strong> Systematic approach to crafting deep, coherent histories</li>
-                                    <li><strong>Game System Design:</strong> Magic systems based on duality manipulation</li>
-                                    <li><strong>Character Development:</strong> Psychological arcs through duality integration</li>
-                                    <li><strong>Narrative Storytelling:</strong> Distortion as central conflict mechanism</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -1072,6 +1194,151 @@
         </div>
     </footer>
 
+    <!-- Modals for detailed page views -->
+    <div id="worldbuilding-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('worldbuilding-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="font-serif text-3xl font-bold text-primary mb-6">The Primordial Dualities</h2>
+            <p class="text-gray-700 mb-6">
+                This page provides a comprehensive framework for defining the six core dualities that govern existence. Each duality is examined through mythological frameworks, cosmological principles, and practical applications for worldbuilding.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">Key Features:</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>• Six primordial dualities framework</li>
+                        <li>• Mythological and cosmological roots</li>
+                        <li>• Magic system applications</li>
+                        <li>• Writer's practical guide</li>
+                    </ul>
+                </div>
+                <div class="bg-amber-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-amber-800 mb-2">Applications:</h4>
+                    <ul class="text-sm text-amber-700 space-y-1">
+                        <li>• Fundamental world laws</li>
+                        <li>• Character motivation systems</li>
+                        <li>• Magic and power structures</li>
+                        <li>• Narrative conflict creation</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="https://github.com/Zeiendos/worldbuilding-with-infiniology/blob/main/Worldbuilding-framework.html" target="_blank" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors inline-flex items-center">
+                <i class="fas fa-external-link-alt mr-2"></i>
+                View Full Page
+            </a>
+        </div>
+    </div>
+
+    <div id="infiniology-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('infiniology-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="font-serif text-3xl font-bold text-primary mb-6">Infiniology Narrative Framework</h2>
+            <p class="text-gray-700 mb-6">
+                The core framework that introduces the concepts of Infinity as source, Limit as structure, and Dynamic Dualities as the foundation for all worldbuilding and narrative creation.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">Core Concepts:</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li>• Infinity as foundational source</li>
+                        <li>• Limit of Infinity principles</li>
+                        <li>• Framework of dualities</li>
+                        <li>• Balance and imbalance dynamics</li>
+                    </ul>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-800 mb-2">Narrative Applications:</h4>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>• Character development arcs</li>
+                        <li>• Plot structure design</li>
+                        <li>• World cosmology creation</li>
+                        <li>• Thematic exploration</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="https://github.com/Zeiendos/worldbuilding-with-infiniology/blob/main/infiniology-narative-framework.html" target="_blank" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors inline-flex items-center">
+                <i class="fas fa-external-link-alt mr-2"></i>
+                View Full Page
+            </a>
+        </div>
+    </div>
+
+    <div id="mythology-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('mythology-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="font-serif text-3xl font-bold text-primary mb-6">Mythological Framework</h2>
+            <p class="text-gray-700 mb-6">
+                A systematic tool for creating rich, coherent mythologies and religions using the Infiniology Chart to deconstruct and reconstruct belief systems through core concepts.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-amber-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-amber-800 mb-2">Creation Methods:</h4>
+                    <ul class="text-sm text-amber-700 space-y-1">
+                        <li>• Pantheon construction</li>
+                        <li>• Creation myth development</li>
+                        <li>• Divine relationship mapping</li>
+                        <li>• Cosmic cycle design</li>
+                    </ul>
+                </div>
+                <div class="bg-orange-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-orange-800 mb-2">Cultural Impact:</h4>
+                    <ul class="text-sm text-orange-700 space-y-1">
+                        <li>• Social structure influence</li>
+                        <li>• Moral framework establishment</li>
+                        <li>• Ritual and ceremony design</li>
+                        <li>• Historical timeline creation</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="https://github.com/Zeiendos/worldbuilding-with-infiniology/blob/main/mythological-framework" target="_blank" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors inline-flex items-center">
+                <i class="fas fa-external-link-alt mr-2"></i>
+                View Full Page
+            </a>
+        </div>
+    </div>
+
+    <div id="narrative-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('narrative-modal')">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="font-serif text-3xl font-bold text-primary mb-6">Narrative Systems</h2>
+            <p class="text-gray-700 mb-6">
+                A duality-based system for world-building covering magic, cultivation, and professions through quantifiable Law Bits and systematic frameworks.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-red-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-red-800 mb-2">System Components:</h4>
+                    <ul class="text-sm text-red-700 space-y-1">
+                        <li>• Law Bit quantification</li>
+                        <li>• Elemental combinations</li>
+                        <li>• Cultivation paths</li>
+                        <li>• Profession mechanics</li>
+                    </ul>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-800 mb-2">Game Mechanics:</h4>
+                    <ul class="text-sm text-purple-700 space-y-1">
+                        <li>• Spell cost calculations</li>
+                        <li>• Leveling systems</li>
+                        <li>• Divine artifact creation</li>
+                        <li>• Balance mechanics</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="https://github.com/Zeiendos/worldbuilding-with-infiniology/blob/main/narrative-systems" target="_blank" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors inline-flex items-center">
+                <i class="fas fa-external-link-alt mr-2"></i>
+                View Full Page
+            </a>
+        </div>
+    </div>
+
     <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
@@ -1113,55 +1380,28 @@
             alert('This page is coming soon! Stay tuned for more Infiniology content.');
         }
 
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         // Add scroll effects
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('text-primary');
-                link.classList.add('text-neutral');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.remove('text-neutral');
-                    link.classList.add('text-primary');
-                }
-            });
-        });
-
-        // Initialize animations on scroll
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all cards for animation
-        document.querySelectorAll('.card-hover').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
-</body>
-</html>   threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
