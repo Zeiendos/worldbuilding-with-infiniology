@@ -2,6 +2,7 @@
 
 **By Zeiendos | © 2026 Zeiendos Zolton**
 
+[Infiniology Hub](https://zeiendos.github.io/worldbuilding-with-infiniology/)
 ---
 
 ## What is Infiniology?
