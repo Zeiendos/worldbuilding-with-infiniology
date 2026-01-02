@@ -1,0 +1,1523 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Framework of the Limitations of Infinity</title>
+    <script src="https://cdn.tailwindcss.com "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js "></script>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js "></script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #64748b;
+            --accent: #0f766e;
+            --neutral: #f8fafc;
+            --earth-dark: #3c2a21;
+            --earth-medium: #7c5a40;
+            --earth-light: #d4b896;
+            --teal-deep: #134e4a;
+            --teal-medium: #0d9488;
+            --teal-light: #5eead4;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--neutral) 0%, #f1f5f9 100%);
+            color: var(--earth-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .serif {
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, 
+                rgba(30, 58, 138, 0.95) 0%, 
+                rgba(15, 118, 110, 0.9) 50%, 
+                rgba(124, 90, 64, 0.85) 100%);
+        }
+        
+        .cosmic-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(30, 58, 138, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(15, 118, 110, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(124, 90, 64, 0.05) 0%, transparent 70%);
+        }
+        
+        .toc-fixed {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 280px;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            z-index: 50;
+            background: rgba(248, 250, 252, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(30, 58, 138, 0.1);
+        }
+        
+        .main-content {
+            margin-left: 320px;
+            max-width: calc(100vw - 360px);
+        }
+        
+        .citation-link {
+            color: var(--teal-deep);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--teal-deep);
+            transition: all 0.2s ease;
+            font-size: 0.85em;
+            vertical-align: super;
+        }
+        
+        .citation-link:hover {
+            background-color: rgba(13, 148, 136, 0.1);
+            border-bottom-style: solid;
+        }
+        
+        .dual-card {
+            background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(15, 118, 110, 0.05) 100%);
+            border-left: 4px solid var(--teal-deep);
+        }
+        
+        .expandable-section {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .expandable-content.expanded {
+            max-height: 2000px;
+        }
+        
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Enhanced mermaid node styling for better contrast */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 2px;
+            stroke: var(--teal-deep) !important;
+        }
+        
+        .mermaid .node .label {
+            color: var(--earth-dark) !important;
+            font-weight: 500 !important;
+            font-size: 13px !important;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        
+        .mermaid .edgePath .path {
+            stroke: var(--teal-medium) !important;
+            stroke-width: 2px;
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            color: var(--earth-dark) !important;
+            font-weight: 500 !important;
+            border: 1px solid var(--teal-light) !important;
+            border-radius: 4px !important;
+            padding: 2px 6px !important;
+        }
+        
+        /* Ensure all text has good contrast */
+        .mermaid text {
+            fill: var(--earth-dark) !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+        
+        .mermaid-title {
+            text-align: center;
+            font-weight: 600;
+            color: var(--earth-dark);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        @media (max-width: 1280px) {
+            .toc-fixed {
+                position: relative;
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .toc-fixed {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            .relative.min-h-screen img {
+                height: auto;
+            }
+            .hero-gradient .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .hero-gradient h1 {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            .hero-gradient p {
+                font-size: 1rem;
+            }
+            .hero-gradient .grid.grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            .hero-gradient .grid.grid-cols-2 > div {
+                padding: 1rem;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="cosmic-pattern">
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed rounded-lg shadow-lg p-6">
+      <h3 class="serif text-lg font-semibold text-slate-800 mb-4 border-b border-slate-200 pb-2">Contents</h3>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a href="#introduction" class="text-slate-600 hover:text-blue-800 transition-colors">Introduction</a>
+        </li>
+        <li>
+          <a href="#core-principles" class="text-slate-600 hover:text-blue-800 transition-colors">1. Core Principles</a>
+          <ul class="ml-4 mt-1 space-y-1">
+            <li>
+              <a href="#source" class="text-slate-500 hover:text-blue-700 transition-colors">1.1 The Source</a>
+            </li>
+            <li>
+              <a href="#law-of-harmony" class="text-slate-500 hover:text-blue-700 transition-colors">1.2 Law of Harmony</a>
+            </li>
+            <li>
+              <a href="#primordials" class="text-slate-500 hover:text-blue-700 transition-colors">1.3 The Primordials</a>
+            </li>
+            <li>
+              <a href="#emanations" class="text-slate-500 hover:text-blue-700 transition-colors">1.4 Emanations</a>
+            </li>
+            <li>
+              <a href="#self" class="text-slate-500 hover:text-blue-700 transition-colors">1.5 The Self</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#physics-framework" class="text-slate-600 hover:text-blue-800 transition-colors">2. Physics Interpretation</a>
+        </li>
+        <li>
+          <a href="#perception-reality" class="text-slate-600 hover:text-blue-800 transition-colors">3. Perception &amp; Reality</a>
+        </li>
+        <li>
+          <a href="#religious-correlations" class="text-slate-600 hover:text-blue-800 transition-colors">4. Religious Correlations</a>
+        </li>
+        <li>
+          <a href="#spiritual-reflections" class="text-slate-600 hover:text-blue-800 transition-colors">5. Spiritual Reflections</a>
+        </li>
+        <li>
+          <a href="#vocabulary" class="text-slate-600 hover:text-blue-800 transition-colors">6. Comprehensive Vocabulary</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Hero Section -->
+      <section class="relative min-h-screen flex items-center justify-center mb-16">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <img src="https://kimi-web-img.moonshot.cn/img/assets.science.nasa.gov/bb247559ae3f694c44171b9344682879fd1ff5cc.png " alt="Cosmic nebula and stars background" class="absolute inset-0 w-full h-full object-cover opacity-20" size="wallpaper" aspect="wide" color="blue" style="photo" query="cosmic nebula" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+        <div class="relative z-10 max-w-6xl mx-auto px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+            <!-- Title Column -->
+            <div class="lg:col-span-2">
+              <h1 class="serif text-7xl font-bold text-white mb-6 leading-tight">
+                <em class="italic">Framework of the</em>
+                <br/>
+                <span class="text-6xl">Limitations of Infinity</span>
+              </h1>
+              <p class="text-xl text-gray-200 mb-8 leading-relaxed font-light">
+                A comprehensive cosmological model exploring the fundamental principles that govern existence,
+                from the ineffable Source to the structured reality we perceive.
+              </p>
+              <div class="flex items-center space-x-4 text-gray-300">
+                <i class="fas fa-infinity text-2xl"></i>
+                <span class="text-lg">Universal Principles • Ancient Wisdom • Modern Understanding</span>
+              </div>
+            </div>
+
+            <!-- Key Highlights -->
+            <div class="lg:col-span-1 space-y-4">
+              <div class="bg-white/10 backdrop-blur-sm rounded-lg p-6 border border-white/20">
+                <h3 class="serif text-lg font-semibold text-white mb-3">Core Concepts</h3>
+                <ul class="space-y-2 text-sm text-gray-200">
+                  <li class="flex items-center"><i class="fas fa-circle text-xs mr-2 text-teal-300"></i>The Source &amp; Divine Harmony</li>
+                  <li class="flex items-center"><i class="fas fa-circle text-xs mr-2 text-teal-300"></i>Six Primordial Dualities</li>
+                  <li class="flex items-center"><i class="fas fa-circle text-xs mr-2 text-teal-300"></i>Emanations &amp; Authority</li>
+                  <li class="flex items-center"><i class="fas fa-circle text-xs mr-2 text-teal-300"></i>The Self as Driver</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Introduction -->
+      <section id="introduction" class="max-w-4xl mx-auto px-8 mb-16">
+        <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+          <h2 class="serif text-3xl font-bold text-slate-800 mb-6">Introduction to the Framework</h2>
+          <div class="prose prose-lg max-w-none">
+            <p class="text-slate-700 leading-relaxed mb-6">
+              This cosmological model, the <strong>Framework of the Limitations of Infinity</strong>, posits that all existence emanates from an ineffable <strong>Source</strong>. Structured reality emerges through the <strong>Law of God&#39;s Harmony</strong>, a principle of limitation that imposes order on infinite potential. This law manifests as six foundational <strong>Primordial Dualities</strong> (e.g., Order/Chaos, Light/Darkness), which act as the &#34;authorities&#34; governing the cosmos.
+            </p>
+            <p class="text-slate-700 leading-relaxed mb-6">
+              All phenomena, or <strong>Emanations</strong>, are fragmented mixtures of these authorities. The <strong>Self</strong> is the absolute driver of differentiation, whose unconstrained nature creates distortion. Harmony is achieved when the Self is balanced by the dualities, a process reflected metaphorically in physics through concepts like the <strong>Higgs field</strong> (a stabilizing substrate), the convertibility of <strong>matter and energy</strong>, and <strong>light</strong> as the medium of perception.
+            </p>
+            <p class="text-slate-700 leading-relaxed">
+              This framework correlates with major religions, mythologies, and spiritual practices, viewing them as different cultural interpretations of these universal principles. It serves as both a philosophical exploration of existence and a practical tool for understanding the fundamental patterns that shape our reality.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Core Principles -->
+      <section id="core-principles" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="serif text-4xl font-bold text-slate-800 mb-12 text-center">Core Principles of the Framework</h2>
+
+        <!-- The Source -->
+        <div id="source" class="mb-16">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-2xl font-bold text-slate-800 mb-6 flex items-center">
+              <i class="fas fa-star text-amber-600 mr-3"></i>
+              The Source (God): The Infinite Mystery
+            </h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <div class="expandable-section bg-slate-50 rounded-lg p-4 mb-4" onclick="toggleExpand(this)">
+                  <h4 class="font-semibold text-slate-800 mb-2 flex items-center justify-between">
+                    Absolute Infinity
+                    <i class="fas fa-chevron-down text-slate-400"></i>
+                  </h4>
+                  <div class="expandable-content">
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                      The foundational concept of this cosmological framework is <strong>The Source</strong>, an ineffable and infinite reality from which all existence emanates. This principle is not merely a creator deity in the theistic sense but the very ground of being, an <strong>Absolute Infinity</strong> that transcends all categories of thought and existence<a href="https://www.quora.com/Can-someone-give-me-a-brief-summary-and-conclusion-on-the-concept-of-infinity-and-limit-and-infinity " class="citation-link">[108]</a>.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="expandable-section bg-slate-50 rounded-lg p-4 mb-4" onclick="toggleExpand(this)">
+                  <h4 class="font-semibold text-slate-800 mb-2 flex items-center justify-between">
+                    Continuous Creation
+                    <i class="fas fa-chevron-down text-slate-400"></i>
+                  </h4>
+                  <div class="expandable-content">
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                      The relationship between The Source and the manifest universe is one of continuous creation and sustenance. Islamic esoteric doctrines, particularly those of the Akbarian school founded by Muhyi-d-din Ibn Arabi (1165–1240), describe creation not as a one-time event but as <strong>God&#39;s perpetual self-disclosure</strong>
+                      <a href="http://www.siriusalgeria.net/cosmology.htm " class="citation-link">[110]</a>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/images.stockcake.com/10d415f0d482eb65b07cda95b5a9db5a828726a7.jpg " alt="Infinite cosmic light symbolizing divine source" class="w-full h-48 object-cover rounded-lg mb-4" size="medium" aspect="wide" color="blue" style="photo" query="cosmic infinite light" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+                <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-r-lg">
+                  <p class="text-teal-800 text-sm italic">
+                    &#34;The Source is not a being that has existence but is existence itself, the pure potential from which all actuality is drawn.&#34;
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Law of Harmony -->
+        <div id="law-of-harmony" class="mb-16">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-2xl font-bold text-slate-800 mb-6 flex items-center">
+              <i class="fas fa-balance-scale text-teal-600 mr-3"></i>
+              The Law of God&#39;s Harmony (The Sill One)
+            </h3>
+
+            <p class="text-slate-700 leading-relaxed mb-6">
+              Emerging from the infinite potential of The Source is <strong>The Law of God&#39;s Harmony</strong>, also referred to as <strong>The Sill One</strong>. This principle is the primordial act of limitation, the first distinction that carves out a space for finite existence within the boundless, undifferentiated infinity of The Source<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="dual-card rounded-lg p-6">
+                <h4 class="font-semibold text-slate-800 mb-3">Principle of Limitation</h4>
+                <p class="text-slate-700 text-sm">Transforms &#34;raw, boundless blob&#34; of infinity into structured reality</p>
+              </div>
+              <div class="dual-card rounded-lg p-6">
+                <h4 class="font-semibold text-slate-800 mb-3">Architect Function</h4>
+                <p class="text-slate-700 text-sm">Imposes constraints creating &#34;possibility space&#34; for stable patterns</p>
+              </div>
+              <div class="dual-card rounded-lg p-6">
+                <h4 class="font-semibold text-slate-800 mb-3">Divine Order</h4>
+                <p class="text-slate-700 text-sm">Reflection of ordering mind with God as &#34;Chief Architect&#34;<a href="https://3pillarspodcast.com/2025/10/06/the-architect-of-cosmic-harmony-why-order-in-the-universe-matters-to-our-lives/ " class="citation-link">[112]</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Primordials -->
+        <div id="primordials" class="mb-16">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-2xl font-bold text-slate-800 mb-6 flex items-center">
+              <i class="fas fa-yin-yang text-purple-600 mr-3"></i>
+              The Primordials: Six Foundational Dualities
+            </h3>
+
+            <p class="text-slate-700 leading-relaxed mb-8">
+              From the initial limitation imposed by The Law of God&#39;s Harmony, a set of fundamental, opposing principles emerge, known as <strong>The Primordials</strong>. These are not deities but foundational dualities that constitute the very fabric of reality<a href="https://en.wikipedia.org/wiki/Dualism_in_cosmology " class="citation-link">[104]</a>.
+            </p>
+
+            <!-- Dualities Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              <div class="dual-card rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                  <i class="fas fa-sitemap text-blue-600 mr-2"></i>
+                  Order &amp; Chaos
+                </h4>
+                <p class="text-slate-700 text-sm mb-2">Perceptual and ethical categories shaped by observer interpretation<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>
+                </p>
+                <div class="text-xs text-slate-600">
+                  <span class="bg-blue-100 px-2 py-1 rounded">Stability</span>
+                  <span class="bg-orange-100 px-2 py-1 rounded ml-1">Potential</span>
+                </div>
+              </div>
+
+              <div class="dual-card rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                  <i class="fas fa-lightbulb text-yellow-600 mr-2"></i>
+                  Light &amp; Darkness
+                </h4>
+                <p class="text-slate-700 text-sm mb-2">Medium of perception vs. inaccessibility of information<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>
+                </p>
+                <div class="text-xs text-slate-600">
+                  <span class="bg-yellow-100 px-2 py-1 rounded">Revelation</span>
+                  <span class="bg-gray-100 px-2 py-1 rounded ml-1">Concealment</span>
+                </div>
+              </div>
+
+              <div class="dual-card rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                  <i class="fas fa-venus-mars text-pink-600 mr-2"></i>
+                  Male &amp; Female
+                </h4>
+                <p class="text-slate-700 text-sm mb-2">Generation and reception, activity and passivity<a href="https://cy.china-embassy.gov.cn/eng/kjwt/202508/t20250805_11683123.htm " class="citation-link">[153]</a>
+                </p>
+                <div class="text-xs text-slate-600">
+                  <span class="bg-pink-100 px-2 py-1 rounded">Active</span>
+                  <span class="bg-purple-100 px-2 py-1 rounded ml-1">Receptive</span>
+                </div>
+              </div>
+
+              <div class="dual-card rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                  <i class="fas fa-fire text-red-600 mr-2"></i>
+                  Hot &amp; Cold
+                </h4>
+                <p class="text-slate-700 text-sm mb-2">Expansion and contraction, energy and matter<a href="https://cy.china-embassy.gov.cn/eng/kjwt/202508/t20250805_11683123.htm " class="citation-link">[153]</a>
+                </p>
+                <div class="text-xs text-slate-600">
+                  <span class="bg-red-100 px-2 py-1 rounded">Expansion</span>
+                  <span class="bg-blue-100 px-2 py-1 rounded ml-1">Contraction</span>
+                </div>
+              </div>
+
+              <div class="dual-card rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                  <i class="fas fa-arrows-alt-v text-green-600 mr-2"></i>
+                  High &amp; Low
+                </h4>
+                <p class="text-slate-700 text-sm mb-2">Density and rarity, spirit and matter, aspiration and grounding<a href="https://cy.china-embassy.gov.cn/eng/kjwt/202508/t20250805_11683123.htm " class="citation-link">[153]</a>
+                </p>
+                <div class="text-xs text-slate-600">
+                  <span class="bg-green-100 px-2 py-1 rounded">Spirit</span>
+                  <span class="bg-amber-100 px-2 py-1 rounded ml-1">Matter</span>
+                </div>
+              </div>
+
+              <div class="dual-card rounded-lg p-6 hover:shadow-lg transition-shadow">
+                <h4 class="font-semibold text-slate-800 mb-3 flex items-center">
+                  <i class="fas fa-play text-indigo-600 mr-2"></i>
+                  Active &amp; Passive
+                </h4>
+                <p class="text-slate-700 text-sm mb-2">Initiation and reception, doing and being, will and surrender<a href="https://cy.china-embassy.gov.cn/eng/kjwt/202508/t20250805_11683123.htm " class="citation-link">[153]</a>
+                </p>
+                <div class="text-xs text-slate-600">
+                  <span class="bg-indigo-100 px-2 py-1 rounded">Will</span>
+                  <span class="bg-gray-100 px-2 py-1 rounded ml-1">Surrender</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mermaid Diagram -->
+            <div class="mermaid-title">Interplay of the Six Primordial Dualities</div>
+            <div class="mermaid-container">
+              <div class="mermaid-controls">
+                <button class="mermaid-control-btn zoom-in" title="放大">
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button class="mermaid-control-btn zoom-out" title="缩小">
+                  <i class="fas fa-search-minus"></i>
+                </button>
+                <button class="mermaid-control-btn reset-zoom" title="重置">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </button>
+                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                  <i class="fas fa-expand"></i>
+                </button>
+              </div>
+              <div class="mermaid">
+                graph TD
+                A[&#34;Source&#34;] --&gt; B[&#34;Law of God&#39;s Harmony&#34;]
+                B --&gt; C[&#34;Primordial Dualities&#34;]
+                C --&gt; D[&#34;Order/Chaos&#34;]
+                C --&gt; E[&#34;Light/Darkness&#34;]
+                C --&gt; F[&#34;Male/Female&#34;]
+                C --&gt; G[&#34;Hot/Cold&#34;]
+                C --&gt; H[&#34;High/Low&#34;]
+                C --&gt; I[&#34;Active/Passive&#34;]
+
+                D --&gt; J[&#34;Emanations&#34;]
+                E --&gt; J
+                F --&gt; J
+                G --&gt; J
+                H --&gt; J
+                I --&gt; J
+
+                J --&gt; K[&#34;Manifest Reality&#34;]
+
+                style A fill:#1e3a8a,stroke:#fff,stroke-width:3px,color:#fff
+                style B fill:#0f766e,stroke:#fff,stroke-width:2px,color:#fff
+                style C fill:#7c5a40,stroke:#fff,stroke-width:2px,color:#fff
+                style D fill:#dbeafe,stroke:#1e3a8a,stroke-width:2px,color:#1e3a8a
+                style E fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e
+                style F fill:#fce7f3,stroke:#be185d,stroke-width:2px,color:#be185d
+                style G fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#dc2626
+                style H fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#16a34a
+                style I fill:#e0e7ff,stroke:#4338ca,stroke-width:2px,color:#4338ca
+                style J fill:#e2e8f0,stroke:#64748b,stroke-width:2px,color:#334155
+                style K fill:#1e293b,stroke:#fff,stroke-width:3px,color:#fff
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Emanations -->
+        <div id="emanations" class="mb-16">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-2xl font-bold text-slate-800 mb-6 flex items-center">
+              <i class="fas fa-project-diagram text-cyan-600 mr-3"></i>
+              Emanations: Fragmented Manifestations
+            </h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div class="lg:col-span-2">
+                <p class="text-slate-700 leading-relaxed mb-4">
+                  <strong>Emanations</strong> are the complex, multifaceted entities and forces that arise from the interplay of the six primordial dualities. They are not direct creations of The Source but are rather <strong>&#34;fragmented mixtures of authority,&#34;</strong> embodying various combinations and imbalances of the foundational principles.
+                </p>
+
+                <div class="expandable-section bg-slate-50 rounded-lg p-4 mb-4" onclick="toggleExpand(this)">
+                  <h4 class="font-semibold text-slate-800 mb-2 flex items-center justify-between">
+                    Neoplatonic Parallel
+                    <i class="fas fa-chevron-down text-slate-400"></i>
+                  </h4>
+                  <div class="expandable-content">
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                      In Neoplatonism, all existence flows from &#34;The One&#34; in stages: Nous (Divine Mind), Psyche (World Soul), and finally the material world. Each stage is further fragmentation and lesser unity than the one before it, providing a powerful model for understanding how primordial dualities combine to form more complex realities.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bg-gradient-to-br from-cyan-50 to-blue-50 rounded-lg p-6 border border-cyan-200">
+                  <h4 class="font-semibold text-slate-800 mb-3">Characteristics</h4>
+                  <ul class="space-y-2 text-sm text-slate-700">
+                    <li class="flex items-center"><i class="fas fa-puzzle-piece text-cyan-600 mr-2"></i>Fragmented mixtures</li>
+                    <li class="flex items-center"><i class="fas fa-balance-scale text-cyan-600 mr-2"></i>Imbalanced combinations</li>
+                    <li class="flex items-center"><i class="fas fa-link text-cyan-600 mr-2"></i>Connected to Source</li>
+                    <li class="flex items-center"><i class="fas fa-eye text-cyan-600 mr-2"></i>Perceivable entities</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Self -->
+        <div id="self" class="mb-16">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-2xl font-bold text-slate-800 mb-6 flex items-center">
+              <i class="fas fa-user-circle text-orange-600 mr-3"></i>
+              The Self: Absolute Driver of Distortion
+            </h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <p class="text-slate-700 leading-relaxed mb-4">
+                  Within this cosmological framework, <strong>The Self</strong> is modeled as an <strong>&#34;absolute driver,&#34;</strong> a fundamental principle of differentiation and individuation that is the source of all change, creativity, and distortion<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>.
+                </p>
+
+                <div class="bg-orange-50 border-l-4 border-orange-500 p-4 rounded-r-lg mb-4">
+                  <p class="text-orange-800 text-sm italic">
+                    &#34;The Self is the engine of becoming, the force that ensures the cosmos is not a frozen, perfect harmony but a dynamic, evolving process.&#34;
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-web-img.moonshot.cn/img/www.shutterstock.com/2dcc9461d0d1aeed2b34bfde5aac0807b46c9f66.jpg " alt="Abstract spiral pattern representing cosmic self and distortion" class="w-full h-32 object-cover rounded-lg mb-4" size="small" aspect="wide" query="abstract spiral cosmic self distortion" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-slate-700">Differentiation</span>
+                    <div class="w-32 bg-slate-200 rounded-full h-2">
+                      <div class="bg-orange-500 h-2 rounded-full" style="width: 85%"></div>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-slate-700">Creativity</span>
+                    <div class="w-32 bg-slate-200 rounded-full h-2">
+                      <div class="bg-orange-500 h-2 rounded-full" style="width: 70%"></div>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-sm">
+                    <span class="text-slate-700">Distortion</span>
+                    <div class="w-32 bg-slate-200 rounded-full h-2">
+                      <div class="bg-orange-500 h-2 rounded-full" style="width: 60%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Physics Framework -->
+      <section id="physics-framework" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="serif text-4xl font-bold text-slate-800 mb-12 text-center">The Physics of the Framework</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <!-- Higgs Field -->
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-atom text-purple-600 mr-3"></i>
+              The Higgs Field: Stabilizing Substrate
+            </h3>
+
+            <p class="text-slate-700 leading-relaxed mb-4">
+              The <strong>Higgs field</strong> is interpreted as a metaphor for the stabilizing influence of the &#34;laws of authority.&#34; While scientifically described as a universal background field whose interactions give fundamental particles mass, the framework uses this concept to illustrate how abstract principles create structured reality<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>.
+            </p>
+
+            <div class="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <h4 class="font-semibold text-purple-800 mb-2">Metaphorical Role</h4>
+              <ul class="text-sm text-purple-700 space-y-1">
+                <li>• Stabilizing medium/substrate</li>
+                <li>• Breaks fundamental symmetry</li>
+                <li>• Enables mass acquisition</li>
+                <li>• Physical echo of metaphysical principle</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Matter &amp; Energy -->
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-exchange-alt text-green-600 mr-3"></i>
+              Matter &amp; Energy: Convertible Duality
+            </h3>
+
+            <p class="text-slate-700 leading-relaxed mb-4">
+              The framework re-conceptualizes matter and energy, moving from &#34;something vs. nothing&#34; to <strong>two real, convertible aspects of a single reality</strong>
+              <a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>. This aligns with Einstein&#39;s E=mc² principle.
+            </p>
+
+            <div class="bg-green-50 rounded-lg p-4 border border-green-200">
+              <h4 class="font-semibold text-green-800 mb-2">Key Insights</h4>
+              <ul class="text-sm text-green-700 space-y-1">
+                <li>• Matter as energy configuration</li>
+                <li>• Energy as dynamic principle</li>
+                <li>• Higgs field enables conversion</li>
+                <li>• Physical manifestation of duality</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Light and Order/Chaos -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-lightbulb text-yellow-600 mr-3"></i>
+              Light: Medium of Perception
+            </h3>
+
+            <p class="text-slate-700 leading-relaxed mb-4">
+              <strong>Light</strong> is elevated from physical phenomenon to fundamental principle of perception and revelation. It is <strong>the condition for perception itself</strong>—a physical field making information available to senses<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>.
+            </p>
+
+            <div class="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
+              <p class="text-yellow-800 text-sm italic">
+                &#34;Light reveals truth by making the world accessible to understanding, while darkness hides information.&#34;
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-random text-indigo-600 mr-3"></i>
+              Order &amp; Chaos: Perceptual Categories
+            </h3>
+
+            <p class="text-slate-700 leading-relaxed mb-4">
+              <strong>Order and Chaos</strong> are treated as perceptual and ethical categories rather than absolute cosmic forces. What appears as order or chaos depends on individual beliefs and interpretations<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>.
+            </p>
+
+            <div class="expandable-section bg-slate-50 rounded-lg p-4" onclick="toggleExpand(this)">
+              <h4 class="font-semibold text-slate-800 mb-2 flex items-center justify-between">
+                Cognitive Distortions
+                <i class="fas fa-chevron-down text-slate-400"></i>
+              </h4>
+              <div class="expandable-content">
+                <p class="text-slate-700 text-sm leading-relaxed">
+                  Cognitive distortions, such as &#34;all-or-nothing thinking,&#34; can cause us to perceive situations as more chaotic or orderly than they actually are<a href="https://web.stanford.edu/~nanbhas/blog/understanding-cognitive-distortions/ " class="citation-link">[115]</a>. This connects to the framework&#39;s understanding of perception as interpretation.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Perception and Reality -->
+      <section id="perception-reality" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="serif text-4xl font-bold text-slate-800 mb-12 text-center">Perception and Reality</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-eye text-blue-600 mr-3"></i>
+              Active Construction
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              Perception is not passive reception of objective reality but an active, creative process of construction. The universe is experienced through the interplay of opposing principles<a href="https://www.3-16am.co.uk/articles/transformation-the-situated-self-and-philosophy-of-physics " class="citation-link">[7]</a>.
+            </p>
+            <div class="bg-blue-50 rounded-lg p-3 border border-blue-200">
+              <p class="text-blue-800 text-xs italic">
+                &#34;Reality is a &#39;user interface&#39; generated by the mind to effectively interact with the external environment.&#34;
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-brain text-orange-600 mr-3"></i>
+              Disharmony Effects
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              Disharmony creates &#34;distortions&#34; in the mind&#39;s &#34;user interface,&#34; leading to fundamental misperceptions of reality. This is the source of &#34;biased feelings, perceptions, and views&#34;<a href="https://www.quora.com/What-is-the-relationship-between-duality-and-reality " class="citation-link">[46]</a>.
+            </p>
+            <ul class="text-sm text-slate-700 space-y-1">
+              <li>• False standard of measurement</li>
+              <li>• Sense of separation</li>
+              <li>• Distorted perception</li>
+              <li>• Suffering and confusion</li>
+            </ul>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-sync text-green-600 mr-3"></i>
+              Restoration Process
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              Through &#34;understanding and trusting&#34; the Law of God&#39;s Harmony, we can &#34;overturn material discords and demonstrate harmony&#34;<a href="https://journal.christianscience.com/issues/1955/1/73-1/god-s-law-of-harmony " class="citation-link">[141]</a>.
+            </p>
+            <div class="bg-green-50 rounded-lg p-3 border border-green-200">
+              <p class="text-green-800 text-xs">
+                Goal: Dynamic balance between harmony and distortion, &#34;ordered chaos&#34; or &#34;chaotic order.&#34;
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Perception Diagram -->
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+          <h3 class="serif text-xl font-bold text-slate-800 mb-6 text-center">The Perception Process</h3>
+
+          <div class="mermaid-title">Flow of Perception from Source to Reality</div>
+          <div class="mermaid-container">
+            <div class="mermaid-controls">
+              <button class="mermaid-control-btn zoom-in" title="放大">
+                <i class="fas fa-search-plus"></i>
+              </button>
+              <button class="mermaid-control-btn zoom-out" title="缩小">
+                <i class="fas fa-search-minus"></i>
+              </button>
+              <button class="mermaid-control-btn reset-zoom" title="重置">
+                <i class="fas fa-expand-arrows-alt"></i>
+              </button>
+              <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+            <div class="mermaid">
+              graph LR
+              A[&#34;Source&#34;] --&gt; B[&#34;Law of Harmony&#34;]
+              B --&gt; C[&#34;Primordial Dualities&#34;]
+              C --&gt; D[&#34;Emanations&#34;]
+              D --&gt; E[&#34;Observer&#39;s Perceptual Apparatus&#34;]
+              E --&gt; F[&#34;Constructed Reality&#34;]
+
+              G[&#34;Disharmony&#34;] --&gt; H[&#34;Distortions&#34;]
+              H --&gt; I[&#34;Misperception&#34;]
+              I --&gt; F
+
+              J[&#34;Harmony&#34;] --&gt; K[&#34;Clear Perception&#34;]
+              K --&gt; F
+
+              style A fill:#1e3a8a,stroke:#fff,stroke-width:3px,color:#fff
+              style B fill:#0f766e,stroke:#fff,stroke-width:2px,color:#fff
+              style C fill:#7c5a40,stroke:#fff,stroke-width:2px,color:#fff
+              style D fill:#dbeafe,stroke:#1e3a8a,stroke-width:2px,color:#1e3a8a
+              style E fill:#fed7aa,stroke:#ea580c,stroke-width:2px,color:#9a3412
+              style F fill:#fef3c7,stroke:#d97706,stroke-width:2px,color:#92400e
+              style G fill:#f87171,stroke:#b91c1c,stroke-width:2px,color:#fff
+              style H fill:#fca5a5,stroke:#dc2626,stroke-width:2px,color:#fff
+              style I fill:#fecaca,stroke:#ef4444,stroke-width:2px,color:#fff
+              style J fill:#6ee7b7,stroke:#059669,stroke-width:2px,color:#fff
+              style K fill:#a7f3d0,stroke:#10b981,stroke-width:2px,color:#fff
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Religious Correlations -->
+      <section id="religious-correlations" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="serif text-4xl font-bold text-slate-800 mb-12 text-center">Correlations with Major Religions and Mythologies</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-infinity text-purple-600 mr-3"></i>
+              Neoplatonism
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              The framework&#39;s hierarchical structure parallels Neoplatonism&#39;s tripartite reality: <strong>The One</strong> (Source), <strong>Nous</strong> (Divine Mind), and <strong>Psyche</strong> (World Soul). Each level represents progressive fragmentation and lesser unity.
+            </p>
+            <div class="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <p class="text-purple-800 text-sm">
+                The six dualities can be seen as detailed principles governing interactions within the World Soul and material world.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-star-and-crescent text-indigo-600 mr-3"></i>
+              Gnosticism
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              The framework&#39;s Emanations resonate with Gnostic <strong>Aeons</strong>—paired emanations in the <strong>Pleroma</strong> (divine fullness). The &#34;fall&#34; or disruption in emanation provides metaphor for the framework&#39;s concept of &#34;distortion.&#34;
+            </p>
+            <div class="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+              <p class="text-indigo-800 text-sm">
+                Gnostic salvation through overcoming material distortions aligns with framework&#39;s emphasis on thought purification.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-om text-orange-600 mr-3"></i>
+              Hinduism
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              The Source parallels <strong>Brahman</strong>—ultimate, infinite reality. The Self as distortion driver compares to <strong>Maya</strong> (illusion power). The six dualities elaborate the three <strong>gunas</strong>: sattva, rajas, and tamas<a href="https://en.wikipedia.org/wiki/Dualism_in_cosmology " class="citation-link">[104]</a>.
+            </p>
+            <div class="bg-orange-50 rounded-lg p-4 border border-orange-200">
+              <p class="text-orange-800 text-sm">
+                Hindu spiritual practice&#39;s goal of transcending gunas parallels framework&#39;s purification process.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-cross text-blue-600 mr-3"></i>
+              Christianity
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              Christian Science explicitly states <strong>&#34;harmony is a law of God&#34;</strong>
+              <a href="https://journal.christianscience.com/issues/1955/1/73-1/god-s-law-of-harmony " class="citation-link">[141]</a>. This law is spiritual fact governing all creation, perfectly aligning with framework&#39;s Law of God&#39;s Harmony as foundational principle.
+            </p>
+            <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+              <p class="text-blue-800 text-sm">
+                &#34;The kingdom of God is within you&#34; aligns with framework&#39;s emphasis on true self as limitless spiritual power within.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Spiritual Reflections -->
+      <section id="spiritual-reflections" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="serif text-4xl font-bold text-slate-800 mb-12 text-center">Reflections in Spirituality, Ancient Civilizations, and Cosmic Experiences</h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-spa text-green-600 mr-3"></i>
+              Ancient Spiritual Practices
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              Ancient practices like <strong>yoga</strong> and <strong>alchemy</strong> worked with primordial forces to achieve balance. Yoga balanced active/passive principles; alchemy transmuted soul from ignorance to enlightenment through duality stages.
+            </p>
+            <div class="bg-green-50 rounded-lg p-4 border border-green-200">
+              <h4 class="font-semibold text-green-800 mb-2">Alchemical Stages</h4>
+              <ul class="text-sm text-green-700 space-y-1">
+                <li>• <strong>Nigredo:</strong> Chaos and darkness (dissolution)</li>
+                <li>• <strong>Albedo:</strong> Order and light (purification)</li>
+                <li>• <strong>Rubedo:</strong> Hot and active (integration)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+            <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+              <i class="fas fa-graduation-cap text-purple-600 mr-3"></i>
+              Mystery Schools
+            </h3>
+            <p class="text-slate-700 leading-relaxed mb-4">
+              Ancient Mystery Schools taught harmony with cosmic order, viewing universe as &#34;carefully composed symphony&#34; governed by mathematical laws<a href="https://greekreporter.com/2025/11/20/pythagoras-mathematical-musical-harmony-spheres/ " class="citation-link">[131]</a>. Initiates learned to &#34;tune&#34; soul to &#34;music of the spheres.&#34;
+            </p>
+            <div class="bg-purple-50 rounded-lg p-4 border border-purple-200">
+              <p class="text-purple-800 text-sm italic">
+                &#34;Inner harmony through balancing masculine/feminine, active/passive, hot/cold principles within.&#34;
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modern Interpretation -->
+        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-slate-200">
+          <h3 class="serif text-xl font-bold text-slate-800 mb-4 flex items-center">
+            <i class="fas fa-infinity text-teal-600 mr-3"></i>
+            Modern Interpretation: Church of Infinite Harmony
+          </h3>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div>
+              <p class="text-slate-700 leading-relaxed mb-4">
+                The <strong>Church of Infinite Harmony</strong> describes ultimate reality as &#34;paradox we attempt to decipher with our minds, only to leave our minds at the door to infinity&#34;<a href="https://www.infiniteharmony.org/the-harmonic-principles " class="citation-link">[150]</a>. This perfectly captures the framework&#39;s Source concept.
+              </p>
+
+              <div class="expandable-section bg-slate-50 rounded-lg p-4" onclick="toggleExpand(this)">
+                <h4 class="font-semibold text-slate-800 mb-2 flex items-center justify-between">
+                  Core Teachings
+                  <i class="fas fa-chevron-down text-slate-400"></i>
+                </h4>
+                <div class="expandable-content">
+                  <ul class="text-slate-700 text-sm space-y-1">
+                    <li>• Harmony as willful acceptance of diversity</li>
+                    <li>• Co-emergence as self-organizing entity</li>
+                    <li>• Dynamic equilibrium of opposing forces</li>
+                    <li>• Transmutation within existence container</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <img src="https://fixedplaceholder" alt="Modern spiritual community practicing cosmic harmony meditation" class="w-full h-40 object-cover rounded-lg mb-4" size="medium" aspect="wide" style="photo" query="modern spiritual community cosmic harmony meditation" referrerpolicy="no-referrer" data-modified="1" data-score="0.00"/>
+
+              <div class="bg-teal-50 rounded-lg p-4 border border-teal-200">
+                <p class="text-teal-800 text-sm italic">
+                  &#34;A modern, living example of how framework principles create spiritually fulfilling paths.&#34;
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Comprehensive Vocabulary -->
+      <section id="vocabulary" class="max-w-6xl mx-auto px-8 mb-16">
+        <h2 class="serif text-4xl font-bold text-slate-800 mb-12 text-center">Comprehensive Vocabulary</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-star text-amber-600 mr-2"></i>
+              The Source (God)
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Ineffable, infinite, eternal principle from which all existence emanates. Not personal deity but impersonal ultimate ground of being<a href="https://www.infiniteharmony.org/the-harmonic-principles " class="citation-link">[150]</a>. &#34;Infinite Mystery&#34; beyond rational comprehension.
+            </p>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-balance-scale text-teal-600 mr-2"></i>
+              Law of God&#39;s Harmony
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Fundamental principle imposing limitations on Source&#39;s infinite potential, allowing structured reality<a href="https://journal.christianscience.com/issues/1955/1/73-1/god-s-law-of-harmony " class="citation-link">[146]</a>. &#34;Undeviating law of harmony&#34; governing divine creation.
+            </p>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-yin-yang text-purple-600 mr-2"></i>
+              The Primordials
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Six fundamental dualities as foundational authorities governing reality: Order/Chaos, Light/Darkness, Male/Female, Hot/Cold, High/Low, Active/Passive<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>. Complementary, interdependent aspects.
+            </p>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-project-diagram text-cyan-600 mr-2"></i>
+              Emanations
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Manifestations of Primordial Authorities in cosmos. &#34;Fragmented mixtures of authority&#34; from duality interplay<a href="https://www.infiniteharmony.org/the-harmonic-principles " class="citation-link">[150]</a>. &#34;Visible trace of harmony under constraint.&#34;
+            </p>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-lightbulb text-yellow-600 mr-2"></i>
+              Light
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Not mere illumination but &#34;condition for perception&#34;—physical field making information available to senses<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>. &#34;Tool that reveals truth&#34; while darkness hides information.
+            </p>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-user-circle text-orange-600 mr-2"></i>
+              The Self
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Modeled as &#34;absolute driver&#34;—source of continuous differentiation and distortion preventing lasting balance<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>. Dynamic force for Source&#39;s self-manifestation.
+            </p>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-random text-indigo-600 mr-2"></i>
+              Order &amp; Chaos
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Perceptual and ethical categories shaped by observer&#39;s &#34;right/wrong&#34; interpretations<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>. Not absolute properties but subjective judgments about reality&#39;s nature.
+            </p>
+          </div>
+
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-slate-200">
+            <h3 class="serif text-lg font-bold text-slate-800 mb-3 flex items-center">
+              <i class="fas fa-adjust text-gray-600 mr-2"></i>
+              Darkness
+            </h3>
+            <p class="text-slate-700 text-sm leading-relaxed">
+              Not mere light absence but &#34;regions where information remains inaccessible to observer or species&#34;<a href="https://www.quantamagazine.org/how-the-higgs-field-actually-gives-mass-to-elementary-particles-20240903/ " class="citation-link">[1]</a>. &#34;Unconscious,&#34; &#34;unknown,&#34; &#34;mystery&#34; beyond senses and intellect.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conclusion -->
+      <section class="max-w-4xl mx-auto px-8 mb-16">
+        <div class="bg-gradient-to-br from-slate-50 to-blue-50 rounded-2xl p-8 shadow-lg border border-slate-200">
+          <h2 class="serif text-3xl font-bold text-slate-800 mb-6 text-center">Conclusion</h2>
+          <p class="text-slate-700 leading-relaxed mb-6">
+            The Framework of the Limitations of Infinity offers a comprehensive cosmological model that bridges ancient wisdom with modern understanding. By positing an ineffable Source, a Law of Harmony, and six primordial dualities, it provides a framework for understanding the fundamental patterns that shape our reality.
+          </p>
+          <p class="text-slate-700 leading-relaxed mb-6">
+            This framework serves not only as a philosophical exploration of existence but also as a practical tool for worldbuilders, spiritual seekers, and anyone interested in understanding the deeper patterns that govern our universe. It demonstrates how diverse religious and philosophical traditions can be understood as different cultural interpretations of universal principles.
+          </p>
+          <div class="text-center">
+            <p class="text-slate-600 italic font-medium">
+              &#34;In understanding these principles, we gain not just knowledge of the cosmos, but insight into our own nature and place within the grand design of existence.&#34;
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#1e3a8a',
+                primaryTextColor: '#1e293b',
+                primaryBorderColor: '#0f766e',
+                lineColor: '#0d9488',
+                secondaryColor: '#7c5a40',
+                tertiaryColor: '#d4b896',
+                background: '#ffffff',
+                mainBkg: '#ffffff',
+                secondBkg: '#f8fafc',
+                tertiaryBkg: '#f1f5f9',
+                nodeBkg: '#ffffff',
+                clusterBkg: '#f8fafc',
+                edgeLabelBackground: 'rgba(255, 255, 255, 0.95)',
+                nodeTextColor: '#1e293b',
+                textColor: '#1e293b',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '13px'
+            },
+            flowchart: {
+                useMaxWidth: false,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20,
+                nodeSpacing: 50,
+                rankSpacing: 80
+            },
+            fontSize: 13,
+            fontFamily: 'Inter, sans-serif'
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+            const mermaidElement = container.querySelector('.mermaid');
+            let scale = 1;
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            // 触摸相关状态
+            let isTouch = false;
+            let touchStartTime = 0;
+            let initialDistance = 0;
+            let initialScale = 1;
+            let isPinching = false;
+
+            // Zoom controls
+            const zoomInBtn = container.querySelector('.zoom-in');
+            const zoomOutBtn = container.querySelector('.zoom-out');
+            const resetBtn = container.querySelector('.reset-zoom');
+            const fullscreenBtn = container.querySelector('.fullscreen');
+
+            function updateTransform() {
+                mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                if (scale > 1) {
+                container.classList.add('zoomed');
+                } else {
+                container.classList.remove('zoomed');
+                }
+
+                mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+            }
+
+            if (zoomInBtn) {
+                zoomInBtn.addEventListener('click', () => {
+                scale = Math.min(scale * 1.25, 4);
+                updateTransform();
+                });
+            }
+
+            if (zoomOutBtn) {
+                zoomOutBtn.addEventListener('click', () => {
+                scale = Math.max(scale / 1.25, 0.3);
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+                updateTransform();
+                });
+            }
+
+            if (resetBtn) {
+                resetBtn.addEventListener('click', () => {
+                scale = 1;
+                translateX = 0;
+                translateY = 0;
+                updateTransform();
+                });
+            }
+
+            if (fullscreenBtn) {
+                fullscreenBtn.addEventListener('click', () => {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                });
+            }
+
+            // Mouse Events
+            mermaidElement.addEventListener('mousedown', (e) => {
+                if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+                mermaidElement.style.cursor = 'grabbing';
+                updateTransform();
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging && !isTouch) {
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            document.addEventListener('mouseleave', () => {
+                if (isDragging && !isTouch) {
+                isDragging = false;
+                mermaidElement.style.cursor = 'grab';
+                updateTransform();
+                }
+            });
+
+            // 获取两点之间的距离
+            function getTouchDistance(touch1, touch2) {
+                return Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+                );
+            }
+
+            // Touch Events - 触摸事件处理
+            mermaidElement.addEventListener('touchstart', (e) => {
+                isTouch = true;
+                touchStartTime = Date.now();
+
+                if (e.touches.length === 1) {
+                // 单指拖动
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+
+                } else if (e.touches.length === 2) {
+                // 双指缩放
+                isPinching = true;
+                isDragging = false;
+
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                initialDistance = getTouchDistance(touch1, touch2);
+                initialScale = scale;
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchmove', (e) => {
+                if (e.touches.length === 1 && isDragging && !isPinching) {
+                // 单指拖动
+                const touch = e.touches[0];
+                translateX = touch.clientX - startX;
+                translateY = touch.clientY - startY;
+                updateTransform();
+
+                } else if (e.touches.length === 2 && isPinching) {
+                // 双指缩放
+                const touch1 = e.touches[0];
+                const touch2 = e.touches[1];
+                const currentDistance = getTouchDistance(touch1, touch2);
+
+                if (initialDistance > 0) {
+                    const newScale = Math.min(Math.max(
+                    initialScale * (currentDistance / initialDistance),
+                    0.3
+                    ), 4);
+                    scale = newScale;
+                    updateTransform();
+                }
+                }
+
+                e.preventDefault();
+            }, { passive: false });
+
+            mermaidElement.addEventListener('touchend', (e) => {
+                // 重置状态
+                if (e.touches.length === 0) {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                // 延迟重置isTouch，避免鼠标事件立即触发
+                setTimeout(() => {
+                    isTouch = false;
+                }, 100);
+                } else if (e.touches.length === 1 && isPinching) {
+                // 从双指变为单指，切换为拖动模式
+                isPinching = false;
+                isDragging = true;
+
+                const touch = e.touches[0];
+                startX = touch.clientX - translateX;
+                startY = touch.clientY - translateY;
+                }
+
+                updateTransform();
+            });
+
+            mermaidElement.addEventListener('touchcancel', (e) => {
+                isDragging = false;
+                isPinching = false;
+                initialDistance = 0;
+
+                setTimeout(() => {
+                isTouch = false;
+                }, 100);
+
+                updateTransform();
+            });
+
+            // Enhanced wheel zoom with better center point handling
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                // Adjust translation to zoom towards center
+                if (newScale !== scale) {
+                const scaleDiff = newScale / scale;
+                translateX = translateX * scaleDiff;
+                translateY = translateY * scaleDiff;
+                scale = newScale;
+
+                if (scale <= 1) {
+                    translateX = 0;
+                    translateY = 0;
+                }
+
+                updateTransform();
+                }
+            });
+
+            // Initialize display
+            updateTransform();
+            });
+        }
+
+        // Toggle expandable sections
+        function toggleExpand(element) {
+            const content = element.querySelector('.expandable-content');
+            const icon = element.querySelector('i');
+            
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                content.classList.add('expanded');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        function highlightActiveSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.toc-fixed a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-800', 'font-semibold');
+                link.classList.add('text-slate-600');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.remove('text-slate-600');
+                    link.classList.add('text-blue-800', 'font-semibold');
+                }
+            });
+        }
+
+        // Initialize mermaid controls after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMermaidControls();
+        });
+
+        // Listen for scroll events
+        window.addEventListener('scroll', highlightActiveSection);
+        
+        // Initial highlight
+        highlightActiveSection();
+    </script>
+  
+    <!-- Copyright -->
+    <footer class="bg-slate-800 text-slate-300 py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-8 text-center">
+            <p class="text-sm">&copy; 2025 Zeiendos. All rights reserved.</p>
+            <p class="text-xs mt-2 text-slate-400">Framework of the Limitations of Infinity</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+    Conceptual Framework of Zeiendos 
+    All slides in this presentation are part of the conceptual framework developed by Zeiendos
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Framework of the Limitations on Infinity</title>
+    <script src="https://statics.moonshot.cn/kimi-ppt/html-gen/static/tailwindcss@4_0805.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chiron+Hei+HK:wght@400;700&family=Hedvig+Letters+Sans:wght@400;700&family=Quattrocento+Sans:wght@400;700&family=Sorts+Mill+Goudy:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdmirror.com/npm/mathjax@3.2.2/es5/tex-svg.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .ppt-slide {
+                @apply relative w-[1280px] h-[720px] mx-auto p-[30px] box-border overflow-hidden mb-[40px] bg-[#101116];
+            }
+        }
+    </style>
+    <style>
+        body {
+            color: #E1E3E6;
+            font-family: 'Quattrocento Sans', sans-serif;
+        }
+        .font-display {
+            font-family: 'Chiron Hei HK', sans-serif;
+        }
+        .font-heading-alt {
+            font-family: 'Hedvig Letters Sans', sans-serif;
+        }
+        .font-body-alt {
+            font-family: 'Sorts Mill Goudy', serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 py-8">
+    
+    <!-- Conceptual Framework of Zeiendos - Hidden Credit for all slides -->
+    <!-- Slide 1: Cover -->
+    <div class="ppt-slide" type="cover">
+        <img src="resources/cover_cosmic_womb.png" alt="Cosmic womb" class="absolute inset-0 w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#101116]/95 via-[#101116]/80 to-[#101116]/60"></div>
+        <div class="relative h-full flex items-end pb-16">
+            <div class="max-w-4xl">
+                <div class="inline-block px-4 py-2 bg-[#C8A575]/20 border-l-4 border-[#C8A575] mb-6">
+                    <p class="text-base font-semibold tracking-widest text-[#C8A575] uppercase">Metaphysical Framework</p>
+                </div>
+                <h1 class="font-display text-7xl font-bold text-[#E1E3E6] leading-none mb-4">
+                    Framework of the<br>Limitations on Infinity
+                </h1>
+                <div class="w-24 h-1 bg-[#C8A575] mb-3"></div>
+                <p class="text-xl font-body-alt text-[#7C8C9A] leading-relaxed max-w-3xl mb-2">
+                    A Metaphysical Exploration of Reality, Perception, and the Fundamental Forces
+                </p>
+                <p class="text-sm font-body-alt text-[#7C8C9A]/50 leading-relaxed">
+                    Conceptual Framework of Zeiendos
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 2: Table of Contents -->
+    <div class="ppt-slide" type="table_of_contents">
+        <div class="h-full flex flex-col">
+            <div class="mb-8">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Navigation</p>
+                <h2 class="font-display text-5xl font-bold text-[#E1E3E6]">Journey Through the Framework</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-3"></div>
+            </div>
+            
+            <div class="flex-1 grid grid-cols-2 gap-4">
+                <div class="bg-[#3A4753]/30 p-5 rounded-lg border-l-4 border-[#C8A575] hover:bg-[#3A4753]/50 transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-2xl font-display">01</div>
+                        <h3 class="font-display text-xl font-bold text-[#E1E3E6]">The Cosmic Womb</h3>
+                    </div>
+                    <p class="text-base text-[#7C8C9A] leading-relaxed">
+                        Redefining the Higgs Field as the fundamental source where all matter emerges from the cosmic womb of stabilized energy.
+                    </p>
+                </div>
+
+                <div class="bg-[#3A4753]/30 p-5 rounded-lg border-l-4 border-[#7C8C9A] hover:bg-[#3A4753]/50 transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-2xl font-display">02</div>
+                        <h3 class="font-display text-xl font-bold text-[#E1E3E6]">The Language of Duality</h3>
+                    </div>
+                    <p class="text-base text-[#7C8C9A] leading-relaxed">
+                        Rethinking Element and Energy, Order and Chaos—discovering how dualities form the vocabulary of existence.
+                    </p>
+                </div>
+
+                <div class="bg-[#3A4753]/30 p-5 rounded-lg border-l-4 border-[#C8A575] hover:bg-[#3A4753]/50 transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-2xl font-display">03</div>
+                        <h3 class="font-display text-xl font-bold text-[#E1E3E6]">Perception and Truth</h3>
+                    </div>
+                    <p class="text-base text-[#7C8C9A] leading-relaxed">
+                        Exploring Light as the fundamental tool of revelation, and how different beings experience different aspects of reality.
+                    </p>
+                </div>
+
+                <div class="bg-[#3A4753]/30 p-5 rounded-lg border-l-4 border-[#7C8C9A] hover:bg-[#3A4753]/50 transition-all">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-2xl font-display">04</div>
+                        <h3 class="font-display text-xl font-bold text-[#E1E3E6]">Infinity and Harmony</h3>
+                    </div>
+                    <p class="text-base text-[#7C8C9A] leading-relaxed">
+                        Understanding infinity as the visible evidence of harmony, and how limitation makes the infinite possible.
+                    </p>
+                </div>
+
+                <div class="bg-[#3A4753]/30 p-5 rounded-lg border-l-4 border-[#C8A575] hover:bg-[#3A4753]/50 transition-all col-span-2">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="w-14 h-14 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-2xl font-display">05</div>
+                        <h3 class="font-display text-xl font-bold text-[#E1E3E6]">The Six Dualities</h3>
+                    </div>
+                    <p class="text-base text-[#7C8C9A] leading-relaxed">
+                        Mapping the stabilizing forces of reality—six fundamental pairs that create the dynamic equilibrium sustaining existence itself.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 3: Chapter 1 -->
+    <div class="ppt-slide" type="chapter">
+        <img src="resources/cover_cosmic_womb.png" alt="Cosmic womb" class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#101116]/98 via-[#101116]/85 to-transparent"></div>
+        <div class="relative h-full flex items-center">
+            <div class="max-w-3xl">
+                <div class="inline-block px-6 py-3 bg-[#C8A575]/20 border-l-4 border-[#C8A575] mb-6">
+                    <p class="text-xl font-semibold tracking-widest text-[#C8A575] uppercase">Chapter One</p>
+                </div>
+                <h1 class="font-display text-7xl font-bold text-[#E1E3E6] leading-none mb-6">
+                    The Cosmic Womb
+                </h1>
+                <div class="w-40 h-1 bg-[#C8A575] mb-6"></div>
+                <p class="text-2xl font-body-alt text-[#7C8C9A] leading-relaxed">
+                    Redefining the Higgs Field<br>as the Source of Mass and Life
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Beyond Mass - The Higgs Field -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-4">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">The Cosmic Womb</p>
+                <h2 class="font-display text-4xl font-bold text-[#E1E3E6]">Beyond Mass: The Higgs Field as Universal Catalyst</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex gap-4">
+                <div class="flex-[60] flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">The Higgs Field is not merely the source of mass—it is the cosmic womb from which all matter emerges.</strong> This field represents the visible manifestation of universal laws working to stabilize both mass and energy, serving as the fundamental bridge between what we perceive as existence and the underlying energetic reality.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Refined Definition</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                The Higgs Field allows us to see, in a somewhat visible way, how the laws of authority work to stabilize mass and energy—what we originally believed to be Element (mass) and Nothingness (energy).
+                            </p>
+                        </div>
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Energy as Reasonable Duality</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                Energy is the reasonable duality to element, especially when compared to the concept of Nothingness. Energy is not absence—it is active potential, the dynamic counterpart to material existence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-[40] flex flex-col justify-center gap-3">
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <i class="fas fa-atom text-3xl text-[#C8A575] mb-3"></i>
+                        <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Universal Catalyst</h4>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed">
+                            The Higgs Field acts as the catalyst that transforms pure potential into manifest reality, enabling the interaction between consciousness and cosmos.
+                        </p>
+                    </div>
+                    <div class="bg-[#3A4753]/20 p-4 rounded-lg border border-[#7C8C9A]/30">
+                        <i class="fas fa-balance-scale text-3xl text-[#7C8C9A] mb-3"></i>
+                        <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Stabilizing Mechanism</h4>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed">
+                            It demonstrates how universal authority maintains equilibrium across all scales of existence, from quantum to cosmic.
+                        </p>
+                    </div>
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <i class="fas fa-eye text-3xl text-[#C8A575] mb-3"></i>
+                        <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Visible Authority</h4>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed">
+                            The Higgs Field makes perceptible the universal laws working to stabilize reality, showing us authority in action.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 bg-gradient-to-r from-[#C8A575]/20 to-transparent p-3 rounded-lg">
+                <p class="text-base font-body-alt text-[#E1E3E6] italic">
+                    "The Higgs Field is where the cosmic womb births matter through the marriage of energy and authority."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: The Stabilizing Force -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-4">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Universal Authority</p>
+                <h2 class="font-display text-4xl font-bold text-[#E1E3E6]">The Stabilizing Force: Authority and Mass-Energy Dynamics</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 grid grid-cols-2 gap-4">
+                <div class="flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">The Higgs Field demonstrates the laws of authority at work, maintaining stability across the cosmos.</strong> Mass and energy are not separate entities but interdependent aspects of a unified whole, with the Higgs Field acting as the stabilizing mechanism that allows this relationship to manifest as physical reality.
+                    </p>
+                    <div class="bg-[#3A4753]/30 p-4 rounded-lg mb-3">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3">The Authority Principle</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-3">
+                                <div class="w-7 h-7 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">1</div>
+                                <div>
+                                    <p class="text-base font-semibold text-[#E1E3E6]">Authority as Law</p>
+                                    <p class="text-sm text-[#7C8C9A]">Universal principles that govern without domination</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-7 h-7 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">2</div>
+                                <div>
+                                    <p class="text-base font-semibold text-[#E1E3E6]">Visible Stabilization</p>
+                                    <p class="text-sm text-[#7C8C9A]">The Higgs Field makes authority perceptible</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-7 h-7 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">3</div>
+                                <div>
+                                    <p class="text-base font-semibold text-[#E1E3E6]">Dynamic Balance</p>
+                                    <p class="text-sm text-[#7C8C9A]">Stability through constant adjustment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-[#C8A575]/20 to-[#7C8C9A]/20 p-4 rounded-lg border border-[#C8A575]/30">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2">The Key Insight</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed">
+                            Authority in the cosmic sense is not about control but about the inherent laws that allow existence to function. The Higgs Field is the visible signature of this authority—the evidence that reality operates according to principles that transcend individual components.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <div class="bg-[#3A4753]/20 p-4 rounded-lg border border-[#7C8C9A]/30 mb-3">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3">Mass-Energy Interdependence</h3>
+                        <div class="flex items-center justify-center gap-4 mb-3">
+                            <div class="w-14 h-14 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-xl font-display">M</div>
+                            <i class="fas fa-exchange-alt text-2xl text-[#7C8C9A]"></i>
+                            <div class="w-14 h-14 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-xl font-display">E</div>
+                        </div>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed text-center mb-2">
+                            <strong class="text-[#E1E3E6]">Unified Field:</strong> Mass and energy are complementary expressions of the same underlying reality.
+                        </p>
+                    </div>
+                    <div class="bg-[#3A4753]/30 p-4 rounded-lg">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2">Manifestation Mechanism</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed mb-2">
+                            The Higgs Field enables the transformation of energy into mass and vice versa, maintaining cosmic balance through this continuous exchange.
+                        </p>
+                        <div class="bg-[#C8A575]/20 p-2 rounded text-center">
+                            <p class="text-base text-[#E1E3E6] font-semibold">Energy ↔ Higgs Field ↔ Mass</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 6: Chapter 2 -->
+    <div class="ppt-slide" type="chapter">
+        <img src="resources/duality_forms.png" alt="Duality forms" class="absolute inset-0 w-full h-full object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-l from-[#101116]/98 via-[#101116]/85 to-transparent"></div>
+        <div class="relative h-full flex items-center justify-end">
+            <div class="max-w-3xl text-right">
+                <div class="inline-block px-6 py-3 bg-[#7C8C9A]/20 border-r-4 border-[#7C8C9A] mb-6">
+                    <p class="text-xl font-semibold tracking-widest text-[#7C8C9A] uppercase">Chapter Two</p>
+                </div>
+                <h1 class="font-display text-7xl font-bold text-[#E1E3E6] leading-none mb-6">
+                    The Language<br>of Duality
+                </h1>
+                <div class="w-40 h-1 bg-[#7C8C9A] mb-6 ml-auto"></div>
+                <p class="text-2xl font-body-alt text-[#7C8C9A] leading-relaxed">
+                    Rethinking Element, Energy,<br>Order, and Chaos
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 7: From Element-Nothingness to Mass-Energy -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-4">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Paradigm Shift</p>
+                <h2 class="font-display text-4xl font-bold text-[#E1E3E6]">From Element-Nothingness to Mass-Energy</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+
+            <div class="flex-1 grid grid-cols-2 gap-4">
+                <div class="bg-[#3A4753]/30 p-5 rounded-lg border-l-4 border-[#7C8C9A]">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-times-circle text-3xl text-[#7C8C9A]"></i>
+                        <h3 class="font-display text-2xl font-bold text-[#E1E3E6]">The Old Model</h3>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-[#101116]/50 p-3 rounded">
+                            <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Element vs. Nothingness</h4>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                Reality viewed as <strong class="text-[#E1E3E6]">material existence</strong> versus <strong class="text-[#E1E3E6]">absolute void</strong>
+                            </p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-exclamation-triangle text-[#C8A575] mt-1"></i>
+                                <div>
+                                    <p class="text-base font-semibold text-[#E1E3E6] mb-1">The Problem</p>
+                                    <p class="text-sm text-[#7C8C9A]">Nothingness cannot be a true opposite—energy is the active participant in cosmic dance</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-question-circle text-[#C8A575] mt-1"></i>
+                                <div>
+                                    <p class="text-base font-semibold text-[#E1E3E6] mb-1">The Question</p>
+                                    <p class="text-sm text-[#7C8C9A]">How can "nothing" be in relationship with "something"?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#C8A575]/20 p-5 rounded-lg border-l-4 border-[#C8A575]">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i class="fas fa-check-circle text-3xl text-[#C8A575]"></i>
+                        <h3 class="font-display text-2xl font-bold text-[#E1E3E6]">The New Framework</h3>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-[#101116]/50 p-3 rounded">
+                            <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Mass-Energy Duality</h4>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                Reality as <strong class="text-[#C8A575]">materialized form</strong> dancing with <strong class="text-[#C8A575]">dynamic potential</strong>
+                            </p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-lightbulb text-[#C8A575] mt-1"></i>
+                                <div>
+                                    <p class="text-base font-semibold text-[#E1E3E6] mb-1">The Resolution</p>
+                                    <p class="text-sm text-[#7C8C9A]">Energy is not absence but active presence—the vital partner to mass</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-infinity text-[#C8A575] mt-1"></i>
+                                <div>
+                                    <p class="text-base font-semibold text-[#E1E3E6] mb-1">The Unity</p>
+                                    <p class="text-sm text-[#7C8C9A]">E=mc² shows mass and energy are convertible—two faces of one reality</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3 bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                <p class="text-lg font-body-alt text-[#E1E3E6] text-center leading-relaxed">
+                    <strong class="text-[#C8A575]">The Revolutionary Insight:</strong> Energy is not 'nothingness' but the active, dynamic counterpart to material mass—a far more coherent foundation for understanding existence.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Order and Chaos -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Subjective Reality</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">Order and Chaos: The Mirror of Moral Perception</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex flex-col gap-3">
+                <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-3">
+                        <strong class="text-[#C8A575]">Order and Chaos are not absolute cosmic forces, but subjective perceptions shaped by individual beliefs about right and wrong.</strong> What one consciousness perceives as Order, another may see as Chaos—revealing these concepts as interpretive frameworks rather than objective realities.
+                    </p>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-eye text-3xl text-[#C8A575] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Perception</h4>
+                            <p class="text-sm text-[#7C8C9A]">Reality filtered through individual consciousness</p>
+                        </div>
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-balance-scale text-3xl text-[#7C8C9A] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Interpretation</h4>
+                            <p class="text-sm text-[#7C8C9A]">Moral frameworks determine experience</p>
+                        </div>
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-infinity text-3xl text-[#C8A575] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Relativity</h4>
+                            <p class="text-sm text-[#7C8C9A]">No absolute standard exists</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 grid grid-cols-2 gap-3">
+                    <div class="bg-[#C8A575]/20 p-4 rounded-lg border border-[#C8A575]/40">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3">What is Order?</h3>
+                        <div class="space-y-2">
+                            <div class="bg-[#101116]/50 p-2 rounded">
+                                <p class="text-sm text-[#7C8C9A] mb-1"><strong class="text-[#E1E3E6]">To the Traditionalist:</strong></p>
+                                <p class="text-sm text-[#7C8C9A]">Hierarchy, tradition, established patterns</p>
+                            </div>
+                            <div class="bg-[#101116]/50 p-2 rounded">
+                                <p class="text-sm text-[#7C8C9A] mb-1"><strong class="text-[#E1E3E6]">To the Revolutionary:</strong></p>
+                                <p class="text-sm text-[#7C8C9A]">Stagnation, oppression, limitation</p>
+                            </div>
+                            <div class="bg-[#101116]/50 p-2 rounded">
+                                <p class="text-sm text-[#7C8C9A] mb-1"><strong class="text-[#E1E3E6]">To the Naturalist:</strong></p>
+                                <p class="text-sm text-[#7C8C9A]">Ecosystem balance, organic flow</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/20 p-4 rounded-lg border border-[#7C8C9A]/40">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3">What is Chaos?</h3>
+                        <div class="space-y-2">
+                            <div class="bg-[#101116]/50 p-2 rounded">
+                                <p class="text-sm text-[#7C8C9A] mb-1"><strong class="text-[#E1E3E6]">To the Traditionalist:</strong></p>
+                                <p class="text-sm text-[#7C8C9A]">Disorder, destruction, loss of control</p>
+                            </div>
+                            <div class="bg-[#101116]/50 p-2 rounded">
+                                <p class="text-sm text-[#7C8C9A] mb-1"><strong class="text-[#E1E3E6]">To the Revolutionary:</strong></p>
+                                <p class="text-sm text-[#7C8C9A]">Freedom, creativity, possibility</p>
+                            </div>
+                            <div class="bg-[#101116]/50 p-2 rounded">
+                                <p class="text-sm text-[#7C8C9A] mb-1"><strong class="text-[#E1E3E6]">To the Naturalist:</strong></p>
+                                <p class="text-sm text-[#7C8C9A]">Adaptation, evolution, dynamic change</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 bg-gradient-to-r from-[#C8A575]/20 to-transparent p-3 rounded-lg">
+                <p class="text-base font-body-alt text-[#E1E3E6] italic text-center">
+                    "Order and Chaos are not cosmic absolutes but mirrors reflecting each consciousness's relationship with change."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 9: The Subjective Universe -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Reality Tunnels</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">The Subjective Universe: Personal Reality Frameworks</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 grid grid-cols-5 gap-4">
+                <div class="col-span-3 flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">Individual perception creates reality tunnels</strong> where moral and ethical frameworks determine the experience of Order and Chaos. Cosmic harmony emerges not from eliminating these differences, but from understanding their role in the broader stabilizing system.
+                    </p>
+                    <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575] mb-3">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Reality Tunnel Phenomenon</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                            Each consciousness inhabits a unique reality tunnel—a filtered version of existence constructed from beliefs, experiences, and moral frameworks. What we perceive as "objective reality" is actually a consensus hallucination shared by similar minds.
+                        </p>
+                        <div class="bg-[#101116]/50 p-2 rounded">
+                            <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Cosmic Joke:</p>
+                            <p class="text-sm text-[#7C8C9A]">We argue about whose reality tunnel is "correct" without realizing they're all equally valid projections of the same infinite source.</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Harmony Through Diversity</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed">
+                            Rather than seeking uniformity, cosmic harmony embraces the rich diversity of perceptual frameworks. Each perspective adds to the total understanding of existence. The universe achieves balance not through sameness but through complementary differences.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-span-2 flex flex-col justify-center gap-3">
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3 text-center">Reality Tunnel Components</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">1</div><p class="text-base text-[#E1E3E6]">Belief Systems</p></div>
+                            <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">2</div><p class="text-base text-[#E1E3E6]">Moral Values</p></div>
+                            <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">3</div><p class="text-base text-[#E1E3E6]">Cultural Conditioning</p></div>
+                            <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">4</div><p class="text-base text-[#E1E3E6]">Personal Experience</p></div>
+                            <div class="flex items-center gap-2"><div class="w-8 h-8 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold flex-shrink-0">5</div><p class="text-base text-[#E1E3E6]">Perceptual Apparatus</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2 text-center">The Stabilizing Insight</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed text-center">
+                            Reality tunnels are not errors but features of cosmic design. The universe experiences itself through infinite perspectives, achieving harmony through their synthesis, not their resolution.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 10: Chapter 3 -->
+    <div class="ppt-slide" type="chapter">
+        <img src="resources/light_perception.png" alt="Light perception" class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#101116]/98 via-[#101116]/85 to-transparent"></div>
+        <div class="relative h-full flex items-center">
+            <div class="max-w-3xl">
+                <div class="inline-block px-6 py-3 bg-[#C8A575]/20 border-l-4 border-[#C8A575] mb-6">
+                    <p class="text-xl font-semibold tracking-widest text-[#C8A575] uppercase">Chapter Three</p>
+                </div>
+                <h1 class="font-display text-7xl font-bold text-[#E1E3E6] leading-none mb-6">
+                    Perception<br>and Truth
+                </h1>
+                <div class="w-40 h-1 bg-[#C8A575] mb-6"></div>
+                <p class="text-2xl font-body-alt text-[#7C8C9A] leading-relaxed">
+                    Light as the Fundamental<br>Tool of Revelation
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 11: Light - The Perceptual Instrument -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Revelation Principle</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">Light: The Perceptual Instrument</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex gap-4">
+                <div class="flex-[55] flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">Light is not merely illumination but the fundamental force that enables perception itself.</strong> It is the cosmic tool whose purpose is revealing truth—allowing consciousness to experience and understand reality. Without light, perception would be impossible, making it the essential bridge between existence and awareness.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Light as Tool, Not Phenomenon</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                                We misunderstand light by treating it as mere electromagnetic radiation. Light is the active principle of revelation—the cosmic mechanism through which the universe becomes aware of itself.
+                            </p>
+                            <div class="bg-[#C8A575]/20 p-2 rounded">
+                                <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Insight:</p>
+                                <p class="text-sm text-[#7C8C9A]">Light doesn't just illuminate objects; it illuminates consciousness. It makes the invisible visible—not just externally but internally.</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Purpose of Revelation</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                Light's purpose is not merely to make things visible, but to reveal truth. Each photon carries information about reality's structure, allowing consciousness to decode the cosmos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-[45] flex flex-col justify-center gap-2">
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <i class="fas fa-sun text-3xl text-[#C8A575] mb-2"></i>
+                        <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Bridge Function</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed">
+                            Light bridges the gap between existence and awareness, making the universe perceptible to itself through conscious observers.
+                        </p>
+                    </div>
+                    <div class="bg-[#3A4753]/20 p-4 rounded-lg border border-[#7C8C9A]/30">
+                        <i class="fas fa-eye text-3xl text-[#7C8C9A] mb-2"></i>
+                        <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Enabling Perception</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed">
+                            Without light, no sensory organ could function. It's the fundamental condition for all perceptual experience.
+                        </p>
+                    </div>
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <i class="fas fa-search text-3xl text-[#C8A575] mb-2"></i>
+                        <h4 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Revealing Truth</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed">
+                            Light's purpose is to reveal the true nature of reality, carrying information from the external world into the internal mind.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 12: Darkness and Harmony -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Protective Veil</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">Darkness and Harmony: The Hidden and the Stable</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 grid grid-cols-2 gap-4">
+                <div class="flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">Darkness is not the absence of light but the protective veil that shields what light cannot yet reveal.</strong> Some truths remain hidden in darkness not due to failure of light, but because the stability of the system requires gradual revelation.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Darkness as Protector</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                                Darkness protects both the observer and the observed. Some truths are too intense for immediate revelation. Darkness allows gradual integration, preventing cosmic overwhelm.
+                            </p>
+                            <div class="bg-[#C8A575]/20 p-2 rounded">
+                                <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Cosmic Kindness:</p>
+                                <p class="text-sm text-[#7C8C9A]">Darkness isn't denial—it's pacing. The universe reveals itself at the rate consciousness can integrate.</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Harmony as Gatekeeper</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                Harmony determines what can be perceived. When the cosmos is stable, more light can be revealed. When systems are unstable, darkness protects by hiding what would disrupt further.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center gap-3">
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3 text-center">The Revelation Cycle</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">1</div><div><p class="text-base font-semibold text-[#E1E3E6]">Hidden Truth</p><p class="text-sm text-[#7C8C9A]">Rests in darkness</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">2</div><div><p class="text-base font-semibold text-[#E1E3E6]">Harmony Check</p><p class="text-sm text-[#7C8C9A]">System stability assessed</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">3</div><div><p class="text-base font-semibold text-[#E1E3E6]">Gradual Revelation</p><p class="text-sm text-[#7C8C9A]">Light reveals gradually</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">4</div><div><p class="text-base font-semibold text-[#E1E3E6]">New Integration</p><p class="text-sm text-[#7C8C9A]">Consciousness expands</p></div></div>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2 text-center">The Stability Principle</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed text-center">
+                            Harmony maintains cosmic stability by regulating revelation. Too much light too fast destabilizes. Darkness ensures graceful integration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Multiplicity of Perception -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Consciousness Diversity</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">Multiplicity of Perception: Different Eyes, Different Truths</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex flex-col gap-3">
+                <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-3">
+                        <strong class="text-[#C8A575]">Different creatures experience different aspects of reality because light reveals itself differently to each perceptual framework.</strong> This diversity is not error but richness—the cosmos experiencing itself through countless lenses.
+                    </p>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-spider text-2xl text-[#C8A575] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Spider's Web</h4>
+                            <p class="text-sm text-[#7C8C9A]">Vibrational reality, touch as sight</p>
+                        </div>
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-dove text-2xl text-[#7C8C9A] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Bird's Flight</h4>
+                            <p class="text-sm text-[#7C8C9A]">Magnetic fields, wind currents</p>
+                        </div>
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-fish text-2xl text-[#C8A575] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Fish's Ocean</h4>
+                            <p class="text-sm text-[#7C8C9A]">Pressure waves, water chemistry</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 grid grid-cols-2 gap-3">
+                    <div class="bg-[#C8A575]/20 p-4 rounded-lg border border-[#C8A575]/40 flex flex-col justify-center">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Richness of Diversity</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                            Imagine if all beings perceived reality identically. The universe would experience only one aspect of itself. Diversity of perception allows richer, multidimensional self-understanding.
+                        </p>
+                        <div class="bg-[#101116]/50 p-2 rounded">
+                            <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Cosmic Mirror:</p>
+                            <p class="text-sm text-[#7C8C9A]">Each perceiver is a mirror reflecting a unique angle of the infinite. Together, these mirrors create a holographic self-portrait.</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/20 p-4 rounded-lg border border-[#7C8C9A]/40 flex flex-col justify-center">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Light's Adaptive Revelation</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                            Light adapts to the perceiver. Same photons, different revelations. To the bee, ultraviolet patterns; to the snake, infrared signatures. Light reveals what each consciousness needs for its evolutionary journey.
+                        </p>
+                        <div class="bg-[#101116]/50 p-2 rounded">
+                            <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Key Insight:</p>
+                            <p class="text-sm text-[#7C8C9A]">Reality is not fixed. It fluidly shapes itself to match perceptual capacity, ensuring every being experiences truth appropriate to its level.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 bg-gradient-to-r from-[#C8A575]/20 to-transparent p-3 rounded-lg">
+                <p class="text-base font-body-alt text-[#E1E3E6] italic">
+                    "The universe achieves self-knowledge through the multiplicity of its perceivers. Each perspective is a love letter from the cosmos to itself."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 14: Chapter 4 -->
+    <div class="ppt-slide" type="chapter">
+        <img src="resources/infinity_harmony.png" alt="Infinity harmony" class="absolute inset-0 w-full h-full object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-l from-[#101116]/98 via-[#101116]/85 to-transparent"></div>
+        <div class="relative h-full flex items-center justify-end">
+            <div class="max-w-3xl text-right">
+                <div class="inline-block px-6 py-3 bg-[#7C8C9A]/20 border-r-4 border-[#7C8C9A] mb-6">
+                    <p class="text-xl font-semibold tracking-widest text-[#7C8C9A] uppercase">Chapter Four</p>
+                </div>
+                <h1 class="font-display text-7xl font-bold text-[#E1E3E6] leading-none mb-6">
+                    Infinity<br>and Harmony
+                </h1>
+                <div class="w-40 h-1 bg-[#7C8C9A] mb-6 ml-auto"></div>
+                <p class="text-2xl font-body-alt text-[#7C8C9A] leading-relaxed">
+                    The Cosmic Dance of<br>Limitation and Balance
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 15: Infinity as Evidence of Harmony -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">The Cosmic Proof</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">Infinity as Evidence of Harmony</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 grid grid-cols-2 gap-4">
+                <div class="flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">Infinity is not endless chaos but the visible manifestation of harmony at work.</strong> The infinite is not unbounded randomness—it is what emerges when harmony places limitations upon itself. Infinity is the proof that cosmic balance exists, revealed through the elegant constraints that define reality.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Limitation Makes Infinity Possible</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                                Paradoxically, infinity requires limitation. Without boundaries, the infinite would be pure undifferentiated potential. Harmony creates elegant constraints that allow infinity to express itself coherently.
+                            </p>
+                            <div class="bg-[#C8A575]/20 p-2 rounded">
+                                <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Elegant Constraint:</p>
+                                <p class="text-sm text-[#7C8C9A]">Mathematical infinity is bounded by rules. Physical infinity is constrained by laws. Limitation doesn't restrict infinity—it enables it.</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Visible Signature</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                When we observe infinity—in mathematical sets, cosmic vastness, or consciousness potential—we are seeing the signature of harmony. Infinity is harmony's autograph, written across the fabric of existence.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center gap-3">
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3 text-center">How Harmony Creates Infinity</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-start gap-3"><div class="w-9 h-9 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-sm font-display flex-shrink-0">1</div><div><p class="text-base font-semibold text-[#E1E3E6]">Self-Limitation</p><p class="text-sm text-[#7C8C9A]">Harmony chooses constraints</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-start gap-3"><div class="w-9 h-9 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-sm font-display flex-shrink-0">2</div><div><p class="text-base font-semibold text-[#E1E3E6]">Pattern Formation</p><p class="text-sm text-[#7C8C9A]">Elegant patterns emerge</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-start gap-3"><div class="w-9 h-9 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-sm font-display flex-shrink-0">3</div><div><p class="text-base font-semibold text-[#E1E3E6]">Infinite Expression</p><p class="text-sm text-[#7C8C9A]">Boundaries enable endless diversity</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-start gap-3"><div class="w-9 h-9 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-sm font-display flex-shrink-0">4</div><div><p class="text-base font-semibold text-[#E1E3E6]">Cosmic Reflection</p><p class="text-sm text-[#7C8C9A]">Infinity becomes self-aware</p></div></div>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2 text-center">The Cosmic Evidence</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed text-center">
+                            Infinity is the physical evidence of metaphysical harmony. Wherever we find the unlimited, we find the signature of elegant limitation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 16: Self as Absolute -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">The Distortion Principle</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">Self as Absolute: The Source of Distortion</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex gap-4">
+                <div class="flex-[55] flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">Self is an absolute principle—a law without an influencer that inherently creates distortions requiring stabilization.</strong> Self, like infinity, cannot maintain balance alone. It requires the harmony between dualities to achieve stability, explaining why isolated systems inevitably seek equilibrium through broader connection.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Self: The Uninfluenced Law</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                                Self operates as an absolute—it's the principle of individual existence that doesn't depend on external validation. Yet this very absoluteness creates distortions. Uninfluenced by other perspectives, Self becomes rigid, creating imbalances that require correction.
+                            </p>
+                            <div class="bg-[#C8A575]/20 p-2 rounded">
+                                <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Paradox:</p>
+                                <p class="text-sm text-[#7C8C9A]">Self exists absolutely, yet cannot exist absolutely alone. Its absolute nature creates the very instability that requires cosmic harmony to correct.</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Inevitable Distortion</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                Isolated Self creates distortions like a lens creating aberrations. Without other perspectives to balance it, Self's absolute nature bends reality toward its own assumptions. This isn't moral failure—it's structural necessity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-[45] flex flex-col justify-center gap-3">
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3 text-center">The Distortion Cycle</h3>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">1</div><div><p class="text-base font-semibold text-[#E1E3E6]">Absolute Self</p><p class="text-sm text-[#7C8C9A]">Individual principle</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">2</div><div><p class="text-base font-semibold text-[#E1E3E6]">Isolation</p><p class="text-sm text-[#7C8C9A]">Disconnected from others</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">3</div><div><p class="text-base font-semibold text-[#E1E3E6]">Distortion</p><p class="text-sm text-[#7C8C9A]">Reality bends</p></div></div>
+                            <div class="flex justify-center my-1"><i class="fas fa-arrow-down text-lg text-[#7C8C9A]"></i></div>
+                            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">4</div><div><p class="text-base font-semibold text-[#E1E3E6]">Seeking Balance</p><p class="text-sm text-[#7C8C9A]">Reconnection drive</p></div></div>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2 text-center">The Stabilizing Solution</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed text-center">
+                            Self requires relationship with other Selves to achieve stability. Duality relationships provide the necessary perspectives to correct distortions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 17: The Unattainable Balance -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Dynamic Equilibrium</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">The Unattainable Balance: Why Infinity Requires Harmony</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex gap-4">
+                <div class="flex-[55] flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">Balance can never be maintained within infinity alone.</strong> True stability requires the active harmony of the six dualities working in concert. Like a cosmic symphony, each duality plays its part in stabilizing the others—no single principle can maintain order without the others.
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Cosmic Symphony</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                                Imagine a symphony where only one note plays. It wouldn't be music but monotony. Reality works similarly—single principles cannot create stable systems. It takes the interplay of multiple dualities to achieve dynamic equilibrium.
+                            </p>
+                            <div class="bg-[#C8A575]/20 p-2 rounded">
+                                <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Key Insight:</p>
+                                <p class="text-sm text-[#7C8C9A]">Balance is not static but dynamic—a constant adjustment. The six dualities provide the corrective forces that keep reality from falling into chaos or stagnation.</p>
+                            </div>
+                        </div>
+                        <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                            <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Why Single Principles Fail</h3>
+                            <p class="text-base text-[#7C8C9A] leading-relaxed">
+                                Any principle taken to its absolute extreme becomes its own opposite. Pure order becomes oppressive rigidity. Pure chaos becomes destructive dissolution. Pure light becomes blinding. It is the interplay, the tension, the balance between principles that creates stability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-[45] flex flex-col justify-center gap-3">
+                    <div class="bg-[#C8A575]/10 p-4 rounded-lg border border-[#C8A575]/30 flex flex-col justify-center flex-1">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3 text-center">The Six Corrective Forces</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="bg-[#101116]/50 p-2 rounded text-center"><p class="text-base font-semibold text-[#C8A575]">Mass-Energy</p><p class="text-sm text-[#7C8C9A]">Stabilizes form</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded text-center"><p class="text-base font-semibold text-[#7C8C9A]">Order-Chaos</p><p class="text-sm text-[#7C8C9A]">Balances change</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded text-center"><p class="text-base font-semibold text-[#C8A575]">Light-Dark</p><p class="text-sm text-[#7C8C9A]">Regulates revelation</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded text-center"><p class="text-base font-semibold text-[#7C8C9A]">Self-Other</p><p class="text-sm text-[#7C8C9A]">Corrects distortions</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded text-center"><p class="text-base font-semibold text-[#C8A575]">Time-Space</p><p class="text-sm text-[#7C8C9A]">Enables experience</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded text-center"><p class="text-base font-semibold text-[#7C8C9A]">Finite-Infinite</p><p class="text-sm text-[#7C8C9A]">Connects realms</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2 text-center">The Dynamic Equilibrium</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed text-center">
+                            No single duality can stabilize reality alone. They form an interdependent network where each requires all others to maintain cosmic balance.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Chapter 5 -->
+    <div class="ppt-slide" type="chapter">
+        <img src="resources/duality_forms.png" alt="Six dualities" class="absolute inset-0 w-full h-full object-cover opacity-25">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#101116]/98 via-[#101116]/85 to-transparent"></div>
+        <div class="relative h-full flex items-center">
+            <div class="max-w-3xl">
+                <div class="inline-block px-6 py-3 bg-[#C8A575]/20 border-l-4 border-[#C8A575] mb-6">
+                    <p class="text-xl font-semibold tracking-widest text-[#C8A575] uppercase">Chapter Five</p>
+                </div>
+                <h1 class="font-display text-7xl font-bold text-[#E1E3E6] leading-none mb-6">
+                    The Six<br>Dualities
+                </h1>
+                <div class="w-40 h-1 bg-[#C8A575] mb-6"></div>
+                <p class="text-2xl font-body-alt text-[#7C8C9A] leading-relaxed">
+                    The Stabilizing Forces<br>of Reality
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 19: The Cosmic Framework -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">The Stabilizing System</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">The Cosmic Framework: Six Pillars of Stability</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex gap-4">
+                <div class="flex-[50] flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">The six fundamental dualities that stabilize all reality are not merely opposing forces but complementary principles that require each other for existence.</strong> Through their dynamic interplay, they create the harmony that prevents both chaos and stagnation—the eternal dance that sustains existence.
+                    </p>
+                    <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Framework Revealed</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                            These six dualities form the fundamental architecture of reality. They are not accidents but necessities—structural principles without which existence would collapse into either sterile order or formless chaos.
+                        </p>
+                        <div class="bg-[#C8A575]/20 p-2 rounded">
+                            <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Cosmic Dance:</p>
+                            <p class="text-sm text-[#7C8C9A]">Each duality is a dance partner in the cosmic ballet. Sometimes they draw close, sometimes they spin apart, but always they move together in the rhythm that keeps reality alive.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-[50] flex flex-col justify-between gap-2">
+                    <div class="bg-[#C8A575]/10 p-3 rounded-lg border border-[#C8A575]/30"><div class="flex items-center gap-2 mb-1"><div class="w-8 h-8 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">1</div><h4 class="font-display text-base font-bold text-[#E1E3E6]">Mass-Energy</h4></div><p class="text-sm text-[#7C8C9A] leading-relaxed ml-10">The fundamental dance of form and potential, stabilized by the Higgs Field, creating matter from energy.</p></div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30"><div class="flex items-center gap-2 mb-1"><div class="w-8 h-8 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">2</div><h4 class="font-display text-base font-bold text-[#E1E3E6]">Order-Chaos</h4></div><p class="text-sm text-[#7C8C9A] leading-relaxed ml-10">The balance between stability and change, perceived differently by each consciousness but essential for growth.</p></div>
+                    <div class="bg-[#C8A575]/10 p-3 rounded-lg border border-[#C8A575]/30"><div class="flex items-center gap-2 mb-1"><div class="w-8 h-8 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">3</div><h4 class="font-display text-base font-bold text-[#E1E3E6]">Light-Darkness</h4></div><p class="text-sm text-[#7C8C9A] leading-relaxed ml-10">The revelation and concealment principle, regulating perception and protecting consciousness from overwhelming truth.</p></div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30"><div class="flex items-center gap-2 mb-1"><div class="w-8 h-8 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">4</div><h4 class="font-display text-base font-bold text-[#E1E3E6]">Self-Other</h4></div><p class="text-sm text-[#7C8C9A] leading-relaxed ml-10">The individual and collective principle, where distinct selves correct each other's distortions through relationship.</p></div>
+                    <div class="bg-[#C8A575]/10 p-3 rounded-lg border border-[#C8A575]/30"><div class="flex items-center gap-2 mb-1"><div class="w-8 h-8 rounded-full bg-[#C8A575] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">5</div><h4 class="font-display text-base font-bold text-[#E1E3E6]">Time-Space</h4></div><p class="text-sm text-[#7C8C9A] leading-relaxed ml-10">The framework of experience, providing the arena where all other dualities can interact and evolve.</p></div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30"><div class="flex items-center gap-2 mb-1"><div class="w-8 h-8 rounded-full bg-[#7C8C9A] flex items-center justify-center text-[#101116] font-bold text-base font-display flex-shrink-0">6</div><h4 class="font-display text-base font-bold text-[#E1E3E6]">Finite-Infinite</h4></div><p class="text-sm text-[#7C8C9A] leading-relaxed ml-10">The connection between limited and unlimited, where harmony bridges the bounded and the boundless.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 20: Interdependence -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">The Cosmic Web</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">Interdependence: The Web of Cosmic Relations</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 grid grid-cols-5 gap-4">
+                <div class="col-span-3 flex flex-col justify-center">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        <strong class="text-[#C8A575]">Reality is not built on isolated principles but on a web of mutual dependence.</strong> The six dualities form an unbreakable chain of reciprocal support. Mass-Energy, Order-Chaos, Light-Darkness, and the other dualities cannot exist independently—they define each other through their relationship.
+                    </p>
+                    <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575] mb-3">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Reciprocal Nature</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                            Each duality stabilizes others, and is stabilized by them in turn. Mass-Energy requires Time-Space for interaction. Order-Chaos needs Light-Darkness for proper revelation. Self-Other depends on the framework of Finite-Infinite to experience connection.
+                        </p>
+                        <div class="bg-[#C8A575]/20 p-2 rounded">
+                            <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Infinite Web:</p>
+                            <p class="text-sm text-[#7C8C9A]">Remove one duality and the entire structure trembles. They are not six separate principles but one reality expressed in twelve complementary aspects.</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#7C8C9A]">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Relationship as Foundation</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed">
+                            The foundation of reality is not particles or waves, principles or forces, but relationships. Existence is a network of connections, a tapestry woven from the threads of mutual dependence. The cosmos is not a collection of things but a constellation of relationships.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-span-2 flex flex-col justify-center gap-2">
+                    <div class="bg-[#C8A575]/10 p-3 rounded-lg border border-[#C8A575]/30">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-3 text-center">The Web Structure</h3>
+                        <div class="space-y-1">
+                            <div class="bg-[#101116]/50 p-2 rounded"><p class="text-base font-semibold text-[#C8A575]">Mass-Energy</p><p class="text-sm text-[#7C8C9A]">Needs: Time-Space, Finite-Infinite</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded"><p class="text-base font-semibold text-[#7C8C9A]">Order-Chaos</p><p class="text-sm text-[#7C8C9A]">Needs: Light-Darkness, Self-Other</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded"><p class="text-base font-semibold text-[#C8A575]">Light-Darkness</p><p class="text-sm text-[#7C8C9A]">Needs: Order-Chaos, Mass-Energy</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded"><p class="text-base font-semibold text-[#7C8C9A]">Self-Other</p><p class="text-sm text-[#7C8C9A]">Needs: Finite-Infinite, Time-Space</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded"><p class="text-base font-semibold text-[#C8A575]">Time-Space</p><p class="text-sm text-[#7C8C9A]">Needs: Mass-Energy, Light-Darkness</p></div>
+                            <div class="bg-[#101116]/50 p-2 rounded"><p class="text-base font-semibold text-[#7C8C9A]">Finite-Infinite</p><p class="text-sm text-[#7C8C9A]">Needs: Self-Other, Order-Chaos</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/10 p-3 rounded-lg border border-[#7C8C9A]/30">
+                        <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-2 text-center">The Network Effect</h4>
+                        <p class="text-sm text-[#7C8C9A] leading-relaxed text-center">
+                            Each duality supports and is supported by others, creating a network effect where stability emerges from collective interaction.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 21: The Living Cosmos -->
+    <div class="ppt-slide" type="content">
+        <div class="h-full flex flex-col">
+            <div class="mb-3">
+                <p class="text-base font-semibold tracking-wider text-[#C8A575] mb-2 uppercase">Dynamic Existence</p>
+                <h2 class="font-display text-3xl font-bold text-[#E1E3E6]">The Living Cosmos: Dynamic Equilibrium</h2>
+                <div class="w-20 h-1 bg-[#C8A575] mt-2"></div>
+            </div>
+            <div class="flex-1 flex flex-col gap-3">
+                <div class="bg-[#3A4753]/30 p-4 rounded-lg border-l-4 border-[#C8A575]">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-3">
+                        <strong class="text-[#C8A575]">The cosmos is not static perfection but dynamic equilibrium—constantly adjusting, balancing, harmonizing.</strong> The six dualities do not create fixed states but flowing processes. Reality is alive precisely because it never achieves final balance—it eternally seeks harmony through the dance of opposites.
+                    </p>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-heartbeat text-3xl text-[#C8A575] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Alive</h4>
+                            <p class="text-sm text-[#7C8C9A]">Constant adjustment, never static</p>
+                        </div>
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-sync-alt text-3xl text-[#7C8C9A] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Dynamic</h4>
+                            <p class="text-sm text-[#7C8C9A]">Flowing processes, not fixed states</p>
+                        </div>
+                        <div class="bg-[#101116]/50 p-3 rounded text-center">
+                            <i class="fas fa-infinity text-3xl text-[#C8A575] mb-2"></i>
+                            <h4 class="font-display text-base font-bold text-[#E1E3E6] mb-1">Eternal</h4>
+                            <p class="text-sm text-[#7C8C9A]">Seeking harmony through dance</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 grid grid-cols-2 gap-3">
+                    <div class="bg-[#C8A575]/20 p-4 rounded-lg border border-[#C8A575]/40 flex flex-col justify-center">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">Life as Process</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                            A living cosmos is not perfect but perpetually becoming. It thrives in the tension between opposites, finding vitality in the endless dance. Final balance would be death—stagnant, frozen, complete.
+                        </p>
+                        <div class="bg-[#101116]/50 p-2 rounded">
+                            <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Cosmic Pulse:</p>
+                            <p class="text-sm text-[#7C8C9A]">Reality pulses with the heartbeat of duality—expansion and contraction, revelation and concealment, creation and dissolution.</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#7C8C9A]/20 p-4 rounded-lg border border-[#7C8C9A]/40 flex flex-col justify-center">
+                        <h3 class="font-display text-lg font-bold text-[#E1E3E6] mb-2">The Beauty of Imperfection</h3>
+                        <p class="text-base text-[#7C8C9A] leading-relaxed mb-2">
+                            Perfect balance would eliminate the need for adjustment, correction, and growth. The cosmos is beautiful in its imperfection, which creates the necessity for endless creative solutions.
+                        </p>
+                        <div class="bg-[#101116]/50 p-2 rounded">
+                            <p class="text-sm text-[#E1E3E6] font-semibold mb-1">The Wabi-Sabi Cosmos:</p>
+                            <p class="text-sm text-[#7C8C9A]">Like Japanese aesthetics finding beauty in imperfection and impermanence, the cosmos finds its beauty in the never-complete, always-becoming nature of existence.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 bg-gradient-to-r from-[#C8A575]/20 to-transparent p-3 rounded-lg">
+                <p class="text-base font-body-alt text-[#E1E3E6] italic">
+                    "The cosmos is not a completed masterpiece but an ongoing creation—a living artwork that paints itself anew in every moment through the dance of dualities."
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 22: Final -->
+    <div class="ppt-slide" type="final">
+        <img src="resources/infinity_harmony.png" alt="Infinity" class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#101116]/95 via-[#101116]/90 to-[#101116]/80"></div>
+        <div class="relative h-full flex items-center justify-center">
+            <div class="max-w-4xl text-center">
+                <div class="w-32 h-1 bg-[#C8A575] mb-8 mx-auto"></div>
+                <h1 class="font-display text-6xl font-bold text-[#E1E3E6] leading-tight mb-8">
+                    The Eternal<br>Question
+                </h1>
+                <div class="bg-[#3A4753]/40 p-6 rounded-lg border-l-4 border-[#C8A575] mb-6">
+                    <p class="text-xl font-body-alt text-[#E1E3E6] leading-relaxed mb-4">
+                        If harmony is the limitation that makes infinity possible,<br>
+                        and the six dualities are the framework that makes harmony possible—
+                    </p>
+                    <p class="text-2xl font-display font-bold text-[#C8A575] leading-relaxed">
+                        what then is the source<br>
+                        that makes the dualities possible?
+                    </p>
+                </div>
+                <div class="bg-[#C8A575]/10 p-5 rounded-lg border border-[#C8A575]/30">
+                    <p class="text-lg font-body-alt text-[#E1E3E6] leading-relaxed mb-3">
+                        Perhaps the question itself is the answer.
+                    </p>
+                    <p class="text-base text-[#7C8C9A] leading-relaxed">
+                        The framework points not to final answers but to eternal inquiry—<br>
+                        the highest form of cosmic participation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
