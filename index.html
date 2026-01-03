@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infiniology: Worldbuilding Framework by Zeiendos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #d4af37;
+            --accent-hover: #b8941f;
+            --text: #e6e6e6;
+            --text-muted: #a0a0a0;
+            --surface: #0f0f1e;
+            --surface-light: #1a1a2e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--surface);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Cinzel', serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--primary) 50%, var(--secondary) 100%);
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cosmic-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--accent), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--accent), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--accent), transparent);
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--accent), #f4e4a6, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+            line-height: 1.1;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-top: 1rem;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .section-card {
+            background: linear-gradient(135deg, var(--surface-light) 0%, rgba(26, 26, 46, 0.8) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+            color: var(--primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .creators-note {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            margin: 4rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .creators-note h3 {
+            color: var(--accent);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .creators-note blockquote {
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .creators-note .author {
+            text-align: right;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .footer {
+            background: var(--primary);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact:hover {
+            text-decoration: underline;
+        }
+
+        .github-link {
+            background: linear-gradient(135deg, #333, #555);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .github-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+            
+            .section-card {
+                padding: 1.5rem;
+            }
+            
+            .nav-menu {
+                padding: 0.75rem 0;
+            }
+            
+            .nav-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-center items-center space-x-2 md:space-x-4">
+                <a href="#home" class="nav-link active">
+                    <i class="fas fa-home mr-1"></i>Home
+                </a>
+                <a href="#framework" class="nav-link">
+                    <i class="fas fa-book mr-1"></i>Framework
+                </a>
+                <a href="#systems" class="nav-link">
+                    <i class="fas fa-cogs mr-1"></i>Systems
+                </a>
+                <a href="#mythology" class="nav-link">
+                    <i class="fas fa-scroll mr-1"></i>Mythology
+                </a>
+                <a href="#repository" class="nav-link">
+                    <i class="fab fa-github mr-1"></i>Repository
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="cosmic-grid"></div>
+        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
+            <h1 class="hero-title serif">
+                Infiniology
+            </h1>
+            <p class="subtitle">
+                A Comprehensive Worldbuilding Framework for Creating Mythologies, Magic Systems, and Realities
+            </p>
+            <p class="text-lg text-gray-300 mt-4 max-w-3xl mx-auto">
+                Explore the depths of cosmic dualities, understand the limitations of infinity, and discover the framework that explains what makes a world a reality. A complete system for writers, worldbuilders, and storytellers.
+            </p>
+            <a href="https://github.com/Zeiendos/worldbuilding-with-infiniology" class="github-link">
+                <i class="fab fa-github"></i>
+                View on GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-16">
+        <!-- Framework Section -->
+        <section id="framework" class="mb-20">
+            <h2 class="serif text-4xl font-bold text-center mb-4 text-gray-100">
+                The Infiniology Framework
+            </h2>
+            <p class="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
+                Understanding the fundamental principles that govern reality, from the limitations of infinity to the core metaphysical frameworks that shape existence.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="section-title serif">Limitations of Infinity</h3>
+                    <p class="section-description">
+                        Explore the fundamental constraints that define infinite systems and understand how limitations create the foundation for all existence. A treatise on the cosmic boundaries that shape reality.
+                    </p>
+                    <a href="pages/limitations-of-infinity.html" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Explore Framework
+                    </a>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h3 class="section-title serif">Primordial Dualities</h3>
+                    <p class="section-description">
+                        Discover the fundamental opposing forces that govern all existence: Life and Death, Order and Chaos, Light and Dark. Understanding these dualities is key to mastering worldbuilding.
+                    </p>
+                    <a href="pages/primordial-dualities.html" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Dualities
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Systems Section -->
+        <section id="systems" class="mb-20">
+            <h2 class="serif text-4xl font-bold text-center mb-4 text-gray-100">
+                Magic & Cultivation Systems
+            </h2>
+            <p class="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
+                Comprehensive systems for magic, cultivation, professions, and divine artifacts. Create balanced and scalable character progression with quantifiable mechanics.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="section-title serif">Duality-Based Core</h3>
+                    <p class="section-description">
+                        A complete magic system based on manipulating dualities through Law Bits. Includes spell structure, cost calculations, professions, and cultivation paths.
+                    </p>
+                    <a href="pages/duality-based-core-systems.html" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Learn System
+                    </a>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3 class="section-title serif">Vibrational Influence</h3>
+                    <p class="section-description">
+                        Understand how vibrations and frequencies shape reality, influence consciousness, and create the fundamental patterns that underlie all existence.
+                    </p>
+                    <a href="pages/vibrational-influence.html" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Explore Vibrations
+                    </a>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="section-title serif">Divine Treasures</h3>
+                    <p class="section-description">
+                        Learn the art of creating artifacts that transcend normal limitations, requiring exceptional talent and understanding of cosmic laws.
+                    </p>
+                    <a href="pages/duality-based-core-systems.html#treasure-creation" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Create Artifacts
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mythology Section -->
+        <section id="mythology" class="mb-20">
+            <h2 class="serif text-4xl font-bold text-center mb-4 text-gray-100">
+                Mythological Frameworks
+            </h2>
+            <p class="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
+                Integrate religious and mythological elements with metaphysical frameworks. Create compelling narratives that resonate with deep spiritual and philosophical themes.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-cross"></i>
+                    </div>
+                    <h3 class="section-title serif">Christianity & Mythology</h3>
+                    <p class="section-description">
+                        A metaphysical framework that integrates Christian theological concepts with broader mythological patterns, creating bridges between different belief systems.
+                    </p>
+                    <a href="pages/metaphysical-framework-christianityandmythology.html" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        Explore Framework
+                    </a>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-icon">
+                        <i class="fas fa-fire-alt"></i>
+                    </div>
+                    <h3 class="section-title serif">End Times Framework</h3>
+                    <p class="section-description">
+                        Comprehensive mythology and religion framework for apocalyptic narratives, exploring themes of judgment, renewal, and the cyclical nature of cosmic events.
+                    </p>
+                    <a href="pages/mythoreligion-endtimes-framework.html" class="btn-primary">
+                        <i class="fas fa-external-link-alt"></i>
+                        View Framework
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Creator's Note -->
+        <section class="creators-note">
+            <h3><i class="fas fa-quote-left mr-2"></i>Creator's Note</h3>
+            <blockquote>
+                "There may never be an end to the depth of Infiniology. The more you learn, the less you know. This was originally just a project to get a mythology into someone else's world. A world where a character without a soul was told he couldn't use magic. May this framework explain the fundamentals of what makes a world a reality. While leading you to the creation of in-depth stories shaped by your own imagination."
+            </blockquote>
+            <div class="author">- Zeiendos</div>
+        </section>
+
+        <!-- Repository Section -->
+        <section id="repository" class="text-center mb-16">
+            <h2 class="serif text-3xl font-bold mb-4 text-gray-100">
+                Contribute and Explore
+            </h2>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
+                This framework is open for collaboration and improvement. Visit the GitHub repository to contribute, report issues, or explore the full codebase.
+            </p>
+            <a href="https://github.com/Zeiendos/worldbuilding-with-infiniology" class="github-link">
+                <i class="fab fa-github"></i>
+                Visit Repository
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="copyright">
+                <i class="fas fa-copyright mr-1"></i>
+                2025-2026 Zeiendos. All Rights Reserved.
+            </div>
+            <div class="copyright">
+                The Infiniology framework and all related concepts are protected intellectual property.
+            </div>
+            <div class="mt-4">
+                <a href="mailto:zeiendosinfinfity@gmail.com" class="contact">
+                    <i class="fas fa-envelope mr-1"></i>
+                    zeiendosinfinfity@gmail.com
+                </a>
+            </div>
+            <div class="mt-4 text-sm text-gray-500">
+                <p>TERMS OF USE:</p>
+                <p>Educational and Creative Use: Permitted with attribution</p>
+                <p>Commercial Use: Requires explicit license</p>
+                <p>Modification: Derivative works must maintain attribution</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav-menu');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(15, 15, 30, 0.98)';
+            } else {
+                nav.style.background = 'rgba(15, 15, 30, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
