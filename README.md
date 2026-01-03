@@ -2,7 +2,7 @@
 
 **Copyright © 2025-2026 Zeiendos. All Rights Reserved.**
 
-> "There may never be an end to the depth of Infiniology. The more you learn, the less you know."
+> "There may never be an end to the depth of Infiniology. The more you learn, the less you know. This was originally just a project to get a mythology into someone else's world. A world where a character without a soul was told he couldn't use magic. May this framework explain the fundamentals of what makes a world a reality. While leading you to the creation of in-depth stories shaped by your own imagination."
 > - Zeiendos
 
 ## 📚 Overview
@@ -206,9 +206,6 @@ While this is primarily the work of Zeiendos, contributions are welcome:
 
 ## 🌌 The Philosophy Behind Infiniology
 
-### Original Purpose
-> "This was originally just a project to get a mythology into someone else's world. A world where a character without a soul was told he couldn't use magic."
-
 ### Core Question
 **What makes a world a reality?**
 
@@ -217,9 +214,6 @@ Infiniology seeks to answer this by providing frameworks that:
 - Bridge the gap between philosophy and practical application
 - Enable creators to build coherent, believable realities
 - Respect both scientific principles and mythological traditions
-
-### The Journey of Learning
-> "There may never be an end to the depth of Infiniology. The more you learn, the less you know."
 
 This framework is designed to:
 - **Grow with you**: Deeper understanding reveals new questions
